@@ -25,7 +25,7 @@ public class CustomNetworkLobbyManager : NetworkLobbyManager {
         if (player_num == 1)
         {
             pg = GameObject.Instantiate<GameObject>(this.playerLobby, new Vector3(-2.141f, 0.02f, -1.639f), Quaternion.Euler(0, 180f, 0));
-            NetworkServer.Spawn(pg);
+            //NetworkServer.Spawn(pg);
         }
         else if(player_num == 2)
         {
