@@ -1179,6 +1179,7 @@ GameObject:
   - component: {fileID: 54344532944977758}
   - component: {fileID: 136302173980358294}
   - component: {fileID: 114050335356854300}
+  - component: {fileID: 114811449390723692}
   m_Layer: 0
   m_Name: Sir Sage_Idle.pref
   m_TagString: Untagged
@@ -2628,7 +2629,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668460457558366}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -0.9796081, y: 1.712893e-17, z: -0.7714185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2637,7 +2638,7 @@ Transform:
   - {fileID: 4859632445524204}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4709623589213700
 Transform:
   m_ObjectHideFlags: 1
@@ -3220,6 +3221,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bd50d75d0931c4799305fd699a2a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114811449390723692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668460457558366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 31
+    i1: 106
+    i2: 214
+    i3: 122
+    i4: 43
+    i5: 230
+    i6: 105
+    i7: 196
+    i8: 8
+    i9: 130
+    i10: 99
+    i11: 80
+    i12: 243
+    i13: 44
+    i14: 19
+    i15: 52
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!136 &136302173980358294
 CapsuleCollider:
   m_ObjectHideFlags: 1

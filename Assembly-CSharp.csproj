@@ -59,11 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CostomLobbyManager2.cs" />
+    <Compile Include="Assets\LobbyPlayer.cs" />
     <Compile Include="Assets\Scripts\BasicController.cs" />
     <Compile Include="Assets\Scripts\CameraCollision.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
+    <Compile Include="Assets\Scripts\CostomLobbyManager2.cs" />
     <Compile Include="Assets\Scripts\CountPLayer.cs" />
     <Compile Include="Assets\Scripts\CustomNetworkLobbyManager.cs" />
     <Compile Include="Assets\Scripts\DoorBehaviour.cs" />

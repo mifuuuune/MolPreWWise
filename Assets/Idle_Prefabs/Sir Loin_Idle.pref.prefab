@@ -759,6 +759,7 @@ GameObject:
   - component: {fileID: 54627426913577802}
   - component: {fileID: 136681579813554614}
   - component: {fileID: 114290535936011768}
+  - component: {fileID: 114302286341457798}
   m_Layer: 0
   m_Name: Sir Loin_Idle.pref
   m_TagString: Untagged
@@ -998,7 +999,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1912817322300634}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -1.5610088, y: 1.7545035e-17, z: -0.7901581}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1007,7 +1008,7 @@ Transform:
   - {fileID: 4492322749955006}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4237650914142992
 Transform:
   m_ObjectHideFlags: 1
@@ -1579,6 +1580,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bd50d75d0931c4799305fd699a2a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114302286341457798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1912817322300634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 119
+    i1: 144
+    i2: 45
+    i3: 167
+    i4: 109
+    i5: 102
+    i6: 166
+    i7: 196
+    i8: 75
+    i9: 204
+    i10: 108
+    i11: 19
+    i12: 149
+    i13: 213
+    i14: 169
+    i15: 229
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!136 &136681579813554614
 CapsuleCollider:
   m_ObjectHideFlags: 1
