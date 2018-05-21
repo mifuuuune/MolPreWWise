@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class SirEalController : BasicController {
 
@@ -11,9 +12,10 @@ public class SirEalController : BasicController {
     private float AnimationStop = 1.1f;
     private bool attachedToWall = false;
 
-    protected override void UseAbility()
+    [Command]
+    protected override void CmdUseAbility()
     {
-        base.UseAbility();
+        base.CmdUseAbility();
 
 
         try
@@ -81,7 +83,7 @@ public class SirEalController : BasicController {
 
             if (Input.GetMouseButtonDown(0))
             {
-                UseAbility();
+                CmdUseAbility();
                 return;
             }
 

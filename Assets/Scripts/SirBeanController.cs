@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Networking;
 
 public class SirBeanController : BasicController
 {
@@ -32,7 +33,7 @@ public class SirBeanController : BasicController
 
             if (Input.GetMouseButton(0))
             {
-                UseAbility();
+                CmdUseAbility();
                 return;
             }
 
@@ -55,9 +56,10 @@ public class SirBeanController : BasicController
         anim.SetBool("SpecialJumping", true);
     }
 
-    protected override void UseAbility()
+    [Command]
+    protected override void CmdUseAbility()
     {
-        base.UseAbility();
+        base.CmdUseAbility();
         //Debug.Log(AimRayCast().tag);
 
         anim.SetBool("UsingAbility", false);

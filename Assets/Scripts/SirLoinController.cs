@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class SirLoinController : BasicController {
 
@@ -56,7 +57,7 @@ public class SirLoinController : BasicController {
 
             if (Input.GetMouseButtonDown(0))
             {
-                UseAbility();
+                CmdUseAbility();
                 return;
             }
 
@@ -70,9 +71,10 @@ public class SirLoinController : BasicController {
         }
     }
 
-    protected override void UseAbility()
+    [Command]
+    protected override void CmdUseAbility()
     {
-        base.UseAbility();
+        base.CmdUseAbility();
 
         RaycastHit AbilityHit;
         Ray AbilityRay = new Ray(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)));

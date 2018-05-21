@@ -144,7 +144,7 @@ public class BasicController : NetworkBehaviour
         }
     }
 
-    protected virtual void UseAbility()
+    protected virtual void CmdUseAbility()
     {
         State = PlayerState.Ability;
         //AimRayCast();
