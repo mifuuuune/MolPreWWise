@@ -45,5 +45,33 @@ namespace Prototype.NetworkLobby
                 NetworkServer.Spawn(pg4);
             }
         }
+
+        public void DespawnLobbyPlayer(int player_num)
+        {
+            if (player_num == 1)
+            {
+                Destroy(pg);
+                //pg = GameObject.Instantiate<GameObject>(this.playerLobby1, new Vector3(-2.141f, 0.02f, -1.639f), Quaternion.Euler(0, 180f, 0));
+                NetworkServer.UnSpawn(pg);
+            }
+            else if (player_num == 2)
+            {
+                Destroy(pg2);
+                // pg2 = GameObject.Instantiate<GameObject>(this.playerLobby2, new Vector3(-0.548f, 0.02f, -1.639f), Quaternion.Euler(0, 180f, 0));
+                NetworkServer.UnSpawn(pg2);
+            }
+            else if (player_num == 3)
+            {
+                Destroy(pg3);
+                //pg3 = GameObject.Instantiate<GameObject>(this.playerLobby3, new Vector3(0.921f, 0.02f, -1.639f), Quaternion.Euler(0, 180f, 0));
+                NetworkServer.UnSpawn(pg3);
+            }
+            else if (player_num == 4)
+            {
+                Destroy(pg4);
+                //pg4 = GameObject.Instantiate<GameObject>(this.playerLobby4, new Vector3(2.365f, 0.02f, -1.639f), Quaternion.Euler(0, 180f, 0));
+                NetworkServer.UnSpawn(pg4);
+            }
+        }
     }
 }

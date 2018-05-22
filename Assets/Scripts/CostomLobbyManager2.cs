@@ -114,6 +114,19 @@ namespace Prototype.NetworkLobby
             }
             return myPlayer;
         }
+
+        public override void OnLobbyStopHost()
+        {
+            //base.OnLobbyServerDisconnect(conn);
+            player_num=0;
+        }
+
+        public override void OnLobbyServerDisconnect(NetworkConnection conn)
+        {
+            try { CountPLayer._instance.DespawnLobbyPlayer(player_num); } catch (Exception e) { Debug.Log(e); }
+            player_num--;
+        }
+
     }
 }
 
