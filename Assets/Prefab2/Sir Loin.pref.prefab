@@ -1783,8 +1783,9 @@ MonoBehaviour:
     m_Bits: 512
   AbilityRange: 15
   State: 0
-  FirstKnife: {fileID: 0}
-  SecondKnife: {fileID: 0}
+  FirstKnife: {fileID: 1961555146560650, guid: 043578d2e7d0e0f45a99b096563c73ea, type: 2}
+  SecondKnife: {fileID: 1171543457837150, guid: 5dedb62e47ab8b742972bb47b8347be4,
+    type: 2}
 --- !u!114 &114834303454743618
 MonoBehaviour:
   m_ObjectHideFlags: 1

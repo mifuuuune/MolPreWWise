@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.43749017, g: 0.4853112, b: 0.56558603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -342,6 +342,8 @@ MonoBehaviour:
   - {fileID: 1506329790328996, guid: b4dee95bbc5ddaf438de93c0d17621c3, type: 2}
   - {fileID: 1912817322300634, guid: 77902da76d66a6c44bcc6c1395d5a9e5, type: 2}
   - {fileID: 1668460457558366, guid: 1f6ad67a2be669c408826350f32c1334, type: 2}
+  - {fileID: 1961555146560650, guid: 043578d2e7d0e0f45a99b096563c73ea, type: 2}
+  - {fileID: 1171543457837150, guid: 5dedb62e47ab8b742972bb47b8347be4, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -406,7 +408,7 @@ MonoBehaviour:
   m_GamePlayerPrefab: {fileID: 1613227943946332, guid: 02d1843c37d7acc418d4dfa9d560abf5,
     type: 2}
   m_LobbyScene: Lobyy_GUI_2
-  m_PlayScene: Level
+  m_PlayScene: PlayGround
   lobbySlots: []
   player1: {fileID: 1613227943946332, guid: 02d1843c37d7acc418d4dfa9d560abf5, type: 2}
   player2: {fileID: 1855534808144124, guid: dd5ef94774c5a6f49a8ead8e3754ffb7, type: 2}
@@ -505,13 +507,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1598081621}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.76604444, y: 0, z: 0, w: 0.64278764}
   m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 100, y: 0, z: 0}
 --- !u!1 &1894905276
 GameObject:
   m_ObjectHideFlags: 0

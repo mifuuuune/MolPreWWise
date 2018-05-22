@@ -9,45 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1141651490751762}
+  m_RootGameObject: {fileID: 1961555146560650}
   m_IsPrefabParent: 1
---- !u!1 &1141651490751762
+--- !u!1 &1961555146560650
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4608166847026204}
-  - component: {fileID: 33974633478130470}
-  - component: {fileID: 23367354657959214}
-  - component: {fileID: 65653233625701956}
+  - component: {fileID: 4041641685091978}
+  - component: {fileID: 33378445629924508}
+  - component: {fileID: 23184876646169588}
+  - component: {fileID: 65304667156731790}
+  - component: {fileID: 114520261855846714}
+  - component: {fileID: 114131068374810000}
   m_Layer: 9
-  m_Name: SirLoin's SecondKnife.pref
+  m_Name: SirLoin's FirstKnife.pref
   m_TagString: Knife
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4608166847026204
+--- !u!4 &4041641685091978
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1141651490751762}
+  m_GameObject: {fileID: 1961555146560650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.178943, y: 1.7818742, z: 6.3899994}
+  m_LocalPosition: {x: -1.8687872, y: 1.6136851, z: 6.4562197}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23367354657959214
+--- !u!23 &23184876646169588
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1141651490751762}
+  m_GameObject: {fileID: 1961555146560650}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -78,22 +80,75 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33974633478130470
+--- !u!33 &33378445629924508
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1141651490751762}
+  m_GameObject: {fileID: 1961555146560650}
   m_Mesh: {fileID: 4300000, guid: 8a1e98472f75b5d4fa9cfaf436b6e0d5, type: 3}
---- !u!65 &65653233625701956
+--- !u!65 &65304667156731790
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1141651490751762}
+  m_GameObject: {fileID: 1961555146560650}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.022711, z: 1.000053}
   m_Center: {x: 0, y: -0.0005844999, z: -0.16913052}
+--- !u!114 &114131068374810000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961555146560650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114520261855846714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961555146560650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 4
+    i1: 53
+    i2: 120
+    i3: 210
+    i4: 231
+    i5: 208
+    i6: 224
+    i7: 244
+    i8: 90
+    i9: 153
+    i10: 176
+    i11: 150
+    i12: 86
+    i13: 60
+    i14: 115
+    i15: 234
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

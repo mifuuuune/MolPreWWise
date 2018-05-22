@@ -12,6 +12,8 @@ public class SirLoinController : BasicController {
     private float AnimationStop = 0.75f;
     public GameObject FirstKnife;
     public GameObject SecondKnife;
+    private int number_of_knifes=0;
+    private GameObject knife1, knife2;
 
     protected override void SpecialJump()
     {
@@ -71,7 +73,7 @@ public class SirLoinController : BasicController {
         }
     }
 
-    [Command]
+    
     protected override void CmdUseAbility()
     {
         base.CmdUseAbility();
@@ -86,37 +88,112 @@ public class SirLoinController : BasicController {
                 timer = 0;
                 if (AlternateThrow)
                 {
+                    if (number_of_knifes >= 2)
+                    {
+                        CmdUnSpawnKnife(1);
+                        
+                        Debug.Log("----->>>Knifes: " + number_of_knifes);
+                    }                        
                     AlternateThrow = false;
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z)), RotationSpeed * 10);
                     anim.SetTrigger("FirstThrow");
-                    StartCoroutine(StickKnife(FirstKnife, AbilityHit));
+                    //StickKnife(FirstKnife, AbilityHit);
+                    //FirstKnife.SetActive(true);
+                    FirstKnife.transform.position = AimRayCast();
+                    FirstKnife.transform.rotation = Quaternion.FromToRotation(Vector3.back, AbilityHit.normal);
+                    CmdSpawnKnife(FirstKnife, 1);
+                    number_of_knifes++;
+                    Debug.Log("Knifes: " + number_of_knifes);
                 }
                 else
                 {
+                    if (number_of_knifes >= 2)
+                    {
+                        CmdUnSpawnKnife(2);
+                        Debug.Log("----->>>Knifes: " + number_of_knifes);
+                    }
                     AlternateThrow = true;
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z)), RotationSpeed * 10);
                     anim.SetTrigger("SecondThrow");
-                    StartCoroutine(StickKnife(SecondKnife, AbilityHit));
+                    //StickKnife(SecondKnife, AbilityHit);
+                    //SecondKnife.SetActive(true);
+                    SecondKnife.transform.position = AimRayCast();
+                    SecondKnife.transform.rotation = Quaternion.FromToRotation(Vector3.back, AbilityHit.normal);
+                    CmdSpawnKnife(SecondKnife, 2);
+                    number_of_knifes++;
+                    Debug.Log("Knifes: " + number_of_knifes);
                 }
             }
 
         }
     }
 
-    IEnumerator StickKnife(GameObject Knife, RaycastHit AbilityHit)
+    [Command]
+    private void CmdSpawnKnife(GameObject knifepos, int i)
     {
-        yield return new WaitForSeconds(0.65f);
-        Knife.SetActive(true);
-        Knife.transform.position = AimRayCast();
-        Knife.transform.rotation = Quaternion.FromToRotation(Vector3.back, AbilityHit.normal);
+        if (i == 1)
+        {
+            //Debug.Log("spawn1");
+            knife1 = GameObject.Instantiate<GameObject>(this.FirstKnife, knifepos.transform.position, knifepos.transform.rotation);
+            NetworkServer.Spawn(knife1);
+        }
+        else
+        {
+            //Debug.Log("spawn2");
+            knife2 = GameObject.Instantiate<GameObject>(this.SecondKnife, knifepos.transform.position, knifepos.transform.rotation);
+            NetworkServer.Spawn(knife2);
+        }
+    }
+
+    [Command]
+    private void CmdUnSpawnKnife(int i)
+    {
+        if (i == 1)
+        {
+            //Debug.Log("Unspawn1");
+            number_of_knifes--;
+            var knifesinscene = GameObject.FindGameObjectsWithTag("Knife");
+            foreach(GameObject obj in knifesinscene)
+            {
+                
+                if(obj.name== "SirLoin's FirstKnife.pref(Clone)")
+                {
+                    Debug.Log("sono nel for each 1 e ho trovaot first");
+                    Destroy(obj);
+                    NetworkServer.UnSpawn(obj);
+                }
+            }
+           // GameObject obj = GameObject.Find("SirLoin's FirstKnife.pref(Clone)");
+            
+        }
+        else
+        {
+            //Debug.Log("Unspawn2");
+            number_of_knifes--;
+            var knifesinscene = GameObject.FindGameObjectsWithTag("Knife");
+            foreach (GameObject obj in knifesinscene)
+            {
+                if (obj.name == "SirLoin's SecondKnife.pref(Clone)")
+                {
+                    Debug.Log("sono nel for each 1 e ho trovaot first");
+                    Destroy(obj);
+                    NetworkServer.UnSpawn(obj);
+                }
+            }
+            /* GameObject obj = GameObject.Find("SirLoin's SecondKnife.pref(Clone)");
+             Destroy(obj);
+             NetworkServer.UnSpawn(obj);*/
+        }
     }
 
     //DECOMMENTARE PER IMPLEMENTARE IL DESPAWN DEI COLTELLI AL TOCCO, LASCIARE PER GIOCARE CON I COLTELLI
-    /*private void OnCollisionEnter(Collision col)
+    private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Knife")
         {
             col.gameObject.SetActive(false);
+            number_of_knifes--;
+            Debug.Log("Knifes: " + number_of_knifes);
         }
-    }*/
+    }
 }
