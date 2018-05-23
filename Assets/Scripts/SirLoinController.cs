@@ -175,7 +175,7 @@ public class SirLoinController : BasicController {
             {
                 if (obj.name == "SirLoin's SecondKnife.pref(Clone)")
                 {
-                    Debug.Log("sono nel for each 1 e ho trovaot first");
+                    Debug.Log("sono nel for each 1 e ho trovaot second");
                     Destroy(obj);
                     NetworkServer.UnSpawn(obj);
                 }
