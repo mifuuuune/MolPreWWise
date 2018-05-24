@@ -99,9 +99,9 @@ public class SirLoinController : BasicController {
                     anim.SetTrigger("FirstThrow");
                     //StickKnife(FirstKnife, AbilityHit);
                     //FirstKnife.SetActive(true);
-                    FirstKnife.transform.position = AimRayCast();
-                    FirstKnife.transform.rotation = Quaternion.FromToRotation(Vector3.back, AbilityHit.normal);
-                    CmdSpawnKnife(FirstKnife, 1);
+                    var knifeonepos = AimRayCast();
+                    var knifeoneprot = Quaternion.FromToRotation(Vector3.back, AbilityHit.normal);
+                    CmdSpawnKnife(knifeonepos, knifeoneprot, 1);
                     number_of_knifes++;
                     Debug.Log("Knifes: " + number_of_knifes);
                 }
@@ -117,9 +117,9 @@ public class SirLoinController : BasicController {
                     anim.SetTrigger("SecondThrow");
                     //StickKnife(SecondKnife, AbilityHit);
                     //SecondKnife.SetActive(true);
-                    SecondKnife.transform.position = AimRayCast();
-                    SecondKnife.transform.rotation = Quaternion.FromToRotation(Vector3.back, AbilityHit.normal);
-                    CmdSpawnKnife(SecondKnife, 2);
+                    var knifetwopos = AimRayCast();
+                    var knifetwoprot = Quaternion.FromToRotation(Vector3.back, AbilityHit.normal);
+                    CmdSpawnKnife(knifetwopos, knifetwoprot, 2);
                     number_of_knifes++;
                     Debug.Log("Knifes: " + number_of_knifes);
                 }
@@ -129,18 +129,18 @@ public class SirLoinController : BasicController {
     }
 
     [Command]
-    private void CmdSpawnKnife(GameObject knifepos, int i)
+    private void CmdSpawnKnife(Vector3 knifepos, Quaternion kniferot, int i)
     {
         if (i == 1)
         {
             //Debug.Log("spawn1");
-            knife1 = GameObject.Instantiate<GameObject>(this.FirstKnife, knifepos.transform.position, knifepos.transform.rotation);
+            knife1 = GameObject.Instantiate<GameObject>(this.FirstKnife, knifepos, kniferot);
             NetworkServer.Spawn(knife1);
         }
         else
         {
             //Debug.Log("spawn2");
-            knife2 = GameObject.Instantiate<GameObject>(this.SecondKnife, knifepos.transform.position, knifepos.transform.rotation);
+            knife2 = GameObject.Instantiate<GameObject>(this.SecondKnife, knifepos, kniferot);
             NetworkServer.Spawn(knife2);
         }
     }
