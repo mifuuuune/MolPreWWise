@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 114486446765580068}
   m_Layer: 10
   m_Name: Sir Bean from Fartalot.pref
-  m_TagString: Untagged
+  m_TagString: Bean
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1633,6 +1633,8 @@ MonoBehaviour:
     m_Bits: 512
   AbilityRange: 0.8
   State: 0
+  remainingTime: 300
+  canvas: {fileID: 1544117923393814, guid: f12a9b2739e72194eab236164d3f140d, type: 2}
   Force: 500
 --- !u!114 &114792626382767940
 MonoBehaviour:

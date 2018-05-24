@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 114680277364950808}
   m_Layer: 10
   m_Name: Sir Sage.pref
-  m_TagString: Untagged
+  m_TagString: Sage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3424,6 +3424,8 @@ MonoBehaviour:
     m_Bits: 512
   AbilityRange: 15
   State: 0
+  remainingTime: 300
+  canvas: {fileID: 0}
 --- !u!114 &114804678869706630
 MonoBehaviour:
   m_ObjectHideFlags: 1

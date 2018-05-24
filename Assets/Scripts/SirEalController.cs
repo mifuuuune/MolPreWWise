@@ -25,8 +25,10 @@ public class SirEalController : BasicController {
                 timer = 0;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(ProximityRayCast().transform.position.x - transform.position.x, 0, ProximityRayCast().transform.position.z - transform.position.z)), RotationSpeed * 10);
                 anim.SetTrigger("Plant");
-                GameObject newPlant = Instantiate<GameObject>(Plant, ProximityRayCast().transform.position - new Vector3(0, 3, 0), Quaternion.identity);
-                Destroy(ProximityRayCast());
+                var spawn = ProximityRayCast().transform.position;
+                var destroy = ProximityRayCast();
+                CmdSpawnPlant(spawn, destroy);
+                //Destroy(ProximityRayCast());
             }
 
             if (ProximityRayCast().tag == "Plant" && ProximityRayCast() != null)
@@ -34,14 +36,34 @@ public class SirEalController : BasicController {
                 timer = 0;
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(ProximityRayCast().transform.position.x - transform.position.x, 0, ProximityRayCast().transform.position.z - transform.position.z)), RotationSpeed * 10);
                 anim.SetTrigger("Plant");
-                GameObject newTerrain = Instantiate<GameObject>(Terrain, ProximityRayCast().transform.position - new Vector3(0, 1, 0), Quaternion.identity);
-                Destroy(ProximityRayCast());
+                var spawn = ProximityRayCast().transform.position;
+                var destroy = ProximityRayCast();
+                CmdUnSpawnPlant(spawn, destroy);
+                //Destroy(ProximityRayCast());
             }
         } catch (NullReferenceException ex)
         {
             Debug.Log("No object in range.");
         }
 
+    }
+    [Command]
+    protected void CmdSpawnPlant(Vector3 spawnP, GameObject destroyT)
+    {
+        GameObject newPlant = Instantiate<GameObject>(Plant, spawnP - new Vector3(0, 3, 0), Quaternion.identity);
+        NetworkServer.Spawn(newPlant);
+        Destroy(destroyT);
+        NetworkServer.UnSpawn(destroyT);
+    }
+
+    [Command]
+    protected void CmdUnSpawnPlant(Vector3 spawnT, GameObject destroyP)
+    {
+        Destroy(ProximityRayCast());
+        NetworkServer.UnSpawn(destroyP);
+        GameObject newTerrain = Instantiate<GameObject>(Terrain, spawnT - new Vector3(0, 1, 0), Quaternion.identity);
+        NetworkServer.Spawn(newTerrain);
+        
     }
 
     protected override void SpecialJump()

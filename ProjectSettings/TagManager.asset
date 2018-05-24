@@ -12,6 +12,10 @@ TagManager:
   - Terrain
   - Rock
   - Plant
+  - Bean
+  - Sage
+  - Loin
+  - Eal
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 using System;
 
@@ -33,13 +34,67 @@ public class BasicController : NetworkBehaviour
     protected float InputZ;
     protected bool SpecialJumped = false;
 
+    private bool isMole = true;
+    private int molePoints = 50;
+
+    //NETWORK VARS
+    [SyncVar(hook = "updateTime")]
+    public int remainingTime = 300;
+
+    private float remainingTimeF = 300;
+
+    //CANVAS VARS
+    public GameObject canvas;
+
+
     //Initial setup, gets the components
-    protected void Start()
+    protected virtual void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<CapsuleCollider>();
 
+        Sprite s1 = null;
+        Sprite s2 = null;
+        Sprite s3 = null;
+        Sprite s4 = null;
+
+        if (isLocalPlayer)
+        {
+            if (transform.gameObject.tag == "Bean")
+            {
+                s1 = Resources.Load<Sprite>("bean");
+                s2 = Resources.Load<Sprite>("beanName");
+                s3 = Resources.Load<Sprite>("beanJump");
+                s4 = Resources.Load<Sprite>("beanAbility");
+            }
+            else if (transform.gameObject.tag == "Eal")
+            {
+                s1 = Resources.Load<Sprite>("eal");
+                s2 = Resources.Load<Sprite>("ealName");
+                s3 = Resources.Load<Sprite>("ealJump");
+                s4 = Resources.Load<Sprite>("ealAbility");
+            }
+            else if (transform.gameObject.tag == "Loin")
+            {
+                s1 = Resources.Load<Sprite>("loin");
+                s2 = Resources.Load<Sprite>("loinName");
+                s3 = Resources.Load<Sprite>("loinJump");
+                s4 = Resources.Load<Sprite>("loinAbility");
+            }
+            else if (transform.gameObject.tag == "Sage")
+            {
+                s1 = Resources.Load<Sprite>("sage");
+                s2 = Resources.Load<Sprite>("sageName");
+                s3 = Resources.Load<Sprite>("sageJump");
+                s4 = Resources.Load<Sprite>("sageAbility");
+            }
+
+            GameObject.Find("PlayerIcon").GetComponent<Image>().sprite = s1;
+            GameObject.Find("PlayerName").GetComponent<Image>().sprite = s2;
+            GameObject.Find("JumpIcon").GetComponent<Image>().sprite = s3;
+            GameObject.Find("AbilityIcon").GetComponent<Image>().sprite = s4;
+        }
     }
 
     //Updates the internal parameters
@@ -60,6 +115,11 @@ public class BasicController : NetworkBehaviour
         {
             this.cam.enabled = false;
             this.cam.GetComponent<AudioListener>().enabled = false;
+        }
+        if (isServer)
+        {
+            remainingTimeF -= Time.deltaTime;
+            remainingTime = (int)remainingTimeF;
         }
     }
 
@@ -155,5 +215,10 @@ public class BasicController : NetworkBehaviour
     {
         State = PlayerState.SpecialJump;
         SpecialJumped = true;
+    }
+
+    private void updateTime(int t)
+    {
+        GameObject.Find("TimeText").GetComponent<Text>().text = (int)t/60 + ":" + t%60;
     }
 }
