@@ -33,6 +33,11 @@ public class SirSageController : BasicController {
             anim.SetBool("Trampoline", false);
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            CmdUseAbility();
+        }
+
         if (!inTrampolineState)
         {
             if (RedHooked)
@@ -72,12 +77,6 @@ public class SirSageController : BasicController {
                 if (CurrentInput > 0) Run();
                 else Idle();
 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    CmdUseAbility();
-                    return;
-                }
-
                 if (Input.GetButtonDown("Jump"))
                 {
                     rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
@@ -115,7 +114,13 @@ public class SirSageController : BasicController {
                 HookPosition = AbilityHit.collider.gameObject.transform.position + new Vector3(0, 1f, 0);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z)), RotationSpeed * 10);
                 anim.SetTrigger("Ability");
-                StartCoroutine(GoTo());
+                if (IsGrounded)
+                {
+                    StartCoroutine(GoTo());
+
+                }
+                else RedHooked = true;
+
             }
             else
             if (AbilityHit.collider.gameObject.tag == "GreenHook")

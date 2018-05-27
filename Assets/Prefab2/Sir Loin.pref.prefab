@@ -1778,12 +1778,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 20531082500305866}
-  PlayerLayer:
+  GroundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   MoleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   AbilityRange: 15
   State: 0
   remainingTime: 300

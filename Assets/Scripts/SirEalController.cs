@@ -11,6 +11,13 @@ public class SirEalController : BasicController {
     private float timer = 1.5f;
     private float AnimationStop = 1.1f;
     private bool attachedToWall = false;
+    private BoxCollider BoxColl;
+
+    protected override void Start()
+    {
+        base.Start();
+        BoxColl = GetComponent<BoxCollider>();
+    }
 
     [Command]
     protected override void CmdUseAbility()
@@ -77,6 +84,9 @@ public class SirEalController : BasicController {
 
         if (!IsGrounded)
         {
+            BoxColl.enabled = true;
+            coll.enabled = false;
+
             if (attachedToWall)
             {
                 if (Input.GetButtonDown("Jump"))
@@ -95,6 +105,9 @@ public class SirEalController : BasicController {
         }
         else
         {
+            BoxColl.enabled = false;
+            coll.enabled = true;
+
             if (timer <= AnimationStop)
             {
                 timer += Time.deltaTime;

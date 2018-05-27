@@ -1628,9 +1628,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 20160997654972364}
-  PlayerLayer:
+  GroundLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2048
   MoleLayer:
     serializedVersion: 2
     m_Bits: 1024
