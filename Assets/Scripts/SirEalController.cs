@@ -73,6 +73,8 @@ public class SirEalController : BasicController {
 
     protected override void StatusUpdate(float CurrentInput)
     {
+        base.StatusUpdate(CurrentInput);
+
         if (!IsGrounded)
         {
             if (attachedToWall)

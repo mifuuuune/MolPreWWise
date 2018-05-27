@@ -1,40 +1,17 @@
 fileFormatVersion: 2
-guid: 134e23205ac162c49a9a21573c8350d1
+guid: 14ec88fcc294b4f44ae181d7820b668d
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Ceiling
-    100004: Level
-    100006: Platforms
-    100008: Level_Vertical_walls
-    100010: Floors
-    400000: //RootNode
-    400002: Ceiling
-    400004: Level
-    400006: Platforms
-    400008: Level_Vertical_walls
-    400010: Floors
-    2100000: unnamed
-    2300000: //RootNode
-    2300002: Ceiling
-    2300004: Level
-    2300006: Platforms
-    2300008: Level_Vertical_walls
-    2300010: Floors
-    3300000: //RootNode
-    3300002: Ceiling
-    3300004: Level
-    3300006: Platforms
-    3300008: Level_Vertical_walls
-    3300010: Floors
-    4300000: Level
-    4300002: Platforms
-    4300004: Ceiling
-    4300006: Level_Vertical_walls
-    4300008: Floors
-    7400000: Default Take
-    9500000: //RootNode
+    100000: default
+    100002: //RootNode
+    400000: default
+    400002: //RootNode
+    2100000: defaultMat
+    2300000: default
+    3300000: default
+    4300000: default
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -110,7 +87,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

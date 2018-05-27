@@ -25,9 +25,15 @@ public class SirLoinController : BasicController {
 
     protected override void StatusUpdate(float CurrentInput)
     {
+        base.StatusUpdate(CurrentInput);
 
         if (Input.GetButtonUp("Jump")) CanGlide = true;
-            
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            CmdUseAbility();
+            return;
+        }
 
         if (!IsGrounded)
         {
@@ -56,12 +62,6 @@ public class SirLoinController : BasicController {
 
             if (CurrentInput > 0) Run();
                 else Idle();
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                CmdUseAbility();
-                return;
-            }
 
             if (Input.GetButtonDown("Jump"))
             {

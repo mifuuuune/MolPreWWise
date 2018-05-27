@@ -10,6 +10,9 @@ public class SirBeanController : BasicController
 
     protected override void StatusUpdate(float CurrentInput)
     {
+        base.StatusUpdate(CurrentInput);
+        anim.SetBool("UsingAbility", false);
+
         if (!IsGrounded)
         {
             Jump();
@@ -37,9 +40,6 @@ public class SirBeanController : BasicController
                 return;
             }
 
-            if (Input.GetMouseButtonUp(0))
-                anim.SetBool("UsingAbility", false);
-
             if (Input.GetButtonDown("Jump"))
             {
                 rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
@@ -62,7 +62,6 @@ public class SirBeanController : BasicController
         base.CmdUseAbility();
         //Debug.Log(AimRayCast().tag);
 
-        anim.SetBool("UsingAbility", false);
         try
         {
             if (ProximityRayCast().tag == "Boulder" && ProximityRayCast() != null)
@@ -70,9 +69,8 @@ public class SirBeanController : BasicController
 
                 anim.SetBool("UsingAbility", true);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(ProximityRayCast().transform.position.x - transform.position.x, 0, ProximityRayCast().transform.position.z - transform.position.z)), RotationSpeed);
-                //METTERE SIR BEAN AD UNA DATA DISTANZA DAL MASSO, QUINDI SE è TROPPO VICINO SI ALLONTANA, SE è TROPPO LONTANO SI AVVICINA
-                MovementSpeed = 1f;
-                ProximityRayCast().transform.Translate(transform.forward * Time.deltaTime);
+                //ProximityRayCast().transform.Translate(transform.forward * 1.5f * Time.deltaTime);
+                ProximityRayCast().GetComponent<Rigidbody>().AddForce(transform.forward * Force, ForceMode.Impulse);
 
             }
             else if (ProximityRayCast().tag == "Rock" && ProximityRayCast() != null)
@@ -80,7 +78,6 @@ public class SirBeanController : BasicController
 
                 anim.SetBool("UsingAbility", true);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(ProximityRayCast().transform.position.x - transform.position.x, 0, ProximityRayCast().transform.position.z - transform.position.z)), RotationSpeed);
-                //METTERE SIR BEAN AD UNA DATA DISTANZA DAL MASSO, QUINDI SE è TROPPO VICINO SI ALLONTANA, SE è TROPPO LONTANO SI AVVICINA
                 ProximityRayCast().GetComponent<Rigidbody>().AddForce(transform.forward * Force, ForceMode.Impulse);
 
             }

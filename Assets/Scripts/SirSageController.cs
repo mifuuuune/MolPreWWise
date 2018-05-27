@@ -13,13 +13,23 @@ public class SirSageController : BasicController {
     private float StopAt = 0.5f;
     private float timer = 2f;
     private float AnimationStop = 1.3f;
+    private BoxCollider BoxColl;
+
+    protected override void Start()
+    {
+        base.Start();
+        BoxColl = GetComponent<BoxCollider>();
+    }
 
     protected override void StatusUpdate(float CurrentInput)
     {
+        base.StatusUpdate(CurrentInput);
 
         if ((Input.GetButtonUp("Jump")))
         {
             inTrampolineState = false;
+            coll.enabled = true;
+            BoxColl.enabled = false;
             anim.SetBool("Trampoline", false);
         }
 
@@ -82,6 +92,8 @@ public class SirSageController : BasicController {
     {
         base.SpecialJump();
         inTrampolineState = true;
+        coll.enabled = false;
+        BoxColl.enabled = true;
         anim.SetBool("Trampoline", true);
 
     }
@@ -125,7 +137,7 @@ public class SirSageController : BasicController {
 
     void OnCollisionEnter(Collision col)
     {
-        if(inTrampolineState && col.gameObject.layer == 8)
+        if(inTrampolineState && col.gameObject.layer == 9)
         {
             Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
             Vector3 EnteringForce = col.relativeVelocity * rb.mass;

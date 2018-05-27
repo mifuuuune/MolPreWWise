@@ -18,6 +18,7 @@ public class BasicController : NetworkBehaviour
 
     public Camera cam;
     public LayerMask GroundLayer;
+    public LayerMask MoleLayer;
 
     //--------------------------------------------------- CONTROL PARAMETERS ---------------------------------------------------//
     protected float MovementSpeed = 4.5f;
@@ -126,13 +127,20 @@ public class BasicController : NetworkBehaviour
     //Decides the character's status
     protected virtual void StatusUpdate(float CurrentInput)
     {
-        //Implemented in every character
+        if (Input.GetMouseButtonDown(1))
+        {
+            CmdMoleAbility();
+        }
+
+        //The rest is implemented in every character
+
     }
 
     //Detects whether the character is on the ground or not
     protected bool GroundDetection()
     {
-        return Physics.CheckCapsule(coll.bounds.center, new Vector3(coll.bounds.center.x, coll.bounds.min.y, coll.bounds.center.z), coll.radius * 0.9f, GroundLayer);
+        return Physics.CheckCapsule(coll.bounds.center, new Vector3(coll.bounds.center.x, coll.bounds.min.y, coll.bounds.center.z), coll.radius * 0.9f, GroundLayer) 
+            ||  Physics.CheckCapsule(coll.bounds.center, new Vector3(coll.bounds.center.x, coll.bounds.min.y, coll.bounds.center.z), coll.radius * 0.9f, MoleLayer);
     }
 
     //Shoots a raycast and returns the object hit id any
@@ -220,5 +228,29 @@ public class BasicController : NetworkBehaviour
     private void updateTime(int t)
     {
         GameObject.Find("TimeText").GetComponent<Text>().text = (int)t/60 + ":" + t%60;
+    }
+
+    protected void CmdMoleAbility()
+    {
+
+        RaycastHit AbilityHit;
+        Ray AbilityRay = new Ray(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)));
+        Debug.DrawRay(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)), Color.green);
+        if (Physics.Raycast(AbilityRay, out AbilityHit, AbilityRange))
+        {
+            GameObject target = AbilityHit.collider.gameObject;
+
+            if (target.layer == 10)                                 //DA CAMBIARE, USARE IL LAYER MASK
+            //if (MoleLayer == (MoleLayer | (1 << target.layer)))
+            {
+                target.SetActive(!target.activeInHierarchy);
+            }
+            else if(target.layer == 9)
+            {
+                Rigidbody TargetRb = target.GetComponent<Rigidbody>();
+
+                TargetRb.AddForce(-target.transform.forward * 2, ForceMode.Impulse);
+            }
+        }
     }
 }

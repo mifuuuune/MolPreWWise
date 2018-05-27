@@ -54,6 +54,13 @@ ModelImporter:
     100096: mixamorig:Spine1
     100098: mixamorig:Spine2
     100100: Plane001_Untitled
+    100102: mixamorig:HeadTop_End_end_end
+    100104: mixamorig:LeftHandIndex4_end_end
+    100106: mixamorig:LeftHandThumb4_end_end
+    100108: mixamorig:LeftToe_End_end_end
+    100110: mixamorig:RightHandIndex4_end_end
+    100112: mixamorig:RightHandThumb4_end_end
+    100114: mixamorig:RightToe_End_end_end
     400000: Armature
     400002: //RootNode
     400004: mixamorig:Head
@@ -105,9 +112,17 @@ ModelImporter:
     400096: mixamorig:Spine1
     400098: mixamorig:Spine2
     400100: Plane001_Untitled
+    400102: mixamorig:HeadTop_End_end_end
+    400104: mixamorig:LeftHandIndex4_end_end
+    400106: mixamorig:LeftHandThumb4_end_end
+    400108: mixamorig:LeftToe_End_end_end
+    400110: mixamorig:RightHandIndex4_end_end
+    400112: mixamorig:RightHandThumb4_end_end
+    400114: mixamorig:RightToe_End_end_end
     2100000: No Name
     4300000: Plane001_Untitled
     7400000: Armature|Armature|mixamo.com|Layer0.001
+    7400002: Armature|Armature|Armature|Armature|mixamo.com|Layer0.001|Armature|Armat
     9500000: //RootNode
     13700000: Plane001_Untitled
     2186277476908879412: ImportLogs
