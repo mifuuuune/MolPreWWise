@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33883153770077712}
   - component: {fileID: 23437301240489960}
   - component: {fileID: 65836741694354576}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: RedHook.pref
   m_TagString: RedHook
   m_Icon: {fileID: 0}

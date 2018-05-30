@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4391529758911164}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Portal.pref
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 23703606724294382}
   - component: {fileID: 65064767351111530}
   - component: {fileID: 114477138777182122}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 33285498951225754}
   - component: {fileID: 23508051421424982}
   - component: {fileID: 64522250567900302}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23321827095022472}
   - component: {fileID: 54645980170868378}
   - component: {fileID: 65783806334387142}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Boulder.pref
   m_TagString: Boulder
   m_Icon: {fileID: 0}

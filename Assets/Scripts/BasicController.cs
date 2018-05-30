@@ -253,4 +253,9 @@ public class BasicController : NetworkBehaviour
             }
         }
     }
+    
+    public bool IsTheMole()
+    {
+        return isMole;
+    }
 }

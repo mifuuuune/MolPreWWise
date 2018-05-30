@@ -13,7 +13,7 @@ NavMeshProjectSettings:
     cost: 2
   - name: Rooster
     cost: 1
-  - name: ChickenAndChick
+  - name: HenAndChick
     cost: 1
   - name: 
     cost: 1
@@ -75,7 +75,7 @@ NavMeshProjectSettings:
     agentTypeID: 0
     agentRadius: 1
     agentHeight: 3
-    agentSlope: 35
+    agentSlope: 26
     agentClimb: 0.3
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -91,7 +91,7 @@ NavMeshProjectSettings:
     agentTypeID: -334000983
     agentRadius: 0.25
     agentHeight: 0.5
-    agentSlope: 45
+    agentSlope: 26
     agentClimb: 0.1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -121,5 +121,5 @@ NavMeshProjectSettings:
       m_Flags: 0
   m_SettingNames:
   - Boss
-  - Chicken
+  - Hen
   - Chick

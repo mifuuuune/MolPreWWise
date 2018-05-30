@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65799883427765050}
   - component: {fileID: 114750678402251572}
   - component: {fileID: 114914071454504696}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Terrain.pref
   m_TagString: Terrain
   m_Icon: {fileID: 0}

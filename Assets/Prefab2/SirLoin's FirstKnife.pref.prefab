@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65304667156731790}
   - component: {fileID: 114520261855846714}
   - component: {fileID: 114131068374810000}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: SirLoin's FirstKnife.pref
   m_TagString: Knife
   m_Icon: {fileID: 0}

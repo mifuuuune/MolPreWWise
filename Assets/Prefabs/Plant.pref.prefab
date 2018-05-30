@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114354782435777966}
   - component: {fileID: 114114112644966916}
   - component: {fileID: 114698893085331852}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Plant.pref
   m_TagString: Plant
   m_Icon: {fileID: 0}
