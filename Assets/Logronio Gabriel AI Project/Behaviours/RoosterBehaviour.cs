@@ -1,22 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class EngageBehaviour : GeneralBehaviour
-{
-    private float timer = 2f;
-    public float PushForce = 7f;
+public class RoosterBehaviour : MonoBehaviour {
 
-    override public void ExecuteBehaviour(Collider[] Neighbors)
+    private NavMeshAgent agent;
+    private Vector3 CurrentDestination;
+
+    // Use this for initialization
+    void Start () {
+
+        agent = GetComponent<NavMeshAgent>();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        agent.SetDestination(target.transform.position);
+
+    }
+
+    public void Alarm(GameObject target)
     {
-        if (timer < 2f) timer += Time.deltaTime;
-        GameObject target = FindNearest(Neighbors);
-        if (timer > HensParametersManager.AttackTime)
-        {
-            target.GetComponent<Rigidbody>().AddForce(transform.forward * PushForce, ForceMode.Impulse);
-            transform.LookAt(target.transform);
-            timer = 0;
-        }
+        CurrentDestination = target.transform.position;
     }
 
     private GameObject FindNearest(Collider[] Neighborgs)
@@ -27,7 +35,7 @@ public class EngageBehaviour : GeneralBehaviour
 
         foreach (Collider NearbyElement in Neighborgs)
         {
-            if (NearbyElement != null && NearbyElement.gameObject != gameObject)
+            if (NearbyElement != null)
             {
                 distance = Vector3.Distance(NearbyElement.transform.position, transform.position);
                 if (distance < nearestDistance)

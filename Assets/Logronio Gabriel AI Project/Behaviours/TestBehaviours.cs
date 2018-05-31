@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ChickDecisionTree : MonoBehaviour
+public class TestBehaviours : MonoBehaviour
 {
     public enum ChickPersonalities { COCKY, COWARD, CURIOUS, SISSY, SLY }
     public enum ChickStatus { ALARM, CATCHINGUP, FLEEING, GOINGTO, ROAMING, STARING };
@@ -171,3 +171,4 @@ public class ChickDecisionTree : MonoBehaviour
         return NearestElement;
     }
 }
+

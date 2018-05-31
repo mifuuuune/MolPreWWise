@@ -1,22 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class EngageBehaviour : GeneralBehaviour
+public class ProtectBehaviour : GeneralBehaviour
 {
-    private float timer = 2f;
-    public float PushForce = 7f;
+
+    private NavMeshAgent agent;
+
+    public LayerMask PlayersLayer;
+    private Collider[] NearbyPlayers = new Collider[4];
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     override public void ExecuteBehaviour(Collider[] Neighbors)
     {
-        if (timer < 2f) timer += Time.deltaTime;
+        Physics.OverlapSphereNonAlloc(transform.position, HensParametersManager.HenFOV, NearbyPlayers, PlayersLayer);
         GameObject target = FindNearest(Neighbors);
-        if (timer > HensParametersManager.AttackTime)
-        {
-            target.GetComponent<Rigidbody>().AddForce(transform.forward * PushForce, ForceMode.Impulse);
-            transform.LookAt(target.transform);
-            timer = 0;
-        }
+        GameObject player = FindNearest(NearbyPlayers);
+
+        Vector3 ComingDirection = player.transform.position - target.transform.position;
+        agent.SetDestination(target.transform.position + (ComingDirection.normalized) / 1.5f);
+
     }
 
     private GameObject FindNearest(Collider[] Neighborgs)

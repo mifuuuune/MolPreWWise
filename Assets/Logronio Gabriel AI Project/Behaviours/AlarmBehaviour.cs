@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class AlarmBehaviour : GeneralBehaviour
 {
+    public GameObject Rooster;
+    private float timer = 5f;
 
     override public void ExecuteBehaviour(Collider[] Neighbors)
     {
+        if (timer < 6f) timer += Time.deltaTime;
+        if (timer > ChicksParametersManager.AlarmTime)
+        {
+            GameObject target = FindNearest(Neighbors);
+            Rooster.GetComponent<RoosterBehaviour>().Alarm(target);
+            timer = 0;
+        }
+
     }
 
     private GameObject FindNearest(Collider[] Neighborgs)
@@ -17,11 +27,14 @@ public class AlarmBehaviour : GeneralBehaviour
 
         foreach (Collider NearbyElement in Neighborgs)
         {
-            distance = Vector3.Distance(NearbyElement.transform.position, transform.position);
-            if (distance < nearestDistance)
+            if (NearbyElement != null && NearbyElement.gameObject != gameObject)
             {
-                nearestDistance = distance;
-                NearestElement = NearbyElement.gameObject;
+                distance = Vector3.Distance(NearbyElement.transform.position, transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    NearestElement = NearbyElement.gameObject;
+                }
             }
         }
         return NearestElement;

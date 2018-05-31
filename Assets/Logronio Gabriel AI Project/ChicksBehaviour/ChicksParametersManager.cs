@@ -8,7 +8,7 @@ public class ChicksParametersManager : MonoBehaviour {
 
     public static float ChickFOV = 1.75f;
 
-    public static float ChickDangerFOV = 0.5f;
+    public static float ChickDangerFOV = 0.6f;
 
     public static float ChickCowardFOV = 2.25f;
 
@@ -16,10 +16,6 @@ public class ChicksParametersManager : MonoBehaviour {
 
     public static float ChickSpeed = 3f;
 
-    public static float ChickAlignWeight = 1f;
-
-    public static float ChickCohesionWeight = 1f;
-
-    public static float ChickSeparationWeight = 1f;
+    public static float AlarmTime = 5f;
 
 }

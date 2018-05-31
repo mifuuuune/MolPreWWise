@@ -14,8 +14,9 @@ public class FleeBehaviour : GeneralBehaviour
 
     override public void ExecuteBehaviour(Collider[] Neighbors)
     {
-        Vector3 EscapeDirection = transform.position - FindNearest(Neighbors).transform.position;
-        agent.SetDestination(transform.position + EscapeDirection.normalized);
+        GameObject target = FindNearest(Neighbors);
+        Vector3 EscapeDirection = transform.position - target.transform.position;
+        agent.SetDestination(transform.position + (EscapeDirection.normalized) / 3f);
     }
 
     private GameObject FindNearest(Collider[] Neighborgs)
@@ -26,11 +27,14 @@ public class FleeBehaviour : GeneralBehaviour
 
         foreach (Collider NearbyElement in Neighborgs)
         {
-            distance = Vector3.Distance(NearbyElement.transform.position, transform.position);
-            if (distance < nearestDistance)
+            if (NearbyElement != null && NearbyElement.gameObject != gameObject)
             {
-                nearestDistance = distance;
-                NearestElement = NearbyElement.gameObject;
+                distance = Vector3.Distance(NearbyElement.transform.position, transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    NearestElement = NearbyElement.gameObject;
+                }
             }
         }
         return NearestElement;

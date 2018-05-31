@@ -10,7 +10,9 @@ public class RoamingBehaviour : GeneralBehaviour {
     private Vector3 LastRoosterPosition;
     private NavMeshAgent agent;
     private float TimeToChange = 0f;
+    private float StopTime = 0.75f;
     private float timer = 0f;
+    bool reset = false;
 
     private void Start()
     {
@@ -18,6 +20,7 @@ public class RoamingBehaviour : GeneralBehaviour {
         CurrentDirection = Rooster.transform.position;
         LastRoosterPosition = Rooster.transform.position;
         TimeToChange = Random.Range(1.5f, 2.5f);
+        StopTime = Random.Range(0.5f, 0.75f);
     }
 
     override public void ExecuteBehaviour(Collider[] Neighbors)
@@ -27,7 +30,7 @@ public class RoamingBehaviour : GeneralBehaviour {
 
         if (RoosterMovement.magnitude <= 0.001f)
         {
-            if (timer >= TimeToChange)
+            if (timer >= TimeToChange || reset)
             {
                 do
                 {
@@ -40,6 +43,8 @@ public class RoamingBehaviour : GeneralBehaviour {
                 } while (Vector3.Distance(CurrentDirection, Rooster.transform.position) > 4f);
                 timer = 0;
             }
+            else if (timer > (TimeToChange - StopTime) && timer < TimeToChange) CurrentDirection = transform.position;
+
             agent.speed = 1.5f; 
         }
 
@@ -52,8 +57,14 @@ public class RoamingBehaviour : GeneralBehaviour {
         Debug.DrawLine(transform.position, CurrentDirection, Color.green);
         agent.SetDestination(CurrentDirection);
         LastRoosterPosition = Rooster.transform.position;
+        reset = false;
 
     }//--------------------VERSIONE CAMBIA DIREZIONE OGNI TOT SECONDI
+
+    public void ResetDirection()
+    {
+        reset = true;
+    }
 
     /*
     override public void ExecuteBehaviour(Collider[] Neighbors)

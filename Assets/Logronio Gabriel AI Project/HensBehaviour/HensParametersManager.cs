@@ -12,16 +12,12 @@ public class HensParametersManager : MonoBehaviour {
 
     public static float HenAggressiveFOV = 2f;
 
-    public static float HenProtectiveFOV = 1.75f; // == HenUnlikableFOV
+    public static float HenProtectiveFOV = 2.25f; // == HenUnlikableFOV
 
-    public static float HenCowardFOV = 2.5f;
+    public static float HenCowardFOV = 1.5f;
 
     public static float HenSpeed = 1.25f;
 
-    public static float HenAlignWeight = 1f;
-
-    public static float HenCohesionWeight = 1f;
-
-    public static float HenSeparationWeight = 1f;
+    public static float AttackTime = 1.5f;
 
 }

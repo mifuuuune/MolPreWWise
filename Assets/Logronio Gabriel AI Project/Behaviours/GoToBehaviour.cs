@@ -14,7 +14,9 @@ public class GoToBehaviour : GeneralBehaviour {
 
     override public void ExecuteBehaviour(Collider[] Neighbors)
     {
-        agent.SetDestination(FindNearest(Neighbors).transform.position);
+        GameObject target = FindNearest(Neighbors);
+        if (Vector3.Distance(transform.position, target.transform.position) > 0.5f) agent.SetDestination(target.transform.position);
+        else agent.SetDestination(transform.position);
     }
 
     private GameObject FindNearest(Collider[] Neighborgs)
@@ -25,11 +27,14 @@ public class GoToBehaviour : GeneralBehaviour {
 
         foreach (Collider NearbyElement in Neighborgs)
         {
-            distance = Vector3.Distance(NearbyElement.transform.position, transform.position);
-            if (distance < nearestDistance)
+            if (NearbyElement != null && NearbyElement.gameObject != gameObject)
             {
-                nearestDistance = distance;
-                NearestElement = NearbyElement.gameObject;
+                distance = Vector3.Distance(NearbyElement.transform.position, transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    NearestElement = NearbyElement.gameObject;
+                }
             }
         }
         return NearestElement;
