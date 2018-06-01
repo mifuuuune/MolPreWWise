@@ -5,26 +5,76 @@ using UnityEngine.AI;
 
 public class RoosterBehaviour : MonoBehaviour {
 
+    public enum RoosterStates { ROAMING, ATTACKING}
+    public RoosterStates CurrentState;
+
     private NavMeshAgent agent;
+
+    public LayerMask PlayersLayer;
+    private Collider[] NearbyPlayers = new Collider[4];
+
+    private GameObject CurrentTarget;
     private Vector3 CurrentDestination;
+
+    private float RoamingTimer;
+    public float WalkingTime = 7;
+    public float WaitingTime = 6f;
 
     // Use this for initialization
     void Start () {
 
         agent = GetComponent<NavMeshAgent>();
+        CurrentDestination = transform.position;
+        CurrentTarget = null;
+        CurrentState = RoosterStates.ROAMING;
 
     }
 
     // Update is called once per frame
     void Update () {
 
-        agent.SetDestination(target.transform.position);
+        if (Physics.OverlapSphereNonAlloc(transform.position, 4f, NearbyPlayers, PlayersLayer) == 0)
+        {
+            RoamingState();
+        }
 
     }
 
     public void Alarm(GameObject target)
     {
+        CurrentTarget = target;
         CurrentDestination = target.transform.position;
+        RoamingTimer = WalkingTime + WaitingTime;
+    }
+
+    public void RoamingState()
+    {
+        CurrentState = RoosterStates.ROAMING;
+
+        if (RoamingTimer < WalkingTime + WaitingTime) RoamingTimer += Time.deltaTime;
+
+        if (RoamingTimer >= WalkingTime + WaitingTime)
+        {
+
+            float RandomX = Random.Range(-1f, 1f);
+            float RandomZ = Random.Range(-1f, 1f);
+            Vector3 CurrentDirection = new Vector3(RandomX, transform.position.y, RandomZ).normalized;
+            CurrentDestination = transform.position + CurrentDirection * 30;
+            RoamingTimer = 0;
+        }
+        else if (RoamingTimer > WalkingTime && RoamingTimer < (WalkingTime + WaitingTime)) CurrentDestination = transform.position;
+
+        agent.speed = 2.5f;
+
+        Debug.DrawLine(transform.position, CurrentDestination, Color.green);
+        agent.SetDestination(CurrentDestination);
+
+    }
+
+    public void AttackingState()
+    {
+        CurrentState = RoosterStates.ATTACKING;
+
     }
 
     private GameObject FindNearest(Collider[] Neighborgs)

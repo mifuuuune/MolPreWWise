@@ -48,7 +48,7 @@ public class HenDecisionTree : MonoBehaviour {
         if (timer < 2f) timer += Time.deltaTime;
         if (timer > HensParametersManager.AttackTime)
         {
-            if (Vector3.Distance(Rooster.transform.position, transform.position) > 4f)
+            if (Vector3.Distance(Rooster.transform.position, transform.position) > 5f)
             {
                 CurrentStatus = HenStatus.CATCHINGUP;
                 CatchUp();

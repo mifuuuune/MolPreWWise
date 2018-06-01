@@ -1627,6 +1627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8842c1839aba534a8b5b35e61b5778e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnPoint: {fileID: 1705801757922200, guid: cf35a5a204531f84abcb966f81da3581, type: 2}
   cam: {fileID: 20160997654972364}
   GroundLayer:
     serializedVersion: 2

@@ -15,6 +15,7 @@ public class BasicController : NetworkBehaviour
     protected Rigidbody rb;
     protected CapsuleCollider coll;
     private Vector3 dir;
+    public  GameObject SpawnPoint;
 
     public Camera cam;
     public LayerMask GroundLayer;
@@ -23,7 +24,7 @@ public class BasicController : NetworkBehaviour
     //--------------------------------------------------- CONTROL PARAMETERS ---------------------------------------------------//
     protected float MovementSpeed = 4.5f;
     protected float RotationSpeed = 0.15f;
-    static public float JumpForce = 60f;
+    protected float JumpForce = 60f;
     protected float JumpSlow = 1.5f;
     protected float MaxDistance = 50f;
     public float AbilityRange = 0f;
@@ -253,9 +254,13 @@ public class BasicController : NetworkBehaviour
             }
         }
     }
-    
-    public bool IsTheMole()
+
+    public void Respawn(Vector3 Checkpoint)
     {
-        return isMole;
+        if(Checkpoint != Vector3.zero)
+        {
+            gameObject.transform.position = Checkpoint;
+        }
+        else gameObject.transform.position = SpawnPoint.transform.position;
     }
 }
