@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour {
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collision col)
     {
         if (col.gameObject.layer == 9)
         {
