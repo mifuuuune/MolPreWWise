@@ -69,6 +69,8 @@ public class BasicController : NetworkBehaviour
                 s2 = Resources.Load<Sprite>("beanName");
                 s3 = Resources.Load<Sprite>("beanJump");
                 s4 = Resources.Load<Sprite>("beanAbility");
+                SpawnPoint = GameObject.Find("sir_bean_spawn");
+
             }
             else if (transform.gameObject.tag == "Eal")
             {
@@ -76,6 +78,7 @@ public class BasicController : NetworkBehaviour
                 s2 = Resources.Load<Sprite>("ealName");
                 s3 = Resources.Load<Sprite>("ealJump");
                 s4 = Resources.Load<Sprite>("ealAbility");
+                SpawnPoint = GameObject.Find("sir_eal_spawn");
             }
             else if (transform.gameObject.tag == "Loin")
             {
@@ -83,6 +86,8 @@ public class BasicController : NetworkBehaviour
                 s2 = Resources.Load<Sprite>("loinName");
                 s3 = Resources.Load<Sprite>("loinJump");
                 s4 = Resources.Load<Sprite>("loinAbility");
+                SpawnPoint = GameObject.Find("sir_loin_spawn");
+
             }
             else if (transform.gameObject.tag == "Sage")
             {
@@ -90,6 +95,7 @@ public class BasicController : NetworkBehaviour
                 s2 = Resources.Load<Sprite>("sageName");
                 s3 = Resources.Load<Sprite>("sageJump");
                 s4 = Resources.Load<Sprite>("sageAbility");
+                SpawnPoint = GameObject.Find("sir_sage_spawn");
             }
 
             GameObject.Find("PlayerIcon").GetComponent<Image>().sprite = s1;
@@ -255,12 +261,19 @@ public class BasicController : NetworkBehaviour
         }
     }
 
+    
     public void Respawn(Vector3 Checkpoint)
     {
-        if(Checkpoint != Vector3.zero)
+       // Debug.Log(Checkpoint);
+        if (Checkpoint != Vector3.zero)
         {
+           // Debug.Log("sono nell'if");
             gameObject.transform.position = Checkpoint;
         }
-        else gameObject.transform.position = SpawnPoint.transform.position;
+        else
+        {
+           // Debug.Log(SpawnPoint.transform.position);
+            gameObject.transform.position = SpawnPoint.transform.position;
+        }
     }
 }

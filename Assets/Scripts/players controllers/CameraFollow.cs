@@ -32,7 +32,7 @@ public class CameraFollow : MonoBehaviour
 
         // We setup the rotation of the sticks here
         InputX = Mathf.Max(Input.GetAxis("Mouse X")/* + Input.GetAxisRaw("HorizontalRightStick")*/);
-        InputY = Mathf.Max(Input.GetAxis("Mouse Y")/* + Input.GetAxisRaw("VerticalRightStick")*/);
+        InputY = -Mathf.Max(Input.GetAxis("Mouse Y")/* + Input.GetAxisRaw("VerticalRightStick")*/);
 
         rotY += InputX * inputSensitivity * Time.deltaTime;
         rotX += InputY * inputSensitivity * Time.deltaTime;

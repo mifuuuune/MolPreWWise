@@ -1738,7 +1738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
-  m_SendInterval: 0.09090909
+  m_SendInterval: 0.06666667
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -1788,7 +1788,7 @@ MonoBehaviour:
   AbilityRange: 15
   State: 0
   remainingTime: 300
-  canvas: {fileID: 0}
+  canvas: {fileID: 1274802779802144, guid: f12a9b2739e72194eab236164d3f140d, type: 2}
   FirstKnife: {fileID: 1961555146560650, guid: 043578d2e7d0e0f45a99b096563c73ea, type: 2}
   SecondKnife: {fileID: 1171543457837150, guid: 5dedb62e47ab8b742972bb47b8347be4,
     type: 2}

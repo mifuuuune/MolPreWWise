@@ -1558,7 +1558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
-  m_SendInterval: 0.09090909
+  m_SendInterval: 0.06666667
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -1638,7 +1638,7 @@ MonoBehaviour:
   AbilityRange: 0.6
   State: 0
   remainingTime: 300
-  canvas: {fileID: 1544117923393814, guid: f12a9b2739e72194eab236164d3f140d, type: 2}
+  canvas: {fileID: 1274802779802144, guid: f12a9b2739e72194eab236164d3f140d, type: 2}
   Force: 500
 --- !u!114 &114792626382767940
 MonoBehaviour:

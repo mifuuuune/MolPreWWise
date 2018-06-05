@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class KeyBehaviour : MonoBehaviour {
+public class KeyBehaviour : NetworkBehaviour {
 
     public GameObject Door;
 
@@ -12,9 +13,15 @@ public class KeyBehaviour : MonoBehaviour {
 
         if (coll.tag.Equals("Player"))
         {*/
-        Destroy(Door);
-        Destroy(gameObject);
+        CmdDestroyKey();
         // }Door.SetActive(false);
     }
 
+    [Command]
+    public void CmdDestroyKey() {
+        NetworkServer.UnSpawn(Door);
+        Destroy(Door);
+        NetworkServer.UnSpawn(this.gameObject);
+        Destroy(this.gameObject);
+    }
 }

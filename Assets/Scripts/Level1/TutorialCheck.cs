@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class TutorialCheck : MonoBehaviour {
+public class TutorialCheck : NetworkBehaviour {
 
     public GameObject TutorialBlock;
     private bool SirBeanArrived;
@@ -10,8 +11,9 @@ public class TutorialCheck : MonoBehaviour {
     private bool SirLoinArrived;
     private bool SirSageArrived;
 
-    void OnTriggerEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
+
         if (col.gameObject.layer == 9)
         {
             if (!SirBeanArrived && col.gameObject.tag == "Bean") SirBeanArrived = true;
@@ -19,7 +21,9 @@ public class TutorialCheck : MonoBehaviour {
             if (!SirLoinArrived && col.gameObject.tag == "Loin") SirLoinArrived = true;
             if (!SirSageArrived && col.gameObject.tag == "Sage") SirSageArrived = true;
 
-            if (SirBeanArrived && SirEalArrived && SirLoinArrived && SirSageArrived) TutorialBlock.SetActive(false);
+            //if (SirBeanArrived && SirEalArrived && SirLoinArrived && SirSageArrived) TutorialBlock.SetActive(false);
+            if (SirLoinArrived) Destroy(TutorialBlock);
         }
+        
     }
 }

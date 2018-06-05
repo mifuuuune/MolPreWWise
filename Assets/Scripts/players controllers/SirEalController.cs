@@ -68,7 +68,7 @@ public class SirEalController : BasicController {
     {
         Destroy(ProximityRayCast());
         NetworkServer.UnSpawn(destroyP);
-        GameObject newTerrain = Instantiate<GameObject>(Terrain, spawnT - new Vector3(0, 1, 0), Quaternion.identity);
+        GameObject newTerrain = Instantiate<GameObject>(Terrain, spawnT - new Vector3(0, 0, 0), Quaternion.identity);
         NetworkServer.Spawn(newTerrain);
         
     }

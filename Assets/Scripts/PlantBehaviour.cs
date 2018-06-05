@@ -6,12 +6,27 @@ using UnityEngine.Networking;
 public class PlantBehaviour : NetworkBehaviour {
 
     public int speed = 5;
-
+    private Vector3 heightstart;
     // Update is called once per frame
-    void Update () {
-		if (transform.position.y < 0.0f)
+    private void Start()
+    {
+        heightstart = this.transform.position;
+    }
+
+    private void Update () {
+        if (this.tag == "Plant")
         {
-            transform.Translate(transform.up * speed * Time.deltaTime);
+            if (transform.position.y < (heightstart.y + 3))
+            {
+                transform.Translate(transform.up * speed * Time.deltaTime);
+            }
         }
+        /*else if (this.tag == "Terrain")
+        {
+            if (transform.position.y > (heightstart.y - 3))
+            {
+                transform.Translate(-transform.up);
+            }
+        }*/
 	}
 }
