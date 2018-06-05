@@ -3286,7 +3286,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063190297988628}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 65
   m_Drag: 0
   m_AngularDrag: 0.75
   m_UseGravity: 1
@@ -3439,6 +3439,7 @@ MonoBehaviour:
   MoleLayer:
     serializedVersion: 2
     m_Bits: 1024
+  JumpForce: 500
   AbilityRange: 15
   State: 0
   remainingTime: 300
