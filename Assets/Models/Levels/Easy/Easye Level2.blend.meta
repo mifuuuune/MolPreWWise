@@ -9,12 +9,16 @@ ModelImporter:
     100006: Floor
     100008: Walls
     100010: Vertical_Walls
+    100012: Vertical_Walls_001
+    100014: Vertical_Walls_002
     400000: //RootNode
     400002: Ceiling
     400004: Plane
     400006: Floor
     400008: Walls
     400010: Vertical_Walls
+    400012: Vertical_Walls_001
+    400014: Vertical_Walls_002
     2100000: unnamed
     2300000: //RootNode
     2300002: Ceiling
@@ -22,17 +26,23 @@ ModelImporter:
     2300006: Floor
     2300008: Walls
     2300010: Vertical_Walls
+    2300012: Vertical_Walls_001
+    2300014: Vertical_Walls_002
     3300000: //RootNode
     3300002: Ceiling
     3300004: Plane
     3300006: Floor
     3300008: Walls
     3300010: Vertical_Walls
+    3300012: Vertical_Walls_001
+    3300014: Vertical_Walls_002
     4300000: Plane
     4300002: Ceiling
     4300004: Floor
     4300006: Walls
     4300008: Vertical_Walls
+    4300010: Vertical_Walls_001
+    4300012: Vertical_Walls_002
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs
