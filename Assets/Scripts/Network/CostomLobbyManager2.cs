@@ -102,9 +102,9 @@ namespace Prototype.NetworkLobby
 
             GameObject myPlayer = null;
             spawn_player++;
-            if (spawn_player == 1)
-                myPlayer = Instantiate(player1, GameObject.Find("sir_bean_spawn").transform.position, Quaternion.identity) as GameObject;
             if (spawn_player == 2)
+                myPlayer = Instantiate(player1, GameObject.Find("sir_bean_spawn").transform.position, Quaternion.identity) as GameObject;
+            if (spawn_player == 1)
                 myPlayer = Instantiate(player2, GameObject.Find("sir_eal_spawn").transform.position, Quaternion.identity) as GameObject;
             if (spawn_player == 3)
                 myPlayer = Instantiate(player3, GameObject.Find("sir_loin_spawn").transform.position, Quaternion.identity) as GameObject;

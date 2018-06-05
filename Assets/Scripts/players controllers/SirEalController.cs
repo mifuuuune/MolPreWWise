@@ -58,19 +58,22 @@ public class SirEalController : BasicController {
     protected void CmdSpawnPlant(Vector3 spawnP, GameObject destroyT)
     {
         GameObject newPlant = Instantiate<GameObject>(Plant, spawnP - new Vector3(0, 3, 0), Quaternion.identity);
+        newPlant.transform.parent = destroyT.transform.parent;
         NetworkServer.Spawn(newPlant);
-        Destroy(destroyT);
         NetworkServer.UnSpawn(destroyT);
+        Destroy(destroyT);
+
     }
 
     [Command]
     protected void CmdUnSpawnPlant(Vector3 spawnT, GameObject destroyP)
     {
-        Destroy(ProximityRayCast());
-        NetworkServer.UnSpawn(destroyP);
         GameObject newTerrain = Instantiate<GameObject>(Terrain, spawnT - new Vector3(0, 0, 0), Quaternion.identity);
+        newTerrain.transform.parent = destroyP.transform.parent;
+        NetworkServer.UnSpawn(destroyP);
         NetworkServer.Spawn(newTerrain);
-        
+        Destroy(ProximityRayCast());
+
     }
 
     protected override void SpecialJump()

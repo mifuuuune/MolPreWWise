@@ -7,8 +7,14 @@ public class RespawnWithDelay : NetworkBehaviour {
 
     public float Delay = 0f;
 
-    private void OnDisable()
+    public void MoleAbility()
     {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.layer == 9)
+                child.parent = null;
+        }
+        gameObject.SetActive(false);
         Invoke("CmdReEnable", Delay);
     }
 

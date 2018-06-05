@@ -52,14 +52,4 @@ public class MovingPlatform : MonoBehaviour {
 
 
 	}
-
-    void OnCollisionEnter(Collision col)
-    {
-        col.gameObject.transform.parent = transform;
-    }
-
-    void OnCollisionExit(Collision col)
-    {
-        col.gameObject.transform.parent = null;
-    }
 }

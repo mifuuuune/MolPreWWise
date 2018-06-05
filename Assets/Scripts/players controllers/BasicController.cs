@@ -243,22 +243,21 @@ public class BasicController : NetworkBehaviour
         RaycastHit AbilityHit;
         Ray AbilityRay = new Ray(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)));
         Debug.DrawRay(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)), Color.green);
-        if (Physics.Raycast(AbilityRay, out AbilityHit, AbilityRange))
-        {
-            GameObject target = AbilityHit.collider.gameObject;
+		if (Physics.Raycast (AbilityRay, out AbilityHit, AbilityRange)) {
+			GameObject target = AbilityHit.collider.gameObject;
 
-            if (target.layer == 10)                                 //DA CAMBIARE, USARE IL LAYER MASK
-            //if (MoleLayer == (MoleLayer | (1 << target.layer)))
-            {
-                target.SetActive(!target.activeInHierarchy);
-            }
-            else if(target.layer == 9)
-            {
-                Rigidbody TargetRb = target.GetComponent<Rigidbody>();
-
-                TargetRb.AddForce(-target.transform.forward * 2, ForceMode.Impulse);
-            }
-        }
+			if (target.layer == 10)                                 //DA CAMBIARE, USARE IL LAYER MASK
+ {            //if (MoleLayer == (MoleLayer | (1 << target.layer)))
+				
+				target.GetComponent<RespawnWithDelay>().MoleAbility();
+			} else if (target.layer == 9) {
+				Rigidbody TargetRb = target.GetComponent<Rigidbody> ();
+				TargetRb.AddForce (-target.transform.forward * 20, ForceMode.Impulse);
+			}
+		} else 
+		{
+			rb.AddForce (-transform.forward * 20, ForceMode.Impulse);
+		}
     }
 
     
