@@ -25,7 +25,7 @@ public class BasicController : NetworkBehaviour
     protected float MovementSpeed = 4.5f;
     protected float RotationSpeed = 0.15f;
     public float JumpForce = 500f;
-    protected float JumpSlow = 1.5f;
+    protected float JumpSlow = 1.25f;
     protected float MaxDistance = 50f;
     public float AbilityRange = 0f;
 

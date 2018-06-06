@@ -12,6 +12,7 @@ ModelImporter:
     100012: Level
     100014: Level_Vertical_Walls
     100016: Level_001
+    100018: UpperWalls
     400000: //RootNode
     400002: Plane
     400004: Plane_001
@@ -21,6 +22,7 @@ ModelImporter:
     400012: Level
     400014: Level_Vertical_Walls
     400016: Level_001
+    400018: UpperWalls
     2100000: unnamed
     2300000: //RootNode
     2300002: Plane
@@ -31,6 +33,7 @@ ModelImporter:
     2300012: Level
     2300014: Level_Vertical_Walls
     2300016: Level_001
+    2300018: UpperWalls
     3300000: //RootNode
     3300002: Plane
     3300004: Plane_001
@@ -40,6 +43,7 @@ ModelImporter:
     3300012: Level
     3300014: Level_Vertical_Walls
     3300016: Level_001
+    3300018: UpperWalls
     4300000: Plane
     4300002: Plane_001
     4300004: Plane_000
@@ -48,6 +52,7 @@ ModelImporter:
     4300010: Level
     4300012: Level_Vertical_Walls
     4300014: Level_001
+    4300016: UpperWalls
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs

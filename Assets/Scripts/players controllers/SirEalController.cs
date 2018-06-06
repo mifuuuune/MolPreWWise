@@ -87,8 +87,8 @@ public class SirEalController : BasicController {
 
         if (!IsGrounded)
         {
-            BoxColl.enabled = true;
-            coll.enabled = false;
+            //BoxColl.enabled = true;
+            //coll.enabled = false;
 
             if (attachedToWall)
             {
@@ -108,8 +108,8 @@ public class SirEalController : BasicController {
         }
         else
         {
-            BoxColl.enabled = false;
-            coll.enabled = true;
+            //BoxColl.enabled = false;
+            //coll.enabled = true;
 
             if (timer <= AnimationStop)
             {
