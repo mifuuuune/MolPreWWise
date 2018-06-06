@@ -61,6 +61,13 @@ ModelImporter:
     100110: mixamorig:RightHandIndex4_end_end
     100112: mixamorig:RightHandThumb4_end_end
     100114: mixamorig:RightToe_End_end_end
+    100116: mixamorig:HeadTop_End_end_end_end
+    100118: mixamorig:LeftHandIndex4_end_end_end
+    100120: mixamorig:LeftHandThumb4_end_end_end
+    100122: mixamorig:LeftToe_End_end_end_end
+    100124: mixamorig:RightHandIndex4_end_end_end
+    100126: mixamorig:RightHandThumb4_end_end_end
+    100128: mixamorig:RightToe_End_end_end_end
     400000: Armature
     400002: //RootNode
     400004: mixamorig:Head
@@ -119,10 +126,18 @@ ModelImporter:
     400110: mixamorig:RightHandIndex4_end_end
     400112: mixamorig:RightHandThumb4_end_end
     400114: mixamorig:RightToe_End_end_end
+    400116: mixamorig:HeadTop_End_end_end_end
+    400118: mixamorig:LeftHandIndex4_end_end_end
+    400120: mixamorig:LeftHandThumb4_end_end_end
+    400122: mixamorig:LeftToe_End_end_end_end
+    400124: mixamorig:RightHandIndex4_end_end_end
+    400126: mixamorig:RightHandThumb4_end_end_end
+    400128: mixamorig:RightToe_End_end_end_end
     2100000: No Name
     4300000: Plane001_Untitled
     7400000: Armature|Armature|mixamo.com|Layer0.001
     7400002: Armature|Armature|Armature|Armature|mixamo.com|Layer0.001|Armature|Armat
+    7400004: Armature|Armature|Armature|Armature|Armature|Armature|mixamo.com|Layer0.
     9500000: //RootNode
     13700000: Plane001_Untitled
     2186277476908879412: ImportLogs

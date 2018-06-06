@@ -9,6 +9,7 @@ public class RoosterBehaviour : MonoBehaviour {
     public RoosterStates CurrentState;
 
     private NavMeshAgent agent;
+    private Animator anim;
 
     public LayerMask PlayersLayer;
     private Collider[] NearbyPlayers = new Collider[4];
@@ -24,6 +25,7 @@ public class RoosterBehaviour : MonoBehaviour {
     void Start () {
 
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         CurrentDestination = transform.position;
         CurrentTarget = null;
         CurrentState = RoosterStates.ROAMING;
@@ -51,20 +53,27 @@ public class RoosterBehaviour : MonoBehaviour {
     {
         CurrentState = RoosterStates.ROAMING;
 
-        if (RoamingTimer < WalkingTime + WaitingTime) RoamingTimer += Time.deltaTime;
+        if (RoamingTimer < WalkingTime + WaitingTime)
+        {
+            RoamingTimer += Time.deltaTime;
+        }
 
         if (RoamingTimer >= WalkingTime + WaitingTime)
         {
-
+            anim.SetBool("Walking", true);
             float RandomX = Random.Range(-1f, 1f);
             float RandomZ = Random.Range(-1f, 1f);
             Vector3 CurrentDirection = new Vector3(RandomX, transform.position.y, RandomZ).normalized;
             CurrentDestination = transform.position + CurrentDirection * 30;
             RoamingTimer = 0;
         }
-        else if (RoamingTimer > WalkingTime && RoamingTimer < (WalkingTime + WaitingTime)) CurrentDestination = transform.position;
+        else if (RoamingTimer > WalkingTime && RoamingTimer < (WalkingTime + WaitingTime))
+        {
+            anim.SetBool("Walking", false);
+            CurrentDestination = transform.position;
+        }
 
-        agent.speed = 2.5f;
+        agent.speed = 1.5f;
 
         Debug.DrawLine(transform.position, CurrentDestination, Color.green);
         agent.SetDestination(CurrentDestination);
