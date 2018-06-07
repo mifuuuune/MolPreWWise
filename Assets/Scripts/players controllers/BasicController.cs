@@ -36,7 +36,7 @@ public class BasicController : NetworkBehaviour
     protected float InputZ;
     protected bool SpecialJumped = false;
 
-    private bool isMole = true;
+    public bool isMole = true;
     private int molePoints = 50;
 
     //NETWORK VARS

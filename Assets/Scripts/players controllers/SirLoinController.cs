@@ -120,18 +120,9 @@ public class SirLoinController : BasicController {
 
     private Vector3 getStartingPoint()
     {
-        float divider = 1f;
+        
         Vector3 arc = AimRayCast() - transform.position;
-        if (Mathf.Abs(arc.x) > Mathf.Abs(arc.y) && Mathf.Abs(arc.x) > Mathf.Abs(arc.z))
-        {
-            divider = Mathf.Abs(arc.x);
-        }
-        else if (Mathf.Abs(arc.y) > Mathf.Abs(arc.x) && Mathf.Abs(arc.y) > Mathf.Abs(arc.z))
-        {
-            divider = Mathf.Abs(arc.y);
-        }
-        else divider = Mathf.Abs(arc.z);
-        return transform.position + (arc / divider) + new Vector3(0.0f, 1.0f, 0.0f);
+        return transform.position + arc.normalized + new Vector3(0.0f, 1.0f, 0.0f);
     }
 
     [Command]
