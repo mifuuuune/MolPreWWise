@@ -160,7 +160,7 @@ public class BasicController : NetworkBehaviour
         {
             return CameraHit.point;
         }
-        else return transform.position; ;
+        else return transform.position;
     }
 
     protected GameObject ProximityRayCast()

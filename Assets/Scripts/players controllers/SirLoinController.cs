@@ -92,13 +92,14 @@ public class SirLoinController : BasicController {
                 Debug.Log("----->>>Knifes: " + number_of_knifes);
             }
             AlternateThrow = false;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z)), RotationSpeed * 10);
             anim.SetTrigger("FirstThrow");
 
             //il server fa apparire il coltello passando posizione rotazione della telecamera (è quella che ha il mirino) e se è il coltello 1 o 2
-            CmdSpawnKnife((this.transform.position + this.transform.forward + new Vector3(-0.25f,0.5f,0.25f)), cam.transform.rotation, 1);
+            //CmdSpawnKnife((this.transform.position + this.transform.forward + new Vector3(-0.25f,0.5f,0.25f)), cam.transform.rotation, 1);
+            CmdSpawnKnife(getStartingPoint(), Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, AimRayCast().y - transform.position.y, AimRayCast().z - transform.position.z)), 1);
             number_of_knifes++;
             Debug.Log("Knifes: " + number_of_knifes);
+            transform.rotation = Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z));
         }
         else
         {
@@ -108,12 +109,29 @@ public class SirLoinController : BasicController {
                 Debug.Log("----->>>Knifes: " + number_of_knifes);
             }
             AlternateThrow = true;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z)), RotationSpeed * 10);
             anim.SetTrigger("SecondThrow");
-            CmdSpawnKnife((this.transform.position + this.transform.forward + new Vector3(-0.25f,0.5f, 0.25f)), cam.transform.rotation, 2);
+            //CmdSpawnKnife((this.transform.position + this.transform.forward + new Vector3(-0.25f,0.5f, 0.25f)), cam.transform.rotation, 2);
+            CmdSpawnKnife(getStartingPoint(), Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, AimRayCast().y - transform.position.y, AimRayCast().z - transform.position.z)), 2);
             number_of_knifes++;
             Debug.Log("Knifes: " + number_of_knifes);
+            transform.rotation = Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z));
         }
+    }
+
+    private Vector3 getStartingPoint()
+    {
+        float divider = 1f;
+        Vector3 arc = AimRayCast() - transform.position;
+        if (Mathf.Abs(arc.x) > Mathf.Abs(arc.y) && Mathf.Abs(arc.x) > Mathf.Abs(arc.z))
+        {
+            divider = Mathf.Abs(arc.x);
+        }
+        else if (Mathf.Abs(arc.y) > Mathf.Abs(arc.x) && Mathf.Abs(arc.y) > Mathf.Abs(arc.z))
+        {
+            divider = Mathf.Abs(arc.y);
+        }
+        else divider = Mathf.Abs(arc.z);
+        return transform.position + (arc / divider) + new Vector3(0.0f, 1.0f, 0.0f);
     }
 
     [Command]
@@ -186,5 +204,10 @@ public class SirLoinController : BasicController {
             number_of_knifes--;
             Debug.Log("Knifes: " + number_of_knifes);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * MaxDistance, Color.yellow);
     }
 }
