@@ -12,6 +12,7 @@ namespace Prototype.NetworkLobby
             GameObject.Find("StartHost").SetActive(false);
             GameObject.Find("SearchGame").SetActive(false);
             GameObject.Find("PanelResults").SetActive(false);
+
         }
 
     }

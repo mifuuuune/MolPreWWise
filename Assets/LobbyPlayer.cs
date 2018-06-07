@@ -14,8 +14,9 @@ namespace Prototype.NetworkLobby
 
                 //CountPLayer._instance.AddPlayer(this);
 
-            }
 
+            }
+        
      }
 }
 

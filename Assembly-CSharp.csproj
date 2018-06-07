@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\players controllers\SirLoinController.cs" />
     <Compile Include="Assets\Scripts\players controllers\SirSageController.cs" />
     <Compile Include="Assets\Scripts\players controllers\Stay_Idle.cs" />
+    <Compile Include="Assets\ServerList.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Unity/progetti/Net2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
