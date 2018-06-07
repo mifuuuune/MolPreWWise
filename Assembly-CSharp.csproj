@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\KnifeBehaviour.cs" />
     <Compile Include="Assets\LobbyPlayer.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\Behaviours\AlarmBehaviour.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\Behaviours\EngageBehaviour.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\Scripts\Level1\RespawnWithDelay.cs" />
     <Compile Include="Assets\Scripts\Level1\TutorialCheck.cs" />
     <Compile Include="Assets\Scripts\MoleficentGameManager.cs" />
+    <Compile Include="Assets\Scripts\MoveWithPlayer.cs" />
     <Compile Include="Assets\Scripts\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\Network\CostomLobbyManager2.cs" />
     <Compile Include="Assets\Scripts\Network\CountPLayer.cs" />

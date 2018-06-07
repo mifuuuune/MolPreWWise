@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 65704911555374758}
   - component: {fileID: 114950042844611834}
   - component: {fileID: 114909457920186574}
+  - component: {fileID: 54496380136339342}
+  - component: {fileID: 114074257453211972}
   m_Layer: 10
   m_Name: SirLoin's SecondKnife.pref
   m_TagString: Knife
@@ -87,6 +89,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171543457837150}
   m_Mesh: {fileID: 4300000, guid: 8a1e98472f75b5d4fa9cfaf436b6e0d5, type: 3}
+--- !u!54 &54496380136339342
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171543457837150}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: Infinity
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65704911555374758
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -99,6 +116,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.022711, z: 1.000053}
   m_Center: {x: 0, y: -0.0005844999, z: -0.16913052}
+--- !u!114 &114074257453211972
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171543457837150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b48e360961e64846b09e9473b3c2dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 5
 --- !u!114 &114909457920186574
 MonoBehaviour:
   m_ObjectHideFlags: 1

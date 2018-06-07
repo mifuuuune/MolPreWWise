@@ -78,69 +78,60 @@ public class SirLoinController : BasicController {
     {
         base.CmdUseAbility();
 
-        RaycastHit AbilityHit;
+        //si gira il eprsonaggio
         Ray AbilityRay = new Ray(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)));
-        Debug.DrawRay(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)), Color.green);
-        if (Physics.Raycast(AbilityRay, out AbilityHit, AbilityRange))
+        
+        //controllo se è il primo o il secondo coltello 
+        if (AlternateThrow)
         {
-            if (AbilityHit.collider.gameObject.tag == "Wood")
+            //elimino se ci sono già 2 coltelli
+            if (number_of_knifes >= 2)
             {
-                timer = 0;
-                if (AlternateThrow)
-                {
-                    if (number_of_knifes >= 2)
-                    {
-                        CmdUnSpawnKnife(1);
-                        
-                        Debug.Log("----->>>Knifes: " + number_of_knifes);
-                    }                        
-                    AlternateThrow = false;
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z)), RotationSpeed * 10);
-                    anim.SetTrigger("FirstThrow");
-                    //StickKnife(FirstKnife, AbilityHit);
-                    //FirstKnife.SetActive(true);
-                    var knifeonepos = AimRayCast();
-                    var knifeoneprot = Quaternion.FromToRotation(Vector3.back, AbilityHit.normal);
-                    CmdSpawnKnife(knifeonepos, knifeoneprot, 1);
-                    number_of_knifes++;
-                    Debug.Log("Knifes: " + number_of_knifes);
-                }
-                else
-                {
-                    if (number_of_knifes >= 2)
-                    {
-                        CmdUnSpawnKnife(2);
-                        Debug.Log("----->>>Knifes: " + number_of_knifes);
-                    }
-                    AlternateThrow = true;
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z)), RotationSpeed * 10);
-                    anim.SetTrigger("SecondThrow");
-                    //StickKnife(SecondKnife, AbilityHit);
-                    //SecondKnife.SetActive(true);
-                    var knifetwopos = AimRayCast();
-                    var knifetwoprot = Quaternion.FromToRotation(Vector3.back, AbilityHit.normal);
-                    CmdSpawnKnife(knifetwopos, knifetwoprot, 2);
-                    number_of_knifes++;
-                    Debug.Log("Knifes: " + number_of_knifes);
-                }
-            }
+                CmdUnSpawnKnife(1);
 
+                Debug.Log("----->>>Knifes: " + number_of_knifes);
+            }
+            AlternateThrow = false;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z)), RotationSpeed * 10);
+            anim.SetTrigger("FirstThrow");
+
+            //il server fa apparire il coltello passando posizione rotazione della telecamera (è quella che ha il mirino) e se è il coltello 1 o 2
+            CmdSpawnKnife((this.transform.position + this.transform.forward + new Vector3(-0.25f,0.5f,0.25f)), cam.transform.rotation, 1);
+            number_of_knifes++;
+            Debug.Log("Knifes: " + number_of_knifes);
+        }
+        else
+        {
+            if (number_of_knifes >= 2)
+            {
+                CmdUnSpawnKnife(2);
+                Debug.Log("----->>>Knifes: " + number_of_knifes);
+            }
+            AlternateThrow = true;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AimRayCast().x - transform.position.x, 0, AimRayCast().z - transform.position.z)), RotationSpeed * 10);
+            anim.SetTrigger("SecondThrow");
+            CmdSpawnKnife((this.transform.position + this.transform.forward + new Vector3(-0.25f,0.5f, 0.25f)), cam.transform.rotation, 2);
+            number_of_knifes++;
+            Debug.Log("Knifes: " + number_of_knifes);
         }
     }
 
     [Command]
     private void CmdSpawnKnife(Vector3 knifepos, Quaternion kniferot, int i)
     {
+       
         if (i == 1)
         {
             //Debug.Log("spawn1");
             knife1 = GameObject.Instantiate<GameObject>(this.FirstKnife, knifepos, kniferot);
+            knife1.GetComponent<Rigidbody>().velocity = knife1.transform.forward * 7.0f;
             NetworkServer.Spawn(knife1);
         }
         else
         {
             //Debug.Log("spawn2");
             knife2 = GameObject.Instantiate<GameObject>(this.SecondKnife, knifepos, kniferot);
+            knife2.GetComponent<Rigidbody>().velocity = knife2.transform.forward * 7.0f;
             NetworkServer.Spawn(knife2);
         }
     }
