@@ -23,11 +23,14 @@ namespace Prototype.NetworkLobby
         private int player_num = 0;
         private int test = 0;
         private int spawn_player = 0;
+        private int mole;
 
         public void Awake()
         {
             s_Singleton = this;
+            mole = 1;//UnityEngine.Random.Range(1, 4);
         }
+
         public override void OnLobbyServerConnect(NetworkConnection conn)
         {
             player_num++;
@@ -51,7 +54,7 @@ namespace Prototype.NetworkLobby
 
         public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
         {
-            int mole = UnityEngine.Random.Range(1, 4);
+            
             GameObject myPlayer = null;
             spawn_player++;
             if (spawn_player == 3)
@@ -59,35 +62,35 @@ namespace Prototype.NetworkLobby
                 myPlayer = Instantiate(player1, GameObject.Find("sir_bean_spawn").transform.position, Quaternion.identity) as GameObject;
                 if (mole == 3)
                 {
-                    myPlayer.GetComponent<SirBeanController>().isMole = true;
+                    myPlayer.GetComponent<SirBeanController>().SetMole(true);
                 }
             }
-               
+
             if (spawn_player == 2)
             {
                 myPlayer = Instantiate(player2, GameObject.Find("sir_eal_spawn").transform.position, Quaternion.identity) as GameObject;
                 if (mole == 2)
                 {
-                    myPlayer.GetComponent<SirBeanController>().isMole = true;
+                    myPlayer.GetComponent<SirEalController>().SetMole(true);
                 }
             }
-                
             if (spawn_player == 1)
             {
                 myPlayer = Instantiate(player3, GameObject.Find("sir_loin_spawn").transform.position, Quaternion.identity) as GameObject;
+                //Debug.Log("ora setto la mole" + mole);
                 if (mole == 1)
                 {
-                    myPlayer.GetComponent<SirBeanController>().isMole = true;
+                    //Debug.Log("ora setto la mole");
+                    myPlayer.GetComponent<SirLoinController>().SetMole(true);
                 }
             }
-                
             if (spawn_player == 4)
             {
                 spawn_player = 0;
                 myPlayer = Instantiate(player4, GameObject.Find("sir_sage_spawn").transform.position, Quaternion.identity) as GameObject;
                 if (mole == 4)
                 {
-                    myPlayer.GetComponent<SirBeanController>().isMole = true;
+                    myPlayer.GetComponent<SirSageController>().SetMole(true);
                 }
             }
             return myPlayer;

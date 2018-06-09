@@ -36,8 +36,9 @@ public class BasicController : NetworkBehaviour
     protected float InputZ;
     protected bool SpecialJumped = false;
 
-    public bool isMole = true;
-    private int molePoints = 50;
+    private bool isMole;
+    private int molePoints;
+    private float rechargetime;
 
     //NETWORK VARS
     [SyncVar(hook = "updateTime")]
@@ -48,6 +49,13 @@ public class BasicController : NetworkBehaviour
     //CANVAS VARS
     public GameObject canvas;
 
+    //necessario affinchè ismole sia settato falso, se lo assegno direttamente dalla variabile globale non funziona
+    protected virtual void Awake()
+    {
+        isMole = false;
+        rechargetime = 0f;
+        molePoints = 100;
+}
 
     //Initial setup, gets the components
     protected virtual void Start()
@@ -116,7 +124,17 @@ public class BasicController : NetworkBehaviour
 
             IsGrounded = GroundDetection();
             anim.SetBool("IsGrounded", IsGrounded);
-
+            if (isMole && molePoints < 100)
+            {
+                rechargetime += Time.deltaTime;
+                if (rechargetime >= 5.0f)
+                {
+                    molePoints += 2;
+                    rechargetime = 0f;
+                    Debug.Log(molePoints);
+                }
+            }
+            
             StatusUpdate(CurrentInput);
         }
         else
@@ -134,10 +152,16 @@ public class BasicController : NetworkBehaviour
     //Decides the character's status
     protected virtual void StatusUpdate(float CurrentInput)
     {
-        if (Input.GetMouseButtonDown(1))
+        //Debug.Log("mole:   " + isMole);
+        if (isMole)
         {
-            CmdMoleAbility();
+            //Debug.Log("sono la mole");
+            if (Input.GetMouseButtonDown(1) && molePoints>=10)
+            {
+                CmdMoleAbility();
+            }
         }
+        
 
         //The rest is implemented in every character
 
@@ -239,27 +263,43 @@ public class BasicController : NetworkBehaviour
 
     protected void CmdMoleAbility()
     {
-
+        
         RaycastHit AbilityHit;
         Ray AbilityRay = new Ray(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)));
         Debug.DrawRay(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)), Color.green);
 		if (Physics.Raycast (AbilityRay, out AbilityHit, AbilityRange)) {
 			GameObject target = AbilityHit.collider.gameObject;
-
-			if (target.layer == 10)                                 //DA CAMBIARE, USARE IL LAYER MASK
- {            //if (MoleLayer == (MoleLayer | (1 << target.layer)))
-				
-				target.GetComponent<RespawnWithDelay>().MoleAbility();
+            Debug.Log(target.name);
+			if (target.layer == 10)
+            {            
+                Debug.Log("sto usando abilità mole");
+                target.GetComponent<RespawnWithDelay>().MoleAbility();
+                //Debug.Log("Ottenuto");
 			} else if (target.layer == 9) {
-				Rigidbody TargetRb = target.GetComponent<Rigidbody> ();
-				TargetRb.AddForce (-target.transform.forward * 20, ForceMode.Impulse);
+				
+                CmdPush(target);
+				
 			}
-		} else 
-		{
-			rb.AddForce (-transform.forward * 20, ForceMode.Impulse);
-		}
+            else
+            {
+                rb.AddForce(-transform.forward * 800, ForceMode.Impulse);
+            }
+            molePoints -= 10;
+        } 
     }
 
+    [Command]
+    void CmdPush(GameObject target)
+    {
+        RpcTestPush(target);
+    }
+
+    [ClientRpc]
+    void RpcTestPush(GameObject target)
+    {
+        Rigidbody TargetRb = target.GetComponent<Rigidbody>();
+        TargetRb.AddForce(-target.transform.forward * 800, ForceMode.Impulse);
+    }
     
     public void Respawn(Vector3 Checkpoint)
     {
@@ -274,5 +314,12 @@ public class BasicController : NetworkBehaviour
            // Debug.Log(SpawnPoint.transform.position);
             gameObject.transform.position = SpawnPoint.transform.position;
         }
+    }
+
+    public void SetMole(bool mole)
+    {
+        Debug.Log("la mole prima:--->" + isMole);
+        this.isMole = mole;
+        Debug.Log("la mole dopo---->" + isMole);
     }
 }
