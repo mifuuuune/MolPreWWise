@@ -1230,6 +1230,11 @@ Prefab:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 54645980170868378, guid: 9f34b099327b86943bfd24b6fa48a0af,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f34b099327b86943bfd24b6fa48a0af, type: 2}
   m_IsPrefabParent: 0
@@ -1262,8 +1267,8 @@ MonoBehaviour:
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
-  m_InterpolateRotation: 10
-  m_InterpolateMovement: 0.5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &895607026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1296,17 +1301,6 @@ MonoBehaviour:
     i15: 175
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &895607027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 895607024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 844bdc5a59ad99c4c8355e46ed14fc8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &905017460
 Prefab:
   m_ObjectHideFlags: 0

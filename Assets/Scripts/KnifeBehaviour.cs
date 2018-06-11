@@ -23,7 +23,11 @@ public class KnifeBehaviour : NetworkBehaviour {
     {
         if (c.gameObject.tag == "Wood")
         {
+            //Debug.Log(this.transform.rotation.eulerAngles);
+            this.transform.rotation = Quaternion.Euler(0, this.transform.rotation.eulerAngles.y, this.transform.rotation.eulerAngles.z);
             this.GetComponent<Rigidbody>().isKinematic = true;
+            //Vector3 angles = this.transform.rotation.eulerAngles;
+           // Debug.Log(this.transform.rotation.eulerAngles);
             wooded = true;
         }
         else
@@ -35,7 +39,7 @@ public class KnifeBehaviour : NetworkBehaviour {
 
     private IEnumerator NewDelay()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         DestroyObject();
     }
 

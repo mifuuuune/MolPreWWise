@@ -1640,7 +1640,7 @@ MonoBehaviour:
   State: 0
   remainingTime: 300
   canvas: {fileID: 1274802779802144, guid: f12a9b2739e72194eab236164d3f140d, type: 2}
-  Force: 1000
+  Force: 150
 --- !u!114 &114792626382767940
 MonoBehaviour:
   m_ObjectHideFlags: 1

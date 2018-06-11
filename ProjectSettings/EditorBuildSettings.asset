@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Lobyy_GUI_2.unity
+    path: Assets/Scenes/Lobby/Lobyy_GUI_2.unity
     guid: 5e516882bcf4c544b87a46cda1d55708
   - enabled: 1
     path: Assets/Scenes/PlayGround.unity

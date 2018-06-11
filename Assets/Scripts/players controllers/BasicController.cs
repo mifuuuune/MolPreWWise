@@ -252,8 +252,6 @@ public class BasicController : NetworkBehaviour
     protected virtual void CmdUseAbility()
     {
         State = PlayerState.Ability;
-        //AimRayCast();
-        //AimDifference();
     }
 
     protected virtual void SpecialJump()

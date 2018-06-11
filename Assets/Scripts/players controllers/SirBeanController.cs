@@ -56,21 +56,23 @@ public class SirBeanController : BasicController
         anim.SetBool("SpecialJumping", true);
     }
 
-    [Command]
+    
     protected override void CmdUseAbility()
     {
         base.CmdUseAbility();
         //Debug.Log(AimRayCast().tag);
-
-        try
+        if (isClient)
+            Force = 200;
+       try
         {
             if (ProximityRayCast().tag == "Boulder" && ProximityRayCast() != null)
             {
-
+                Rigidbody rb = ProximityRayCast().GetComponent<Rigidbody>();
                 anim.SetBool("UsingAbility", true);
+                Debug.Log("sono in boudler 1");
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(ProximityRayCast().transform.position.x - transform.position.x, 0, ProximityRayCast().transform.position.z - transform.position.z)), RotationSpeed);
-                //ProximityRayCast().transform.Translate(transform.forward * 1.5f * Time.deltaTime);
-                ProximityRayCast().GetComponent<Rigidbody>().AddForce(transform.forward * Force, ForceMode.Impulse);
+                //rb.AddForce(transform.forward * Force, ForceMode.Impulse);
+                CmdPush(transform.forward, Force);
 
             }
             else if (ProximityRayCast().tag == "Rock" && ProximityRayCast() != null)
@@ -78,14 +80,30 @@ public class SirBeanController : BasicController
 
                 anim.SetBool("UsingAbility", true);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(ProximityRayCast().transform.position.x - transform.position.x, 0, ProximityRayCast().transform.position.z - transform.position.z)), RotationSpeed);
-                ProximityRayCast().GetComponent<Rigidbody>().AddForce(transform.forward * Force, ForceMode.Impulse);
+                //rb.AddForce(transform.forward * Force, ForceMode.Impulse);
+                
 
             }
         }
         catch(NullReferenceException ex)
         {
             Debug.Log("No object in range");
+            //Debug.Log(ex);
         }
        
+    }
+
+    [Command]
+    public void CmdPush(Vector3 direction, float force)
+    {
+        RpcPush(direction, force);
+        //rb.AddForce(transform.forward * Force, ForceMode.Impulse);
+        //ProximityRayCast().transform.Translate(transform.forward * 1.5f * Time.deltaTime);
+    }
+
+    [ClientRpc]
+    public void RpcPush(Vector3 direction, float force)
+    {
+        rb.AddForce(direction*force, ForceMode.Impulse);
     }
 }

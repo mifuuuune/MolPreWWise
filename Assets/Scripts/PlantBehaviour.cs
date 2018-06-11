@@ -14,11 +14,14 @@ public class PlantBehaviour : NetworkBehaviour {
     }
 
     private void Update () {
-        if (this.tag == "Plant")
+        if (isServer)
         {
-            if (transform.position.y < (heightstart.y + 3))
+            if (this.tag == "Plant")
             {
-                transform.Translate(transform.up * speed * Time.deltaTime);
+                if (transform.position.y < (heightstart.y + 3))
+                {
+                    transform.Translate(transform.up * speed * Time.deltaTime);
+                }
             }
         }
         /*else if (this.tag == "Terrain")
