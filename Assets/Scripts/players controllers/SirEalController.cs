@@ -24,31 +24,40 @@ public class SirEalController : BasicController {
     {
         base.CmdUseAbility();
 
-
+        RaycastHit AbilityHit;
+        Ray AbilityRay = new Ray(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)));
+        Debug.DrawRay(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)), Color.green);
         try
         {
-            if (ProximityRayCast().tag == "Terrain" && ProximityRayCast() != null)
+            if (Physics.Raycast(AbilityRay, out AbilityHit, AbilityRange))
             {
-                timer = 0;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(ProximityRayCast().transform.position.x - transform.position.x, 0, ProximityRayCast().transform.position.z - transform.position.z)), RotationSpeed * 10);
-                anim.SetTrigger("Plant");
-                var spawn = ProximityRayCast().transform.position;
-                var destroy = ProximityRayCast();
-                CmdSpawnPlant(spawn, destroy);
-                //Destroy(ProximityRayCast());
-            }
 
-            if (ProximityRayCast().tag == "Plant" && ProximityRayCast() != null)
-            {
-                timer = 0;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(ProximityRayCast().transform.position.x - transform.position.x, 0, ProximityRayCast().transform.position.z - transform.position.z)), RotationSpeed * 10);
-                anim.SetTrigger("Plant");
-                var spawn = ProximityRayCast().transform.position;
-                var destroy = ProximityRayCast();
-                CmdUnSpawnPlant(spawn, destroy);
-                //Destroy(ProximityRayCast());
+                if (AbilityHit.collider.gameObject.tag == "Terrain")
+                {
+                    timer = 0;
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AbilityHit.collider.gameObject.transform.position.x - transform.position.x, 0, AbilityHit.collider.gameObject.transform.position.z - transform.position.z)), RotationSpeed * 10);
+                    anim.SetTrigger("Plant");
+                    var spawn = AbilityHit.collider.gameObject.transform.position;
+                    var destroy = AbilityHit.collider.gameObject;
+                    CmdSpawnPlant(spawn, destroy);
+                    //Destroy(ProximityRayCast());
+
+                }
+                else
+                if (AbilityHit.collider.gameObject.tag == "Plant")
+                {
+                    timer = 0;
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AbilityHit.collider.gameObject.transform.position.x - transform.position.x, 0, AbilityHit.collider.gameObject.transform.position.z - transform.position.z)), RotationSpeed * 10);
+                    anim.SetTrigger("Plant");
+                    var spawn = AbilityHit.collider.gameObject.transform.position;
+                    var destroy = AbilityHit.collider.gameObject;
+                    CmdUnSpawnPlant(spawn, destroy);
+                    //Destroy(ProximityRayCast());
+                }
+
             }
-        } catch (NullReferenceException ex)
+        }
+        catch (NullReferenceException ex)
         {
             Debug.Log("No object in range.");
         }
@@ -72,7 +81,7 @@ public class SirEalController : BasicController {
         newTerrain.transform.parent = destroyP.transform.parent;
         NetworkServer.UnSpawn(destroyP);
         NetworkServer.Spawn(newTerrain);
-        Destroy(ProximityRayCast());
+        Destroy(destroyP);
 
     }
 
