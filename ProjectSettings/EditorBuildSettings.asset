@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobyy_GUI_2.unity
     guid: 5e516882bcf4c544b87a46cda1d55708
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/PlayGround.unity
     guid: 86b4eed76e2ab3d4c88397a55ef6aa11
   - enabled: 1

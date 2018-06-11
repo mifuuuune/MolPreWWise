@@ -25,6 +25,9 @@ namespace Prototype.NetworkLobby
         private int spawn_player = 0;
         private int mole;
 
+        //usata oer gestire il match in caso di crash o di kick
+        protected NetworkConnection connMole;
+
         public void Awake()
         {
             s_Singleton = this;
@@ -50,11 +53,11 @@ namespace Prototype.NetworkLobby
             }
 
         }
-        
+
 
         public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
         {
-            
+            //Debug.Log(conn.connectionId);
             GameObject myPlayer = null;
             spawn_player++;
             if (spawn_player == 3)
@@ -63,6 +66,7 @@ namespace Prototype.NetworkLobby
                 if (mole == 3)
                 {
                     myPlayer.GetComponent<SirBeanController>().SetMole(true);
+                    connMole = conn;
                 }
             }
 
@@ -72,6 +76,7 @@ namespace Prototype.NetworkLobby
                 if (mole == 2)
                 {
                     myPlayer.GetComponent<SirEalController>().SetMole(true);
+                    connMole = conn;
                 }
             }
             if (spawn_player == 1)
@@ -82,6 +87,7 @@ namespace Prototype.NetworkLobby
                 {
                     //Debug.Log("ora setto la mole");
                     myPlayer.GetComponent<SirLoinController>().SetMole(true);
+                    connMole = conn;
                 }
             }
             if (spawn_player == 4)
@@ -91,6 +97,7 @@ namespace Prototype.NetworkLobby
                 if (mole == 4)
                 {
                     myPlayer.GetComponent<SirSageController>().SetMole(true);
+                    connMole = conn;
                 }
             }
             return myPlayer;

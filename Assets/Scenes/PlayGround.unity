@@ -1196,15 +1196,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4989566617542004, guid: 9f34b099327b86943bfd24b6fa48a0af, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 19.51
+      value: 25.82
       objectReference: {fileID: 0}
     - target: {fileID: 4989566617542004, guid: 9f34b099327b86943bfd24b6fa48a0af, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 19.258501
+      value: 13.26
       objectReference: {fileID: 0}
     - target: {fileID: 4989566617542004, guid: 9f34b099327b86943bfd24b6fa48a0af, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -4.05
+      value: -13.55
       objectReference: {fileID: 0}
     - target: {fileID: 4989566617542004, guid: 9f34b099327b86943bfd24b6fa48a0af, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1296,6 +1296,17 @@ MonoBehaviour:
     i15: 175
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &895607027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 895607024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844bdc5a59ad99c4c8355e46ed14fc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &905017460
 Prefab:
   m_ObjectHideFlags: 0
@@ -1657,7 +1668,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1074214927
 Prefab:
@@ -1970,7 +1981,7 @@ RectTransform:
   m_Children:
   - {fileID: 278462982}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2857,7 +2868,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3312,6 +3323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingPosition: {x: 0, y: 1, z: 0}
   ReachingPosition: {x: 0, y: 1, z: 4}
+  StayingTime: 2
   Speed: 2
 --- !u!65 &1826934664
 BoxCollider:
@@ -3378,7 +3390,7 @@ Transform:
   m_LocalScale: {x: 3, y: 0.1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1828072196
 GameObject:

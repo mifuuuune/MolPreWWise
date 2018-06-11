@@ -59,7 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\KnifeBehaviour.cs" />
     <Compile Include="Assets\LobbyPlayer.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\Behaviours\AlarmBehaviour.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\Behaviours\EngageBehaviour.cs" />
@@ -84,9 +83,11 @@
     <Compile Include="Assets\Logronio Gabriel AI Project\PlayerController.cs" />
     <Compile Include="Assets\MainMenuLobby.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
+    <Compile Include="Assets\Scripts\ChangeSceneManager.cs" />
     <Compile Include="Assets\Scripts\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\DoorBehaviour.cs" />
     <Compile Include="Assets\Scripts\KeyBehaviour.cs" />
+    <Compile Include="Assets\Scripts\KnifeBehaviour.cs" />
     <Compile Include="Assets\Scripts\Level1\Respawner.cs" />
     <Compile Include="Assets\Scripts\Level1\RespawnWithDelay.cs" />
     <Compile Include="Assets\Scripts\Level1\TutorialCheck.cs" />
