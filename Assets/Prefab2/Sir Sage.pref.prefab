@@ -3444,6 +3444,7 @@ MonoBehaviour:
   State: 0
   remainingTime: 300
   canvas: {fileID: 1274802779802144, guid: f12a9b2739e72194eab236164d3f140d, type: 2}
+  tramp: {fileID: 1559876639884646, guid: d45e57293aeaced4698b18cc45696fd1, type: 2}
 --- !u!114 &114804678869706630
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -155,6 +155,8 @@ public class BasicController : NetworkBehaviour
         }
     }
 
+    
+
     //Decides the character's status
     protected virtual void StatusUpdate(float CurrentInput)
     {

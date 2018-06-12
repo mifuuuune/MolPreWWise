@@ -14,7 +14,7 @@ public class SirSageController : BasicController {
     private float timer = 2f;
     private float AnimationStop = 1.3f;
     private BoxCollider BoxColl;
-    private Rigidbody tramp;
+    public GameObject tramp;
     protected override void Start()
     {
         base.Start();
@@ -87,6 +87,8 @@ public class SirSageController : BasicController {
         }
     }
 
+
+
     protected override void SpecialJump()
     {
         base.SpecialJump();
@@ -100,6 +102,16 @@ public class SirSageController : BasicController {
     public void CmdSetTramp()
     {
         RpcSetTramp();
+        StartCoroutine(SetTramp());
+    }
+
+    IEnumerator SetTramp()
+    {
+        yield return new WaitForSeconds(2.0f);
+        GameObject obj = GameObject.Instantiate<GameObject>(tramp, new Vector3(this.transform.position.x+0.07f, this.transform.position.y+0.12f, transform.position.z-0.50f), Quaternion.identity);
+        Physics.IgnoreCollision(obj.GetComponent<BoxCollider>(), BoxColl);
+        NetworkServer.Spawn(obj);
+
     }
 
     [ClientRpc]
@@ -152,34 +164,33 @@ public class SirSageController : BasicController {
 
     }
 
-    void OnCollisionEnter(Collision col)
+    /*void OnCollisionEnter(Collision col)
     {
         if(inTrampolineState && col.gameObject.layer == 9)
         {
-            Debug.Log("sono nell'if del collision");
+            //Debug.Log("sono nell'if del collision");
+            
             GameObject obj = col.gameObject.GetComponent<Rigidbody>().gameObject;
-            Vector3 EnteringForce = col.relativeVelocity * rb.mass;
+            Vector3 EnteringForce = obj.GetComponent<Rigidbody>().velocity * obj.GetComponent<Rigidbody>().mass;
             CmdTrampoline(EnteringForce, obj);
             
             //rb.AddForce(transform.up * BasicController.JumpForce, ForceMode.Impulse);
         }
-    }
+    }*/
 
-    [Command]
-    public void CmdTrampoline(Vector3 Inforce, GameObject obj)
-    {
-        Debug.Log("server lo lancia sulla luna");
-        RpcTrampoline(Inforce, obj);
-        
-    }
+    
 
-   [ClientRpc]
+  /*[ClientRpc]
     public void RpcTrampoline(Vector3 Inforce, GameObject obj)
     {
-        Debug.Log("lo lancio sulla luna client");
-        Debug.Log(transform.up);
-        Debug.Log(-transform.up*Inforce.y);
-        //Debug.Log(tramp.gameObject.name);
+        
+       Debug.Log("inforce--->"+ Inforce);
+        //Vector3 x = new Vector3(0, obj.GetComponent<SirLoinController>().fall.y, 0);
+        Debug.Log("trs--->" + transform.up);
+        Debug.Log("result" + -transform.up * Inforce.y);
+        
         obj.GetComponent<Rigidbody>().AddForce(-transform.up * Inforce.y, ForceMode.Impulse);
-    }
+
+
+    }*/
 }

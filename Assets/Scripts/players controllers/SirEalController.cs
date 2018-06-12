@@ -31,7 +31,7 @@ public class SirEalController : BasicController {
         {
             if (Physics.Raycast(AbilityRay, out AbilityHit, AbilityRange))
             {
-                if (Vector3.Distance(AbilityHit.collider.gameObject.transform.position, transform.position > 0.3f))
+                if (Vector3.Distance(AbilityHit.collider.gameObject.transform.position, transform.position) > 0.3f)
                 {
                     if (AbilityHit.collider.gameObject.tag == "Terrain")
                     {
