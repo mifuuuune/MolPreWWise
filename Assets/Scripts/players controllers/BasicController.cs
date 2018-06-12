@@ -40,6 +40,8 @@ public class BasicController : NetworkBehaviour
     private int molePoints;
     private float rechargetime;
 
+    private int lives;
+
     //NETWORK VARS
     [SyncVar(hook = "updateTime")]
     public int remainingTime = 300;
@@ -70,8 +72,11 @@ public class BasicController : NetworkBehaviour
         Sprite s3 = null;
         Sprite s4 = null;
 
+        
+
         if (isLocalPlayer)
         {
+            lives = 3;
             if (transform.gameObject.tag == "Bean")
             {
                 s1 = Resources.Load<Sprite>("bean");
@@ -155,6 +160,74 @@ public class BasicController : NetworkBehaviour
         }
     }
 
+    public void ChangeUI()
+    {
+
+        Sprite s5 = null;
+        Sprite s6 = null;
+        Sprite s7 = null;
+
+        if (GameObject.Find("BossUI"))
+        {
+            int mate1lives = 0;
+            int mate2lives = 0;
+            int mate3lives = 0;
+
+            GameObject.Find("PlayerLives").GetComponent<Text>().text = lives.ToString();
+            if (transform.gameObject.tag == "Bean")
+            {
+                s5 = Resources.Load<Sprite>("eal");
+                s6 = Resources.Load<Sprite>("loin");
+                s7 = Resources.Load<Sprite>("sage");
+
+                GameObject x;
+                if (x = GameObject.FindWithTag("Eal")) mate1lives = x.GetComponent<BasicController>().GetLives();
+                if (x = GameObject.FindWithTag("Loin")) mate2lives = x.GetComponent<BasicController>().GetLives();
+                if (x = GameObject.FindWithTag("Sage")) mate3lives = x.GetComponent<BasicController>().GetLives();
+            }
+            else if (transform.gameObject.tag == "Eal")
+            {
+                s5 = Resources.Load<Sprite>("loin");
+                s6 = Resources.Load<Sprite>("sage");
+                s7 = Resources.Load<Sprite>("bean");
+
+                GameObject x;
+                if (x = GameObject.FindWithTag("Loin")) mate1lives = x.GetComponent<BasicController>().GetLives();
+                if (x = GameObject.FindWithTag("Sage")) mate2lives = x.GetComponent<BasicController>().GetLives();
+                if (x = GameObject.FindWithTag("Bean")) mate3lives = x.GetComponent<BasicController>().GetLives();
+            }
+            else if (transform.gameObject.tag == "Loin")
+            {
+                s5 = Resources.Load<Sprite>("sage");
+                s6 = Resources.Load<Sprite>("bean");
+                s7 = Resources.Load<Sprite>("eal");
+
+                GameObject x;
+                if (x = GameObject.FindWithTag("Sage")) mate1lives = x.GetComponent<BasicController>().GetLives();
+                if (x = GameObject.FindWithTag("Bean")) mate2lives = x.GetComponent<BasicController>().GetLives();
+                if (x = GameObject.FindWithTag("Eal")) mate3lives = x.GetComponent<BasicController>().GetLives();
+            }
+            else if (transform.gameObject.tag == "Sage")
+            {
+                s5 = Resources.Load<Sprite>("bean");
+                s6 = Resources.Load<Sprite>("eal");
+                s7 = Resources.Load<Sprite>("loin");
+
+                GameObject x;
+                if (x = GameObject.FindWithTag("Bean")) mate1lives = x.GetComponent<BasicController>().GetLives();
+                if (x = GameObject.FindWithTag("Eal")) mate2lives = x.GetComponent<BasicController>().GetLives();
+                if (x = GameObject.FindWithTag("Loin")) mate3lives = x.GetComponent<BasicController>().GetLives();
+            }
+
+            GameObject.Find("MateIcon1").GetComponent<Image>().sprite = s5;
+            GameObject.Find("MateIcon2").GetComponent<Image>().sprite = s6;
+            GameObject.Find("MateIcon3").GetComponent<Image>().sprite = s7;
+
+            GameObject.Find("MateLives1").GetComponent<Text>().text = mate1lives.ToString();
+            GameObject.Find("MateLives2").GetComponent<Text>().text = mate2lives.ToString();
+            GameObject.Find("MateLives3").GetComponent<Text>().text = mate3lives.ToString();
+        }
+    }
     
 
     //Decides the character's status
@@ -327,5 +400,26 @@ public class BasicController : NetworkBehaviour
         Debug.Log("la mole prima:--->" + isMole);
         this.isMole = mole;
         Debug.Log("la mole dopo---->" + isMole);
+    }
+
+    public bool CheckIsGrounded()
+    {
+        return IsGrounded;
+    }
+
+    public int GetLives()
+    {
+        return lives;
+    }
+
+    public void DecreaseLives()
+    {
+        lives--;
+        //controllo se uno finisce le vite
+    }
+
+    public bool checkIsMole()
+    {
+        return isMole;
     }
 }
