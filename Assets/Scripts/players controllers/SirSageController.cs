@@ -14,7 +14,7 @@ public class SirSageController : BasicController {
     private float timer = 2f;
     private float AnimationStop = 1.3f;
     private BoxCollider BoxColl;
-
+    private Rigidbody tramp;
     protected override void Start()
     {
         base.Start();
@@ -91,10 +91,22 @@ public class SirSageController : BasicController {
     {
         base.SpecialJump();
         inTrampolineState = true;
-        coll.enabled = false;
-        BoxColl.enabled = true;
+        CmdSetTramp();
         anim.SetBool("Trampoline", true);
 
+    }
+
+    [Command]
+    public void CmdSetTramp()
+    {
+        RpcSetTramp();
+    }
+
+    [ClientRpc]
+    public void RpcSetTramp()
+    {
+        coll.enabled = false;
+        BoxColl.enabled = true;
     }
 
     [Command]
@@ -144,11 +156,24 @@ public class SirSageController : BasicController {
     {
         if(inTrampolineState && col.gameObject.layer == 9)
         {
-            Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
+            tramp = col.gameObject.GetComponent<Rigidbody>();
             Vector3 EnteringForce = col.relativeVelocity * rb.mass;
-
-            rb.AddForce(-transform.up * EnteringForce.y, ForceMode.Impulse);
+            CmdTrampoline(EnteringForce);
+            
             //rb.AddForce(transform.up * BasicController.JumpForce, ForceMode.Impulse);
         }
+    }
+
+    [Command]
+    public void CmdTrampoline(Vector3 Inforce)
+    {
+        RpcTrampoline(Inforce);
+        
+    }
+
+   [ClientRpc]
+    public void RpcTrampoline(Vector3 Inforce)
+    {
+        tramp.AddForce(-transform.up * Inforce.y, ForceMode.Impulse);
     }
 }
