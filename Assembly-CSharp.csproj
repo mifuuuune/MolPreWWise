@@ -71,16 +71,10 @@
     <Compile Include="Assets\Logronio Gabriel AI Project\Behaviours\TestBehaviours.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\ChicksBehaviour\ChickDecisionTree.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\ChicksBehaviour\ChicksParametersManager.cs" />
-    <Compile Include="Assets\Logronio Gabriel AI Project\Flocking\BoidBlending.cs" />
-    <Compile Include="Assets\Logronio Gabriel AI Project\Flocking\BoidComponent.cs" />
-    <Compile Include="Assets\Logronio Gabriel AI Project\Flocking\BoidShared.cs" />
-    <Compile Include="Assets\Logronio Gabriel AI Project\Flocking\BoidSpawner.cs" />
-    <Compile Include="Assets\Logronio Gabriel AI Project\Flocking\Delegates\BoidAlign.cs" />
-    <Compile Include="Assets\Logronio Gabriel AI Project\Flocking\Delegates\BoidCohesion.cs" />
-    <Compile Include="Assets\Logronio Gabriel AI Project\Flocking\Delegates\BoidSeparation.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\HensBehaviour\HenDecisionTree.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\HensBehaviour\HensParametersManager.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\PlayerController.cs" />
+    <Compile Include="Assets\Logronio Gabriel AI Project\Trap.cs" />
     <Compile Include="Assets\MainMenuLobby.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\ChangeSceneManager.cs" />

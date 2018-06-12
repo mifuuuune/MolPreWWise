@@ -156,24 +156,30 @@ public class SirSageController : BasicController {
     {
         if(inTrampolineState && col.gameObject.layer == 9)
         {
-            tramp = col.gameObject.GetComponent<Rigidbody>();
+            Debug.Log("sono nell'if del collision");
+            GameObject obj = col.gameObject.GetComponent<Rigidbody>().gameObject;
             Vector3 EnteringForce = col.relativeVelocity * rb.mass;
-            CmdTrampoline(EnteringForce);
+            CmdTrampoline(EnteringForce, obj);
             
             //rb.AddForce(transform.up * BasicController.JumpForce, ForceMode.Impulse);
         }
     }
 
     [Command]
-    public void CmdTrampoline(Vector3 Inforce)
+    public void CmdTrampoline(Vector3 Inforce, GameObject obj)
     {
-        RpcTrampoline(Inforce);
+        Debug.Log("server lo lancia sulla luna");
+        RpcTrampoline(Inforce, obj);
         
     }
 
    [ClientRpc]
-    public void RpcTrampoline(Vector3 Inforce)
+    public void RpcTrampoline(Vector3 Inforce, GameObject obj)
     {
-        tramp.AddForce(-transform.up * Inforce.y, ForceMode.Impulse);
+        Debug.Log("lo lancio sulla luna client");
+        Debug.Log(transform.up);
+        Debug.Log(-transform.up*Inforce.y);
+        //Debug.Log(tramp.gameObject.name);
+        obj.GetComponent<Rigidbody>().AddForce(-transform.up * Inforce.y, ForceMode.Impulse);
     }
 }
