@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class LambSpawner : MonoBehaviour {
+public class LambSpawner : NetworkBehaviour {
 
     public int maxNumber;
     public float spawnTime;
@@ -33,6 +34,8 @@ public class LambSpawner : MonoBehaviour {
         targetPoints.Add(new Vector3(-10.3f, 0, 10.3f));
         targetPoints.Add(new Vector3(10.3f, 0, -10.3f));
         targetPoints.Add(new Vector3(10.3f, 0, 10.3f));
+
+        maxNumber = 20;
     }
 	
 	// Update is called once per frame
@@ -47,12 +50,25 @@ public class LambSpawner : MonoBehaviour {
                 end = Random.Range(0, finalPoints.Count);
             }
             while (end == start);
-            Debug.Log("start: " + finalPoints[start]);
-            Debug.Log("end: " + finalPoints[end]);
+            /*Debug.Log("start: " + finalPoints[start]);
+            Debug.Log("end: " + finalPoints[end]);*/
             Transform lamb = null;
-            if (Random.Range(0,100) < percentage) lamb = Instantiate(prefabWithSpring, finalPoints[start], Quaternion.LookRotation(finalPoints[end]));
-            else lamb = Instantiate(prefab, finalPoints[start], Quaternion.LookRotation(finalPoints[end]));
+            if (Random.Range(0, 100) < percentage)
+            {
+                lamb = Instantiate(prefabWithSpring, finalPoints[start], Quaternion.LookRotation(finalPoints[end]));
+                NetworkServer.Spawn(lamb.gameObject);
+                //CmdSpawnLamb(prefabWithSpring.gameObject, finalPoints[start], Quaternion.LookRotation(finalPoints[end]));
+                //RpcSpawnLamb(prefab.gameObject, finalPoints[start], Quaternion.LookRotation(finalPoints[end]));
+            }
+            else
+            {
+                lamb = Instantiate(prefab, finalPoints[start], Quaternion.LookRotation(finalPoints[end]));
+                NetworkServer.Spawn(lamb.gameObject);
+                //CmdSpawnLamb(prefab.gameObject, finalPoints[start], Quaternion.LookRotation(finalPoints[end]));
+                //RpcSpawnLamb(prefab.gameObject, finalPoints[start], Quaternion.LookRotation(finalPoints[end]));
+            }
             Pathfinding pf = lamb.GetComponent<Pathfinding>();
+            pf.askGrid();
             pf.startingPoint = targetPoints[start];
             pf.finalPoint = finalPoints[end];
             pf.target = targetPoints[end];

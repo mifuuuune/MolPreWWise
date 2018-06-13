@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class AstarMovement : MonoBehaviour {
+public class AstarMovement : NetworkBehaviour {
 
     private Pathfinding pf;
     public float speed;
@@ -97,6 +98,8 @@ public class AstarMovement : MonoBehaviour {
         }
     }
 
+
+    //spinge il giocatore
     private void OnCollisionEnter(Collision collision)
     {
         GameObject go = collision.collider.gameObject;
@@ -114,6 +117,15 @@ public class AstarMovement : MonoBehaviour {
             grounded = true;
         }
     }
+
+    /*[Command]
+    public void CmdLambPushAway()
+    {
+        RpcLambPushAway()
+    }
+
+    Rpc*/
+
 
     private void OnCollisionExit(Collision collision)
     {

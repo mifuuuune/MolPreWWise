@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GrahannyBehaviourStage1 : MonoBehaviour {
+public class GrahannyBehaviourStage1 : NetworkBehaviour {
 
     private float counter = 0.0f;
     private bool counting = false;
@@ -82,6 +83,7 @@ public class GrahannyBehaviourStage1 : MonoBehaviour {
         Invoke("PushAway", .5f);
     }
 
+    //spinge via i giocatori in un certo range
     private void PushAway()
     {
         transform.GetChild(0).GetComponent<ParticleSystem>().Play();
@@ -90,9 +92,22 @@ public class GrahannyBehaviourStage1 : MonoBehaviour {
             GameObject go = GameObject.FindGameObjectWithTag(t);
             if (go)
                 if ((go.transform.position - transform.position).magnitude <= range)
+                    //CmdPushAway(go, forcePower);
                     go.GetComponent<Rigidbody>().AddForce((go.transform.position - transform.position).normalized * forcePower);
         }
     }
+
+   /* [Command]
+    public void CmdPushAway(GameObject go, float forcePower)
+    {
+        RpcPushAway(go, forcePower);
+    }
+
+    [ClientRpc]
+    public void RpcPushAway(GameObject go, float forcePower)
+    {
+        go.GetComponent<Rigidbody>().AddForce((go.transform.position - transform.position).normalized * forcePower);
+    }*/
 
     private void ToSecondStage()
     {

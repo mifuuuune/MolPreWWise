@@ -16,6 +16,10 @@ TagManager:
   - Sage
   - Loin
   - Eal
+  - Board
+  - LambWithSpring
+  - LambSpawner
+  - Grahanny
   layers:
   - Default
   - TransparentFX
@@ -31,9 +35,9 @@ TagManager:
   - Ground
   - Hen
   - Chick
+  - Lamb
+  - Unwalkable
   - Trampolino
-  - 
-  - 
   - 
   - 
   - 

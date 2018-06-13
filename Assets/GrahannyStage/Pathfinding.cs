@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Pathfinding : MonoBehaviour {
+public class Pathfinding : MonoBehaviour  {
 
     //public Transform seeker, target;
     public Vector3 startingPoint;
@@ -14,57 +15,66 @@ public class Pathfinding : MonoBehaviour {
 
     //List<Node> visited;
     //List<Node> unvisited;
-
+/*
     private void Awake()
+    {
+        //grid = GameObject.Find("A*").GetComponent<Grid>();
+    }
+    */
+    public void askGrid()
     {
         grid = GameObject.Find("A*").GetComponent<Grid>();
     }
 
+
     void Findpath(Vector3 startPos, Vector3 targetPos)
     {
-        
-        Node startNode = grid.getNodeFromWorldPoint(startPos);
-        Node targetNode = grid.getNodeFromWorldPoint(targetPos);
-
-        List<Node> openSet = new List<Node>();
-        HashSet<Node> closedSet = new HashSet<Node>();
-
-        openSet.Add(startNode);
-
-        while (openSet.Count > 0)
+        if (grid)
         {
-            Node currentNode = openSet[0];
-            for (int i = 1; i < openSet.Count; i++)
+            Debug.Log("sono nel grid");
+            Node startNode = grid.getNodeFromWorldPoint(startPos);
+            Node targetNode = grid.getNodeFromWorldPoint(targetPos);
+
+            List<Node> openSet = new List<Node>();
+            HashSet<Node> closedSet = new HashSet<Node>();
+
+            openSet.Add(startNode);
+
+            while (openSet.Count > 0)
             {
-                if (openSet[i].fCost < currentNode.fCost || (openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost))
+                Node currentNode = openSet[0];
+                for (int i = 1; i < openSet.Count; i++)
                 {
-                    currentNode = openSet[i];
-                }
-            }
-
-            openSet.Remove(currentNode);
-            closedSet.Add(currentNode);
-
-            if (currentNode == targetNode)
-            {
-                retracePath(startNode, targetNode);
-                return;
-            }
-
-            foreach (Node n in grid.getNeighbours(currentNode))
-            {
-                if (!n.walkable || closedSet.Contains(n)) continue;
-
-                float costToNeighbour = currentNode.gCost + getDistance(currentNode, n);
-                if (costToNeighbour < n.gCost || !openSet.Contains(n))
-                {
-                    n.gCost = costToNeighbour;
-                    n.hCost = getDistance(n, targetNode);
-                    n.parent = currentNode;
-
-                    if (!openSet.Contains(n))
+                    if (openSet[i].fCost < currentNode.fCost || (openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost))
                     {
-                        openSet.Add(n);
+                        currentNode = openSet[i];
+                    }
+                }
+
+                openSet.Remove(currentNode);
+                closedSet.Add(currentNode);
+
+                if (currentNode == targetNode)
+                {
+                    retracePath(startNode, targetNode);
+                    return;
+                }
+
+                foreach (Node n in grid.getNeighbours(currentNode))
+                {
+                    if (!n.walkable || closedSet.Contains(n)) continue;
+
+                    float costToNeighbour = currentNode.gCost + getDistance(currentNode, n);
+                    if (costToNeighbour < n.gCost || !openSet.Contains(n))
+                    {
+                        n.gCost = costToNeighbour;
+                        n.hCost = getDistance(n, targetNode);
+                        n.parent = currentNode;
+
+                        if (!openSet.Contains(n))
+                        {
+                            openSet.Add(n);
+                        }
                     }
                 }
             }

@@ -20,10 +20,18 @@ public class TutorialCheck : NetworkBehaviour {
             if (!SirEalArrived && col.gameObject.tag == "Eal") SirEalArrived = true;
             if (!SirLoinArrived && col.gameObject.tag == "Loin") SirLoinArrived = true;
             if (!SirSageArrived && col.gameObject.tag == "Sage") SirSageArrived = true;
-
-            //if (SirBeanArrived && SirEalArrived && SirLoinArrived && SirSageArrived) TutorialBlock.SetActive(false);
-            if (SirLoinArrived) Destroy(TutorialBlock);
+            //if (SirBeanArrived && SirEalArrived && SirLoinArrived && SirSageArrived) //TutorialBlock.SetActive(false);
+                
+            
+            if (SirLoinArrived) CmdDestroyBlock();
         }
         
+    }
+
+    [Command]
+    public void CmdDestroyBlock()
+    {
+        Destroy(TutorialBlock);
+        NetworkServer.UnSpawn(TutorialBlock);
     }
 }

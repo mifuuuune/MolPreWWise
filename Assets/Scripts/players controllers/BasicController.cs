@@ -77,50 +77,56 @@ public class BasicController : NetworkBehaviour
         if (isLocalPlayer)
         {
             lives = 3;
-            if (transform.gameObject.tag == "Bean")
+            if (GameObject.Find("LevelUI"))
             {
-                s1 = Resources.Load<Sprite>("bean");
-                s2 = Resources.Load<Sprite>("beanName");
-                s3 = Resources.Load<Sprite>("beanJump");
-                s4 = Resources.Load<Sprite>("beanAbility");
-                SpawnPoint = GameObject.Find("sir_bean_spawn");
-                DontDestroyOnLoad(GameObject.Find("sir_bean_spawn"));
+                
+                if (transform.gameObject.tag == "Bean")
+                {
+                    s1 = Resources.Load<Sprite>("bean");
+                    s2 = Resources.Load<Sprite>("beanName");
+                    s3 = Resources.Load<Sprite>("beanJump");
+                    s4 = Resources.Load<Sprite>("beanAbility");
+                    SpawnPoint = GameObject.Find("sir_bean_spawn");
+                    DontDestroyOnLoad(GameObject.Find("sir_bean_spawn"));
 
-            }
-            else if (transform.gameObject.tag == "Eal")
-            {
-                s1 = Resources.Load<Sprite>("eal");
-                s2 = Resources.Load<Sprite>("ealName");
-                s3 = Resources.Load<Sprite>("ealJump");
-                s4 = Resources.Load<Sprite>("ealAbility");
-                SpawnPoint = GameObject.Find("sir_eal_spawn");
-                DontDestroyOnLoad(GameObject.Find("sir_eal_spawn"));
-            }
-            else if (transform.gameObject.tag == "Loin")
-            {
-                s1 = Resources.Load<Sprite>("loin");
-                s2 = Resources.Load<Sprite>("loinName");
-                s3 = Resources.Load<Sprite>("loinJump");
-                s4 = Resources.Load<Sprite>("loinAbility");
-                SpawnPoint = GameObject.Find("sir_loin_spawn");
-                DontDestroyOnLoad(GameObject.Find("sir_loin_spawn"));
+                }
+                else if (transform.gameObject.tag == "Eal")
+                {
+                    s1 = Resources.Load<Sprite>("eal");
+                    s2 = Resources.Load<Sprite>("ealName");
+                    s3 = Resources.Load<Sprite>("ealJump");
+                    s4 = Resources.Load<Sprite>("ealAbility");
+                    SpawnPoint = GameObject.Find("sir_eal_spawn");
+                    DontDestroyOnLoad(GameObject.Find("sir_eal_spawn"));
+                }
+                else if (transform.gameObject.tag == "Loin")
+                {
+                    s1 = Resources.Load<Sprite>("loin");
+                    s2 = Resources.Load<Sprite>("loinName");
+                    s3 = Resources.Load<Sprite>("loinJump");
+                    s4 = Resources.Load<Sprite>("loinAbility");
+                    SpawnPoint = GameObject.Find("sir_loin_spawn");
+                    DontDestroyOnLoad(GameObject.Find("sir_loin_spawn"));
 
-            }
-            else if (transform.gameObject.tag == "Sage")
-            {
-                s1 = Resources.Load<Sprite>("sage");
-                s2 = Resources.Load<Sprite>("sageName");
-                s3 = Resources.Load<Sprite>("sageJump");
-                s4 = Resources.Load<Sprite>("sageAbility");
-                SpawnPoint = GameObject.Find("sir_sage_spawn");
-                DontDestroyOnLoad(GameObject.Find("sir_sage_spawn"));
-            }
+                }
+                else if (transform.gameObject.tag == "Sage")
+                {
+                    s1 = Resources.Load<Sprite>("sage");
+                    s2 = Resources.Load<Sprite>("sageName");
+                    s3 = Resources.Load<Sprite>("sageJump");
+                    s4 = Resources.Load<Sprite>("sageAbility");
+                    SpawnPoint = GameObject.Find("sir_sage_spawn");
+                    DontDestroyOnLoad(GameObject.Find("sir_sage_spawn"));
+                }
 
-            GameObject.Find("PlayerIcon").GetComponent<Image>().sprite = s1;
-            GameObject.Find("PlayerName").GetComponent<Image>().sprite = s2;
-            GameObject.Find("JumpIcon").GetComponent<Image>().sprite = s3;
-            GameObject.Find("AbilityIcon").GetComponent<Image>().sprite = s4;
-            DontDestroyOnLoad(GameObject.Find("LevelUI"));
+                GameObject.Find("PlayerIcon").GetComponent<Image>().sprite = s1;
+                GameObject.Find("PlayerName").GetComponent<Image>().sprite = s2;
+                GameObject.Find("JumpIcon").GetComponent<Image>().sprite = s3;
+                GameObject.Find("AbilityIcon").GetComponent<Image>().sprite = s4;
+
+                DontDestroyOnLoad(GameObject.Find("LevelUI"));
+            }
+            else ChangeUI();
         }
     }
 
@@ -129,6 +135,7 @@ public class BasicController : NetworkBehaviour
     {
         if (this.isLocalPlayer)
         {
+            //Debug.Log(lives);
             InputX = Input.GetAxisRaw("Horizontal");
             InputZ = Input.GetAxisRaw("Vertical");
             float CurrentInput = Mathf.Sqrt(InputX * InputX + InputZ * InputZ);
@@ -162,6 +169,10 @@ public class BasicController : NetworkBehaviour
 
     public void ChangeUI()
     {
+        Sprite s1 = null;
+        Sprite s2 = null;
+        Sprite s3 = null;
+        Sprite s4 = null;
 
         Sprite s5 = null;
         Sprite s6 = null;
@@ -176,20 +187,37 @@ public class BasicController : NetworkBehaviour
             GameObject.Find("PlayerLives").GetComponent<Text>().text = lives.ToString();
             if (transform.gameObject.tag == "Bean")
             {
+                s1 = Resources.Load<Sprite>("bean");
+                s2 = Resources.Load<Sprite>("beanName");
+                s3 = Resources.Load<Sprite>("beanJump");
+                s4 = Resources.Load<Sprite>("beanAbility");
+
                 s5 = Resources.Load<Sprite>("eal");
                 s6 = Resources.Load<Sprite>("loin");
                 s7 = Resources.Load<Sprite>("sage");
 
+                SpawnPoint = GameObject.Find("sir_bean_spawn");
+                DontDestroyOnLoad(GameObject.Find("sir_bean_spawn"));
+
                 GameObject x;
                 if (x = GameObject.FindWithTag("Eal")) mate1lives = x.GetComponent<BasicController>().GetLives();
+                
                 if (x = GameObject.FindWithTag("Loin")) mate2lives = x.GetComponent<BasicController>().GetLives();
                 if (x = GameObject.FindWithTag("Sage")) mate3lives = x.GetComponent<BasicController>().GetLives();
             }
             else if (transform.gameObject.tag == "Eal")
             {
+                s1 = Resources.Load<Sprite>("eal");
+                s2 = Resources.Load<Sprite>("ealName");
+                s3 = Resources.Load<Sprite>("ealJump");
+                s4 = Resources.Load<Sprite>("ealAbility");
+
                 s5 = Resources.Load<Sprite>("loin");
                 s6 = Resources.Load<Sprite>("sage");
                 s7 = Resources.Load<Sprite>("bean");
+
+                SpawnPoint = GameObject.Find("sir_eal_spawn");
+                DontDestroyOnLoad(GameObject.Find("sir_eal_spawn"));
 
                 GameObject x;
                 if (x = GameObject.FindWithTag("Loin")) mate1lives = x.GetComponent<BasicController>().GetLives();
@@ -198,20 +226,34 @@ public class BasicController : NetworkBehaviour
             }
             else if (transform.gameObject.tag == "Loin")
             {
+                s1 = Resources.Load<Sprite>("loin");
+                s2 = Resources.Load<Sprite>("loinName");
+                s3 = Resources.Load<Sprite>("loinJump");
+                s4 = Resources.Load<Sprite>("loinAbility");
+
                 s5 = Resources.Load<Sprite>("sage");
                 s6 = Resources.Load<Sprite>("bean");
                 s7 = Resources.Load<Sprite>("eal");
 
                 GameObject x;
                 if (x = GameObject.FindWithTag("Sage")) mate1lives = x.GetComponent<BasicController>().GetLives();
+                Debug.Log("vite sir eal----->" + GameObject.FindWithTag("Eal"));
                 if (x = GameObject.FindWithTag("Bean")) mate2lives = x.GetComponent<BasicController>().GetLives();
                 if (x = GameObject.FindWithTag("Eal")) mate3lives = x.GetComponent<BasicController>().GetLives();
             }
             else if (transform.gameObject.tag == "Sage")
             {
+                s1 = Resources.Load<Sprite>("sage");
+                s2 = Resources.Load<Sprite>("sageName");
+                s3 = Resources.Load<Sprite>("sageJump");
+                s4 = Resources.Load<Sprite>("sageAbility");
+
                 s5 = Resources.Load<Sprite>("bean");
                 s6 = Resources.Load<Sprite>("eal");
                 s7 = Resources.Load<Sprite>("loin");
+
+                SpawnPoint = GameObject.Find("sir_sage_spawn");
+                DontDestroyOnLoad(GameObject.Find("sir_sage_spawn"));
 
                 GameObject x;
                 if (x = GameObject.FindWithTag("Bean")) mate1lives = x.GetComponent<BasicController>().GetLives();
@@ -226,6 +268,12 @@ public class BasicController : NetworkBehaviour
             GameObject.Find("MateLives1").GetComponent<Text>().text = mate1lives.ToString();
             GameObject.Find("MateLives2").GetComponent<Text>().text = mate2lives.ToString();
             GameObject.Find("MateLives3").GetComponent<Text>().text = mate3lives.ToString();
+
+            GameObject.Find("PlayerIcon").GetComponent<Image>().sprite = s1;
+            GameObject.Find("PlayerName").GetComponent<Image>().sprite = s2;
+            GameObject.Find("JumpIcon").GetComponent<Image>().sprite = s3;
+            GameObject.Find("AbilityIcon").GetComponent<Image>().sprite = s4;
+            DontDestroyOnLoad(GameObject.Find("BossUI"));
         }
     }
     
@@ -337,7 +385,8 @@ public class BasicController : NetworkBehaviour
 
     private void updateTime(int t)
     {
-        GameObject.Find("TimeText").GetComponent<Text>().text = (int)t/60 + ":" + t%60;
+        if(GameObject.Find("TimeText"))
+            GameObject.Find("TimeText").GetComponent<Text>().text = (int)t/60 + ":" + t%60;
     }
 
     protected void CmdMoleAbility()
@@ -382,18 +431,21 @@ public class BasicController : NetworkBehaviour
     
     public void Respawn(Vector3 Checkpoint)
     {
-       // Debug.Log(Checkpoint);
+        
+        // Debug.Log(Checkpoint);
         if (Checkpoint != Vector3.zero)
         {
-           // Debug.Log("sono nell'if");
+            // Debug.Log("sono nell'if");
             gameObject.transform.position = Checkpoint;
         }
         else
         {
-           // Debug.Log(SpawnPoint.transform.position);
+            // Debug.Log(SpawnPoint.transform.position);
             gameObject.transform.position = SpawnPoint.transform.position;
         }
+        
     }
+
 
     public void SetMole(bool mole)
     {
@@ -414,8 +466,19 @@ public class BasicController : NetworkBehaviour
 
     public void DecreaseLives()
     {
-        lives--;
+        if (isServer)
+            lives--;
+        else
+        {
+            CmdLoseLife();
+        }
         //controllo se uno finisce le vite
+    }
+
+    [Command]
+    public void CmdLoseLife()
+    {
+        DecreaseLives();
     }
 
     public bool checkIsMole()

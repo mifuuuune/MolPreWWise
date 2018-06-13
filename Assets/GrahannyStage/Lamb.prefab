@@ -39,6 +39,8 @@ GameObject:
   - component: {fileID: 54830719940163078}
   - component: {fileID: 65621991524172244}
   - component: {fileID: 64540190404796676}
+  - component: {fileID: 114516485975825970}
+  - component: {fileID: 114269146937453530}
   m_Layer: 14
   m_Name: Lamb
   m_TagString: Untagged
@@ -201,6 +203,27 @@ MonoBehaviour:
   speed: 5
   rotSpeed: 5
   forcePower: 25000
+--- !u!114 &114269146937453530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1465968772657712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!114 &114389310136271234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,3 +239,35 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   finalPoint: {x: 0, y: 0, z: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114516485975825970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1465968772657712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 52
+    i1: 198
+    i2: 231
+    i3: 191
+    i4: 5
+    i5: 84
+    i6: 11
+    i7: 52
+    i8: 8
+    i9: 12
+    i10: 60
+    i11: 237
+    i12: 177
+    i13: 19
+    i14: 166
+    i15: 124
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

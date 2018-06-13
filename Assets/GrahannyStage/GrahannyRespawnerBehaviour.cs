@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GrahannyRespawnerBehaviour : MonoBehaviour {
-
+public class GrahannyRespawnerBehaviour : NetworkBehaviour
+{
+    //toglie le vite
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 9)

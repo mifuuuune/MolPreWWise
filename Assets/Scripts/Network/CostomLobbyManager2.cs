@@ -70,31 +70,31 @@ namespace Prototype.NetworkLobby
                 }
             }
 
-            if (spawn_player == 4)
+            if (spawn_player == 2)
             {
                 myPlayer = Instantiate(player2, GameObject.Find("sir_eal_spawn").transform.position, Quaternion.identity) as GameObject;
-                if (mole == 4)
+                if (mole == 2)
                 {
                     myPlayer.GetComponent<SirEalController>().SetMole(true);
                     connMole = conn;
                 }
             }
-            if (spawn_player == 2)
+            if (spawn_player == 1)
             {
                 myPlayer = Instantiate(player3, GameObject.Find("sir_loin_spawn").transform.position, Quaternion.identity) as GameObject;
                 //Debug.Log("ora setto la mole" + mole);
-                if (mole == 2)
+                if (mole == 1)
                 {
                     //Debug.Log("ora setto la mole");
                     myPlayer.GetComponent<SirLoinController>().SetMole(true);
                     connMole = conn;
                 }
             }
-            if (spawn_player == 1)
+            if (spawn_player == 4)
             {
-               // spawn_player = 0;
+                spawn_player = 0;
                 myPlayer = Instantiate(player4, GameObject.Find("sir_sage_spawn").transform.position, Quaternion.identity) as GameObject;
-                if (mole == 1)
+                if (mole == 4)
                 {
                     myPlayer.GetComponent<SirSageController>().SetMole(true);
                     connMole = conn;

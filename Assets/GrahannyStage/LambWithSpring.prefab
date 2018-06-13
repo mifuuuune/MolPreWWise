@@ -88,6 +88,8 @@ GameObject:
   - component: {fileID: 54116815725843542}
   - component: {fileID: 65055362429473668}
   - component: {fileID: 64754531718025752}
+  - component: {fileID: 114335547773166768}
+  - component: {fileID: 114744846115237934}
   m_Layer: 14
   m_Name: LambWithSpring
   m_TagString: LambWithSpring
@@ -303,6 +305,38 @@ MonoBehaviour:
   speed: 5
   rotSpeed: 5
   forcePower: 25000
+--- !u!114 &114335547773166768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433709081830020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 128
+    i1: 177
+    i2: 142
+    i3: 239
+    i4: 74
+    i5: 56
+    i6: 143
+    i7: 212
+    i8: 169
+    i9: 222
+    i10: 194
+    i11: 189
+    i12: 72
+    i13: 212
+    i14: 66
+    i15: 12
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114531378596185842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,3 +352,24 @@ MonoBehaviour:
   target: {x: 3, y: 0, z: 10}
   finalPoint: {x: -3, y: 0, z: -11}
   color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114744846115237934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1433709081830020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5

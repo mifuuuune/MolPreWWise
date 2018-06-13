@@ -910,6 +910,8 @@ MonoBehaviour:
   - {fileID: 1809234122720286, guid: bb76632df427f3748998037325293d7b, type: 2}
   - {fileID: 1957621043978284, guid: bb76632df427f3748998037325293d7b, type: 2}
   - {fileID: 1559876639884646, guid: d45e57293aeaced4698b18cc45696fd1, type: 2}
+  - {fileID: 1465968772657712, guid: 34c6e7bf05540b34080c3cedb113a67c, type: 2}
+  - {fileID: 1433709081830020, guid: 80b18eef4a388fd4a9dec2bd48d4420c, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -974,7 +976,7 @@ MonoBehaviour:
   m_GamePlayerPrefab: {fileID: 1613227943946332, guid: 02d1843c37d7acc418d4dfa9d560abf5,
     type: 2}
   m_LobbyScene: Lobyy_GUI_2
-  m_PlayScene: Level 1
+  m_PlayScene: GrahannyStage1
   lobbySlots: []
   player1: {fileID: 1613227943946332, guid: 02d1843c37d7acc418d4dfa9d560abf5, type: 2}
   player2: {fileID: 1855534808144124, guid: dd5ef94774c5a6f49a8ead8e3754ffb7, type: 2}

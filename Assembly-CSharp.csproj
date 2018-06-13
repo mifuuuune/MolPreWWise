@@ -89,7 +89,6 @@
     <Compile Include="Assets\Logronio Gabriel AI Project\PlayerController.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\Trap.cs" />
     <Compile Include="Assets\MainMenuLobby.cs" />
-    <Compile Include="Assets\scri.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\ChangeSceneManager.cs" />
     <Compile Include="Assets\Scripts\Checkpoint.cs" />
@@ -113,9 +112,9 @@
     <Compile Include="Assets\Scripts\players controllers\SirLoinController.cs" />
     <Compile Include="Assets\Scripts\players controllers\SirSageController.cs" />
     <Compile Include="Assets\Scripts\players controllers\Stay_Idle.cs" />
+    <Compile Include="Assets\Scripts\players controllers\TrampPush.cs" />
     <Compile Include="Assets\ServerList.cs" />
     <Compile Include="Assets\test.cs" />
-    <Compile Include="Assets\TrampPush.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Unity/progetti/Net2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
