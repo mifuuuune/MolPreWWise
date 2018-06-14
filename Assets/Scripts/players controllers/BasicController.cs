@@ -36,11 +36,14 @@ public class BasicController : NetworkBehaviour
     protected float InputZ;
     protected bool SpecialJumped = false;
 
+    private bool finished;
     private bool isMole;
     private int molePoints;
     private float rechargetime;
+    
+    [SyncVar(hook = "debugging")]
+    private int lives=3;
 
-    private int lives;
 
     //NETWORK VARS
     [SyncVar(hook = "updateTime")]
@@ -127,6 +130,7 @@ public class BasicController : NetworkBehaviour
                 DontDestroyOnLoad(GameObject.Find("LevelUI"));
             }
             else ChangeUI();
+            StartCoroutine(updateUicoroutine());
         }
     }
 
@@ -134,7 +138,7 @@ public class BasicController : NetworkBehaviour
     void Update()
     {
         if (this.isLocalPlayer)
-        {
+        {   
             //Debug.Log(lives);
             InputX = Input.GetAxisRaw("Horizontal");
             InputZ = Input.GetAxisRaw("Vertical");
@@ -237,7 +241,7 @@ public class BasicController : NetworkBehaviour
 
                 GameObject x;
                 if (x = GameObject.FindWithTag("Sage")) mate1lives = x.GetComponent<BasicController>().GetLives();
-                Debug.Log("vite sir eal----->" + GameObject.FindWithTag("Eal"));
+                //Debug.Log("vite sir eal----->" + GameObject.FindWithTag("Eal"));
                 if (x = GameObject.FindWithTag("Bean")) mate2lives = x.GetComponent<BasicController>().GetLives();
                 if (x = GameObject.FindWithTag("Eal")) mate3lives = x.GetComponent<BasicController>().GetLives();
             }
@@ -276,7 +280,68 @@ public class BasicController : NetworkBehaviour
             DontDestroyOnLoad(GameObject.Find("BossUI"));
         }
     }
-    
+
+    public IEnumerator updateUicoroutine()
+    {
+        while (true)
+        {
+            UpdateUI();
+            yield return new WaitForSeconds(1.2f);
+        }
+    }
+
+    public void UpdateUI()
+    {
+        if (isLocalPlayer)
+        {
+            if (GameObject.Find("BossUI"))
+            {
+                int mate1lives = 0;
+                int mate2lives = 0;
+                int mate3lives = 0;
+
+                GameObject.Find("PlayerLives").GetComponent<Text>().text = lives.ToString();
+                if (transform.gameObject.tag == "Bean")
+                {
+
+                    GameObject x;
+                    if (x = GameObject.FindWithTag("Eal")) mate1lives = x.GetComponent<BasicController>().GetLives();
+
+                    if (x = GameObject.FindWithTag("Loin")) mate2lives = x.GetComponent<BasicController>().GetLives();
+                    if (x = GameObject.FindWithTag("Sage")) mate3lives = x.GetComponent<BasicController>().GetLives();
+                }
+                else if (transform.gameObject.tag == "Eal")
+                {
+                    GameObject x;
+                    if (x = GameObject.FindWithTag("Loin")) mate1lives = x.GetComponent<BasicController>().GetLives();
+                    if (x = GameObject.FindWithTag("Sage")) mate2lives = x.GetComponent<BasicController>().GetLives();
+                    if (x = GameObject.FindWithTag("Bean")) mate3lives = x.GetComponent<BasicController>().GetLives();
+                }
+                else if (transform.gameObject.tag == "Loin")
+                {
+                    GameObject x;
+                    if (x = GameObject.FindWithTag("Sage")) mate1lives = x.GetComponent<BasicController>().GetLives();
+                    //Debug.Log("vite sir eal----->" + GameObject.FindWithTag("Eal"));
+                    if (x = GameObject.FindWithTag("Bean")) mate2lives = x.GetComponent<BasicController>().GetLives();
+                    if (x = GameObject.FindWithTag("Eal")) mate3lives = x.GetComponent<BasicController>().GetLives();
+                }
+                else if (transform.gameObject.tag == "Sage")
+                {
+                    GameObject x;
+                    if (x = GameObject.FindWithTag("Bean")) mate1lives = x.GetComponent<BasicController>().GetLives();
+                    if (x = GameObject.FindWithTag("Eal")) mate2lives = x.GetComponent<BasicController>().GetLives();
+                    if (x = GameObject.FindWithTag("Loin")) mate3lives = x.GetComponent<BasicController>().GetLives();
+                }
+
+                GameObject.Find("MateLives1").GetComponent<Text>().text = mate1lives.ToString();
+                GameObject.Find("MateLives2").GetComponent<Text>().text = mate2lives.ToString();
+                GameObject.Find("MateLives3").GetComponent<Text>().text = mate3lives.ToString();
+            }
+        }
+    }
+
+
+
 
     //Decides the character's status
     protected virtual void StatusUpdate(float CurrentInput)
@@ -287,6 +352,7 @@ public class BasicController : NetworkBehaviour
             //Debug.Log("sono la mole");
             if (Input.GetMouseButtonDown(1) && molePoints>=10)
             {
+                Debug.Log(molePoints);
                 CmdMoleAbility();
             }
         }
@@ -391,7 +457,7 @@ public class BasicController : NetworkBehaviour
 
     protected void CmdMoleAbility()
     {
-        
+        Debug.Log("entro qua");
         RaycastHit AbilityHit;
         Ray AbilityRay = new Ray(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)));
         Debug.DrawRay(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)), Color.green);
@@ -466,12 +532,14 @@ public class BasicController : NetworkBehaviour
 
     public void DecreaseLives()
     {
-        if (isServer)
-            lives--;
+        
+        if (this.isServer)
+            this.lives--;
         else
         {
             CmdLoseLife();
         }
+        //Debug.Log("sono -->>>" + gameObject.name + "---- e ho---" + lives);
         //controllo se uno finisce le vite
     }
 
@@ -484,5 +552,33 @@ public class BasicController : NetworkBehaviour
     public bool checkIsMole()
     {
         return isMole;
+    }
+
+    public void debugging(int lives)
+    {
+        this.lives = lives;
+        Debug.Log("decremento  +"+ gameObject.tag +" ----->    "+this.lives + "     "+lives);
+        //UpdateUI();
+
+    }
+
+    public void FinalScene()
+    {
+        if (isLocalPlayer)
+        {
+            Transform disable = transform.GetChild(3).GetChild(0);
+            disable.gameObject.GetComponent<Camera>().enabled = false;
+            disable.gameObject.SetActive(false);
+            if (GameObject.Find("LevelUI"))
+                GameObject.Find("LevelUI").SetActive(false);
+            //Debug.Log(isLocalPlayer);
+            if (checkIsMole())
+                GameObject.Find("Lose").GetComponent<Canvas>().enabled=true;
+                //Debug.Log("Hai Perso");
+            else
+                GameObject.Find("Lose").GetComponent<Canvas>().enabled = false;
+            //Debug.Log("hai vinto");
+        }
+        
     }
 }

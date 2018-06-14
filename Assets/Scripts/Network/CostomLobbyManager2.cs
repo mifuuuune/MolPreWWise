@@ -60,10 +60,10 @@ namespace Prototype.NetworkLobby
             //Debug.Log(conn.connectionId);
             GameObject myPlayer = null;
             spawn_player++;
-            if (spawn_player == 3)
+            if (spawn_player == 1)
             {
                 myPlayer = Instantiate(player1, GameObject.Find("sir_bean_spawn").transform.position, Quaternion.identity) as GameObject;
-                if (mole == 3)
+                if (mole == 1)
                 {
                     myPlayer.GetComponent<SirBeanController>().SetMole(true);
                     connMole = conn;
@@ -79,11 +79,11 @@ namespace Prototype.NetworkLobby
                     connMole = conn;
                 }
             }
-            if (spawn_player == 1)
+            if (spawn_player == 3)
             {
                 myPlayer = Instantiate(player3, GameObject.Find("sir_loin_spawn").transform.position, Quaternion.identity) as GameObject;
                 //Debug.Log("ora setto la mole" + mole);
-                if (mole == 1)
+                if (mole == 3)
                 {
                     //Debug.Log("ora setto la mole");
                     myPlayer.GetComponent<SirLoinController>().SetMole(true);

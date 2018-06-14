@@ -31,7 +31,7 @@ public class Pathfinding : MonoBehaviour  {
     {
         if (grid)
         {
-            Debug.Log("sono nel grid");
+            //Debug.Log("sono nel grid");
             Node startNode = grid.getNodeFromWorldPoint(startPos);
             Node targetNode = grid.getNodeFromWorldPoint(targetPos);
 
@@ -186,7 +186,7 @@ public class Pathfinding : MonoBehaviour  {
             if (grid.grid != null && path != null) {
                 foreach (Node n in path)
                 {
-                    Debug.Log("ok");
+                    //Debug.Log("ok");
                     Gizmos.color = color;
                     Gizmos.DrawCube(n.worldPosition, Vector3.one * (grid.nodeRadius * 2 - .1f));                  
                 }

@@ -803,6 +803,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1705801757922200, guid: cf35a5a204531f84abcb966f81da3581, type: 2}
+      propertyPath: m_Name
+      value: sir_bean_spawn
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf35a5a204531f84abcb966f81da3581, type: 2}
   m_IsPrefabParent: 0
@@ -1386,6 +1390,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e614e8328ede0b644aa3b5819f67624d, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &665602080 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: e614e8328ede0b644aa3b5819f67624d, type: 3}
+  m_PrefabInternal: {fileID: 665602079}
+--- !u!136 &665602081
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665602080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.42893696
+  m_Height: 4.1723065
+  m_Direction: 1
+  m_Center: {x: -0.9, y: 2.052004, z: 0.55}
 --- !u!1 &688536056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2160,7 +2181,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1073467499}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.4185085
   m_Height: 2.000006
   m_Direction: 1
@@ -3146,7 +3167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801640b8cf445c34dbed9af02d7620ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumber: 10
+  maxNumber: 15
   spawnTime: 0.5
   prefab: {fileID: 4556039543099992, guid: 34c6e7bf05540b34080c3cedb113a67c, type: 2}
   prefabWithSpring: {fileID: 4842303325897048, guid: 80b18eef4a388fd4a9dec2bd48d4420c,

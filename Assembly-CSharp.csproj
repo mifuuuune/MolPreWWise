@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EndGameManager.cs" />
     <Compile Include="Assets\GrahannyStage\AstarMovement.cs" />
     <Compile Include="Assets\GrahannyStage\BoardBehaviour.cs" />
     <Compile Include="Assets\GrahannyStage\DecisionTree.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Assets\Scripts\players controllers\Stay_Idle.cs" />
     <Compile Include="Assets\Scripts\players controllers\TrampPush.cs" />
     <Compile Include="Assets\ServerList.cs" />
+    <Compile Include="Assets\SpawnBoss.cs" />
     <Compile Include="Assets\test.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Unity/progetti/Net2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

@@ -1,21 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class BoardBehaviour : MonoBehaviour {
+public class BoardBehaviour : NetworkBehaviour {
 
     public Transform platformPrefab;
     public float timeActive = 0;
-    private bool active = false;
+    [SyncVar(hook = "SyncActive")]
+    private bool active;
     public Transform otherBoard;
     private BoardBehaviour otherB;
     private ParticleSystem ps;
     ParticleSystem.MainModule settings;
 
+    public Camera cam;
+
     // Use this for initialization
     void Start () {
         otherB = otherBoard.GetComponent<BoardBehaviour>();
         settings = transform.GetChild(0).GetComponent<ParticleSystem>().main;
+        active = false;
     }
 	
 	// Update is called once per frame
@@ -34,10 +39,34 @@ public class BoardBehaviour : MonoBehaviour {
         if (collision.collider.gameObject.layer == 9)
         {
             active = true;
-            if (otherB.getActive())
-                Instantiate(platformPrefab, new Vector3(0,10,0), Quaternion.identity);
+            Destroy(GameObject.FindWithTag("Grahanny"));
+            CmdFinish();
+            /*if (otherB.getActive())
+            {
+                Debug.Log("debug.log----->" + gameObject.name);
+                //Instantiate(platformPrefab, new Vector3(0,10,0), Quaternion.identity);
+                CmdSpawn();
+            }*/
+
         }
     }
+
+    //[Command]
+    public void CmdFinish()
+    {
+        //Debug.Log("ci sono entrato infine");
+        cam.gameObject.SetActive(true);
+        cam.enabled = true;
+        GameObject.Find("EndGameManager").GetComponent<EndGameManager>().EndGame();       
+    }
+
+    [Command]
+    public void CmdSpawn()
+    {
+       Transform x =  Instantiate(platformPrefab, new Vector3(0, 10, 0), Quaternion.identity) as Transform;
+        NetworkServer.Spawn(x.gameObject);
+    }
+
 
     private void OnCollisionExit(Collision collision)
     {
@@ -62,4 +91,11 @@ public class BoardBehaviour : MonoBehaviour {
     {
         return timeActive;
     }
+
+    public void SyncActive(bool active)
+    {
+        //Debug.Log("sono----->" + gameObject.name + "    e sono------>    " + this.active);
+        active = this.active;
+    }
+
 }

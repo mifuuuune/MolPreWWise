@@ -35,7 +35,7 @@ public class LambSpawner : NetworkBehaviour {
         targetPoints.Add(new Vector3(10.3f, 0, -10.3f));
         targetPoints.Add(new Vector3(10.3f, 0, 10.3f));
 
-        maxNumber = 20;
+        //maxNumber = 15;
     }
 	
 	// Update is called once per frame

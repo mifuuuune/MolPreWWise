@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GrahannyBehaviourStage2 : MonoBehaviour {
+public class GrahannyBehaviourStage2 : NetworkBehaviour {
 
     public Transform board1;
     public Transform board2;
@@ -33,56 +34,58 @@ public class GrahannyBehaviourStage2 : MonoBehaviour {
 
         //DTAction a1 = new DTAction(FollowPlayer);
         //dt = new DecisionTree(a1);
+        if (isServer)
+        {
+            //define decisions
+            DTDecision d1 = new DTDecision(IsABoardActiveFor2Seconds);
+            DTDecision d2 = new DTDecision(MoleIsAlive);
+            DTDecision d3 = new DTDecision(IsABoardActiveFor5Seconds);
+            DTDecision d4 = new DTDecision(AtLeastOneInAreaA);
+            DTDecision d5 = new DTDecision(AtLeastTwoInAreaB);
+            DTDecision d6 = new DTDecision(AtLeastOneInAreaC);
+            DTDecision d7 = new DTDecision(AtLeastTwoInAreaC);
+            DTDecision d8 = new DTDecision(MoleIsAlive);
+            DTDecision d9 = new DTDecision(MoleIsAlive);
 
-        //define decisions
-        DTDecision d1 = new DTDecision(IsABoardActiveFor2Seconds);
-        DTDecision d2 = new DTDecision(MoleIsAlive);
-        DTDecision d3 = new DTDecision(IsABoardActiveFor5Seconds);
-        DTDecision d4 = new DTDecision(AtLeastOneInAreaA);
-        DTDecision d5 = new DTDecision(AtLeastTwoInAreaB);
-        DTDecision d6 = new DTDecision(AtLeastOneInAreaC);
-        DTDecision d7 = new DTDecision(AtLeastTwoInAreaC);
-        DTDecision d8 = new DTDecision(MoleIsAlive);
-        DTDecision d9 = new DTDecision(MoleIsAlive);
+            //define actions
+            DTAction a1 = new DTAction(TpAtActiveBoard);
+            DTAction a2 = new DTAction(LoadRoundAttack);
+            DTAction a3 = new DTAction(LoadFrontAttack);
+            DTAction a4 = new DTAction(FollowClosestPlayer);
+            DTAction a5 = new DTAction(FollowPlayerWithLessLives);
+            DTAction a6 = new DTAction(FollowPlayerWithLessLivesInAreaC);
 
-        //define actions
-        DTAction a1 = new DTAction(TpAtActiveBoard);
-        DTAction a2 = new DTAction(LoadRoundAttack);
-        DTAction a3 = new DTAction(LoadFrontAttack);
-        DTAction a4 = new DTAction(FollowClosestPlayer);
-        DTAction a5 = new DTAction(FollowPlayerWithLessLives);
-        DTAction a6 = new DTAction(FollowPlayerWithLessLivesInAreaC);
+            d1.AddLink(true, d2);
+            d1.AddLink(false, d4);
 
-        d1.AddLink(true, d2);
-        d1.AddLink(false, d4);
+            d2.AddLink(true, d3);
+            d2.AddLink(false, a1);
 
-        d2.AddLink(true, d3);
-        d2.AddLink(false, a1);
+            d3.AddLink(true, a1);
+            d3.AddLink(false, d4);
 
-        d3.AddLink(true, a1);
-        d3.AddLink(false, d4);
+            d4.AddLink(true, d5);
+            d4.AddLink(false, d6);
 
-        d4.AddLink(true, d5);
-        d4.AddLink(false, d6);
+            d5.AddLink(true, a2);
+            d5.AddLink(false, a3);
 
-        d5.AddLink(true, a2);
-        d5.AddLink(false, a3);
+            d6.AddLink(true, d7);
+            d6.AddLink(false, d8);
 
-        d6.AddLink(true, d7);
-        d6.AddLink(false, d8);
+            d7.AddLink(true, d9);
+            d7.AddLink(false, a4);
 
-        d7.AddLink(true, d9);
-        d7.AddLink(false, a4);
+            d8.AddLink(true, a4);
+            d8.AddLink(false, a5);
 
-        d8.AddLink(true, a4);
-        d8.AddLink(false, a5);
+            d9.AddLink(true, a4);
+            d9.AddLink(false, a6);
 
-        d9.AddLink(true, a4);
-        d9.AddLink(false, a6);
+            dt = new DecisionTree(d1);
 
-        dt = new DecisionTree(d1);
-
-        StartCoroutine(Patrol());
+            StartCoroutine(Patrol());
+        }
 	}
 	
 	public IEnumerator Patrol()
@@ -112,7 +115,9 @@ public class GrahannyBehaviourStage2 : MonoBehaviour {
             if (playerTags.Contains(go.tag))
             {
                 BasicController bc = go.GetComponent<BasicController>();
+                Debug.Log("ho trovaot il basic controller---->");
                 if (bc.checkIsMole()) return true;
+                
             }
         }
         return false;
@@ -150,6 +155,7 @@ public class GrahannyBehaviourStage2 : MonoBehaviour {
     {
         StopFollowing();
         anim.SetTrigger("RoundAttack");
+        RpcPlayAnim("RoundAttack");
         Invoke("RoundAttack", .5f);
         return null;
     }
@@ -160,15 +166,25 @@ public class GrahannyBehaviourStage2 : MonoBehaviour {
         if (Random.Range(0, 5) <= 1)
         {
             anim.SetTrigger("RoundAttack");
+            RpcPlayAnim("RoundAttack");
             Invoke("RoundAttack", .5f);
         }
         else
         {
             anim.SetTrigger("FrontAttack");
+            RpcPlayAnim("FrontAttack");
             Invoke("FrontAttack", .5f);
         }
         return null;
     }
+
+    [ClientRpc]
+    public void RpcPlayAnim(string s)
+    {
+        anim.SetTrigger(s);
+    }
+
+
 
     public object FollowClosestPlayer(object o)
     {
@@ -227,7 +243,9 @@ public class GrahannyBehaviourStage2 : MonoBehaviour {
 
     private void RoundAttack()
     {
-        transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+        transform.GetChild(0).transform.GetComponent<ParticleSystem>().Play();
+        if(isServer)
+            RpcTriggerAnimation(0);
         //fa perdere una vita ai giocatori in range B e li fa respawnare
         foreach (GameObject go in FindObjectsOfType<GameObject>())
         {
@@ -235,30 +253,54 @@ public class GrahannyBehaviourStage2 : MonoBehaviour {
             {
                 if ((transform.position - go.transform.position).magnitude <= distanceB)
                 {
-                    BasicController playerController = go.GetComponent<BasicController>();
-                    playerController.DecreaseLives();
-                    playerController.Respawn(Vector3.zero);
+                    
+                    RpcAttack(go);
+                    // Cmdtest(go);
                 }
             }
         }
     }
 
+    
+    [ClientRpc]
+    public void RpcAttack(GameObject go)
+    {
+        /*if (isLocalPlayer)
+        {*/
+        BasicController playerController = go.GetComponent<BasicController>();
+        playerController.DecreaseLives();
+        playerController.Respawn(Vector3.zero);
+        /* }*/
+    }
+
     private void FrontAttack()
     {
-        transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+        transform.GetChild(1).transform.GetComponent<ParticleSystem>().Play();
+        if(isServer)
+            RpcTriggerAnimation(1);
         //fa perdere una vita al giocatore in range B davanti a sè e lo fa respawnare
         RaycastHit hit;
         if(Physics.SphereCast(transform.position + new Vector3(0,1,0), .5f, transform.forward, out hit, distanceB))
         {
             if (playerTags.Contains(hit.transform.tag))
             {
-                BasicController playerController = hit.transform.gameObject.GetComponent<BasicController>();
-                playerController.DecreaseLives();
-                playerController.Respawn(Vector3.zero);
+                GameObject playerobj = hit.transform.gameObject;
+                RpcAttack(playerobj);
+                
             }
         }
     }
 
+    
+
+    [ClientRpc]
+    public void RpcTriggerAnimation(int x)
+    {
+        if(x == 0)
+            transform.GetChild(0).transform.GetComponent<ParticleSystem>().Play();
+        else
+            transform.GetChild(1).transform.GetComponent<ParticleSystem>().Play();
+    }
     private void FollowPlayerWithLessLivesInRange(float range)
     {
         Transform player = null;
