@@ -90,6 +90,7 @@
     <Compile Include="Assets\Logronio Gabriel AI Project\PlayerController.cs" />
     <Compile Include="Assets\Logronio Gabriel AI Project\Trap.cs" />
     <Compile Include="Assets\MainMenuLobby.cs" />
+    <Compile Include="Assets\SceneToBoss.cs" />
     <Compile Include="Assets\Scripts\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\ChangeSceneManager.cs" />
     <Compile Include="Assets\Scripts\Checkpoint.cs" />

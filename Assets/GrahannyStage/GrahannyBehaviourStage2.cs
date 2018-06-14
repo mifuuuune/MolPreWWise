@@ -115,7 +115,7 @@ public class GrahannyBehaviourStage2 : NetworkBehaviour {
             if (playerTags.Contains(go.tag))
             {
                 BasicController bc = go.GetComponent<BasicController>();
-                Debug.Log("ho trovaot il basic controller---->");
+                //Debug.Log("ho trovaot il basic controller---->");
                 if (bc.checkIsMole()) return true;
                 
             }

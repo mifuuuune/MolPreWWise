@@ -15,11 +15,13 @@ public class SirSageController : BasicController {
     private float AnimationStop = 1.3f;
     private BoxCollider BoxColl;
     public GameObject tramp;
+    GameObject obj;
     protected override void Start()
     {
         base.Start();
         BoxColl = GetComponent<BoxCollider>();
     }
+    
 
     protected override void StatusUpdate(float CurrentInput)
     {
@@ -31,6 +33,8 @@ public class SirSageController : BasicController {
             coll.enabled = true;
             BoxColl.enabled = false;
             anim.SetBool("Trampoline", false);
+            Cmddestroy();
+
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -87,7 +91,17 @@ public class SirSageController : BasicController {
         }
     }
 
-
+    [Command]
+    public void Cmddestroy()
+    {
+        var knifesinscene = GameObject.FindGameObjectsWithTag("Trampolino");
+        foreach (GameObject trampol in knifesinscene)
+        {
+            Destroy(trampol);
+            NetworkServer.UnSpawn(trampol);
+        }
+           
+    }
 
     protected override void SpecialJump()
     {
@@ -102,16 +116,14 @@ public class SirSageController : BasicController {
     public void CmdSetTramp()
     {
         RpcSetTramp();
-        StartCoroutine(SetTramp());
+        Invoke("SetTramp", 0.8f);
     }
 
-    IEnumerator SetTramp()
+    public void SetTramp()
     {
-        yield return new WaitForSeconds(2.0f);
-        GameObject obj = GameObject.Instantiate<GameObject>(tramp, new Vector3(this.transform.position.x+0.07f, this.transform.position.y+0.12f, transform.position.z-0.50f), Quaternion.identity);
+        obj = GameObject.Instantiate<GameObject>(tramp, new Vector3(this.transform.position.x+0.07f, this.transform.position.y+0.12f, transform.position.z-0.50f), Quaternion.identity);
         Physics.IgnoreCollision(obj.GetComponent<BoxCollider>(), BoxColl);
         NetworkServer.Spawn(obj);
-
     }
 
     [ClientRpc]

@@ -9,8 +9,15 @@ public class SpawnBoss : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GameObject bossspawn = Instantiate(boss, new Vector3(0, 0, 0), Quaternion.identity);
-        NetworkServer.Spawn(bossspawn);
+        StartCoroutine("SpawnBossCor");
+        
 
 	}
+
+     IEnumerator SpawnBossCor()
+    {
+        yield return new WaitForSeconds(3.0f);
+        GameObject bossspawn = Instantiate(boss, new Vector3(0, 0, 0), Quaternion.identity);
+        NetworkServer.Spawn(bossspawn);
+    }
 }

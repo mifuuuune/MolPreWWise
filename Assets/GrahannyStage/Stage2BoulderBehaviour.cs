@@ -11,10 +11,13 @@ public class Stage2BoulderBehaviour : MonoBehaviour {
         {
             Destroy(go);
             //fine partita
+            GameObject.Find("Board1").GetComponent<BoardBehaviour>().CmdFinish();
+
         }
         else
         {
             Destroy(gameObject);
+            
         }
     }
 }

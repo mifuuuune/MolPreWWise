@@ -140,7 +140,7 @@ public class GrahannyBehaviourStage1 : NetworkBehaviour {
     private bool EnoughPlayersInRange()
     {
         Debug.Log(NumPlayersInRange());
-        return NumPlayersInRange() >= 1;
+        return NumPlayersInRange() >= 3;
     }
 
     private bool TimeOver()

@@ -39,14 +39,13 @@ public class BoardBehaviour : NetworkBehaviour {
         if (collision.collider.gameObject.layer == 9)
         {
             active = true;
-            Destroy(GameObject.FindWithTag("Grahanny"));
-            CmdFinish();
-            /*if (otherB.getActive())
+            // Destroy(GameObject.FindWithTag("Grahanny"));
+            if (otherB.getActive())
             {
-                Debug.Log("debug.log----->" + gameObject.name);
+            Debug.Log("debug.log----->" + gameObject.name);
                 //Instantiate(platformPrefab, new Vector3(0,10,0), Quaternion.identity);
                 CmdSpawn();
-            }*/
+            }
 
         }
     }
@@ -55,6 +54,7 @@ public class BoardBehaviour : NetworkBehaviour {
     public void CmdFinish()
     {
         //Debug.Log("ci sono entrato infine");
+       
         cam.gameObject.SetActive(true);
         cam.enabled = true;
         GameObject.Find("EndGameManager").GetComponent<EndGameManager>().EndGame();       
@@ -64,7 +64,7 @@ public class BoardBehaviour : NetworkBehaviour {
     public void CmdSpawn()
     {
        Transform x =  Instantiate(platformPrefab, new Vector3(0, 10, 0), Quaternion.identity) as Transform;
-        NetworkServer.Spawn(x.gameObject);
+       NetworkServer.Spawn(x.gameObject);
     }
 
 

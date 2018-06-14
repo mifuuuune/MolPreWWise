@@ -28,6 +28,7 @@ public class BasicController : NetworkBehaviour
     protected float JumpSlow = 1.25f;
     protected float MaxDistance = 50f;
     public float AbilityRange = 0f;
+    public float AbilityMoleRange = 50f;
 
     //--------------------------------------------------- INTERNAL PARAMETERS ---------------------------------------------------//
     public PlayerState State;
@@ -171,19 +172,28 @@ public class BasicController : NetworkBehaviour
         }
     }
 
+    public void BossUI()
+    {
+        if(GameObject.Find("LevelUI"))
+            GameObject.Find("LevelUI").SetActive(false);
+        Invoke("ChangeUI", 0.8f);
+    }
+
     public void ChangeUI()
     {
         Sprite s1 = null;
         Sprite s2 = null;
         Sprite s3 = null;
         Sprite s4 = null;
-
+      
         Sprite s5 = null;
         Sprite s6 = null;
         Sprite s7 = null;
 
         if (GameObject.Find("BossUI"))
         {
+            GameObject.Find("BossUI").GetComponent<Canvas>().enabled=true;
+            Debug.Log("sdasa");
             int mate1lives = 0;
             int mate2lives = 0;
             int mate3lives = 0;
@@ -200,8 +210,8 @@ public class BasicController : NetworkBehaviour
                 s6 = Resources.Load<Sprite>("loin");
                 s7 = Resources.Load<Sprite>("sage");
 
-                SpawnPoint = GameObject.Find("sir_bean_spawn");
-                DontDestroyOnLoad(GameObject.Find("sir_bean_spawn"));
+                //SpawnPoint = GameObject.Find("sir_bean_spawn");
+                //DontDestroyOnLoad(GameObject.Find("sir_bean_spawn"));
 
                 GameObject x;
                 if (x = GameObject.FindWithTag("Eal")) mate1lives = x.GetComponent<BasicController>().GetLives();
@@ -220,8 +230,8 @@ public class BasicController : NetworkBehaviour
                 s6 = Resources.Load<Sprite>("sage");
                 s7 = Resources.Load<Sprite>("bean");
 
-                SpawnPoint = GameObject.Find("sir_eal_spawn");
-                DontDestroyOnLoad(GameObject.Find("sir_eal_spawn"));
+                //SpawnPoint = GameObject.Find("sir_eal_spawn");
+                //DontDestroyOnLoad(GameObject.Find("sir_eal_spawn"));
 
                 GameObject x;
                 if (x = GameObject.FindWithTag("Loin")) mate1lives = x.GetComponent<BasicController>().GetLives();
@@ -256,8 +266,8 @@ public class BasicController : NetworkBehaviour
                 s6 = Resources.Load<Sprite>("eal");
                 s7 = Resources.Load<Sprite>("loin");
 
-                SpawnPoint = GameObject.Find("sir_sage_spawn");
-                DontDestroyOnLoad(GameObject.Find("sir_sage_spawn"));
+                //SpawnPoint = GameObject.Find("sir_sage_spawn");
+                //DontDestroyOnLoad(GameObject.Find("sir_sage_spawn"));
 
                 GameObject x;
                 if (x = GameObject.FindWithTag("Bean")) mate1lives = x.GetComponent<BasicController>().GetLives();
@@ -457,16 +467,16 @@ public class BasicController : NetworkBehaviour
 
     protected void CmdMoleAbility()
     {
-        Debug.Log("entro qua");
+       // Debug.Log("entro qua");
         RaycastHit AbilityHit;
         Ray AbilityRay = new Ray(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)));
         Debug.DrawRay(transform.position + new Vector3(0, 0.68f, 0), AimRayCast() - (transform.position + new Vector3(0, 0.68f, 0)), Color.green);
-		if (Physics.Raycast (AbilityRay, out AbilityHit, AbilityRange)) {
+		if (Physics.Raycast (AbilityRay, out AbilityHit, AbilityMoleRange)) {
 			GameObject target = AbilityHit.collider.gameObject;
             Debug.Log(target.name);
 			if (target.layer == 10)
             {            
-                Debug.Log("sto usando abilità mole");
+                //Debug.Log("sto usando abilità mole");
                 target.GetComponent<RespawnWithDelay>().MoleAbility();
                 //Debug.Log("Ottenuto");
 			} else if (target.layer == 9) {
@@ -567,6 +577,7 @@ public class BasicController : NetworkBehaviour
         if (isLocalPlayer)
         {
             Transform disable = transform.GetChild(3).GetChild(0);
+            Debug.Log(disable.name);
             disable.gameObject.GetComponent<Camera>().enabled = false;
             disable.gameObject.SetActive(false);
             if (GameObject.Find("LevelUI"))
@@ -576,7 +587,7 @@ public class BasicController : NetworkBehaviour
                 GameObject.Find("Lose").GetComponent<Canvas>().enabled=true;
                 //Debug.Log("Hai Perso");
             else
-                GameObject.Find("Lose").GetComponent<Canvas>().enabled = false;
+                GameObject.Find("Win").GetComponent<Canvas>().enabled = true;
             //Debug.Log("hai vinto");
         }
         

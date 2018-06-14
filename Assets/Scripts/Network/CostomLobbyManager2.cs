@@ -31,7 +31,7 @@ namespace Prototype.NetworkLobby
         public void Awake()
         {
             s_Singleton = this;
-            mole = 1;//UnityEngine.Random.Range(1, 4);
+            mole = UnityEngine.Random.Range(1, 4);
         }
 
         public override void OnLobbyServerConnect(NetworkConnection conn)

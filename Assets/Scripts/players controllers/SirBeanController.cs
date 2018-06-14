@@ -61,8 +61,8 @@ public class SirBeanController : BasicController
     {
         base.CmdUseAbility();
         //Debug.Log(AimRayCast().tag);
-        if (isClient)
-            Force = 200;
+        /*if (isClient)
+            Force = 200;*/
        try
         {
             if (ProximityRayCast().tag == "Boulder" && ProximityRayCast() != null)
