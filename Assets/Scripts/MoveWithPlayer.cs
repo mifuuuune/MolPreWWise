@@ -12,5 +12,6 @@ public class MoveWithPlayer : MonoBehaviour {
     void OnCollisionExit(Collision col)
     {
         col.gameObject.transform.parent = null;
+        DontDestroyOnLoad(col.gameObject);
     }
 }

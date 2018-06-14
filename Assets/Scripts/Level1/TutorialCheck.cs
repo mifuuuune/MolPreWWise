@@ -23,7 +23,7 @@ public class TutorialCheck : NetworkBehaviour {
             //if (SirBeanArrived && SirEalArrived && SirLoinArrived && SirSageArrived) //TutorialBlock.SetActive(false);
                 
             
-            if (SirLoinArrived) CmdDestroyBlock();
+            if (SirLoinArrived || SirBeanArrived || SirEalArrived || SirSageArrived) CmdDestroyBlock();
         }
         
     }
