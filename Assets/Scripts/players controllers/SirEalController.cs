@@ -11,6 +11,7 @@ public class SirEalController : BasicController {
     private float timer = 1.5f;
     private float AnimationStop = 1.1f;
     private bool attachedToWall = false;
+    private bool TouchingPlant = false;
     private BoxCollider BoxColl;
 
     protected override void Start()
@@ -31,31 +32,27 @@ public class SirEalController : BasicController {
         {
             if (Physics.Raycast(AbilityRay, out AbilityHit, AbilityRange))
             {
-                if (Vector3.Distance(AbilityHit.collider.gameObject.transform.position, transform.position) > 0.3f)
+                if (AbilityHit.collider.gameObject.tag == "Terrain" && Vector3.Distance(AbilityHit.collider.gameObject.transform.position, transform.position) > 0.65f)
                 {
-                    if (AbilityHit.collider.gameObject.tag == "Terrain")
-                    {
-                        timer = 0;
-                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AbilityHit.collider.gameObject.transform.position.x - transform.position.x, 0, AbilityHit.collider.gameObject.transform.position.z - transform.position.z)), RotationSpeed * 10);
-                        anim.SetTrigger("Plant");
-                        var spawn = AbilityHit.collider.gameObject.transform.position;
-                        var destroy = AbilityHit.collider.gameObject;
-                        CmdSpawnPlant(spawn, destroy);
-                        //Destroy(ProximityRayCast());
+                    timer = 0;
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AbilityHit.collider.gameObject.transform.position.x - transform.position.x, 0, AbilityHit.collider.gameObject.transform.position.z - transform.position.z)), RotationSpeed * 10);
+                    anim.SetTrigger("Plant");
+                    var spawn = AbilityHit.collider.gameObject.transform.position;
+                    var destroy = AbilityHit.collider.gameObject;
+                    CmdSpawnPlant(spawn, destroy);
+                    //Destroy(ProximityRayCast());
 
-                    }
-                    else
-                    if (AbilityHit.collider.gameObject.tag == "Plant")
-                    {
-                        timer = 0;
-                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AbilityHit.collider.gameObject.transform.position.x - transform.position.x, 0, AbilityHit.collider.gameObject.transform.position.z - transform.position.z)), RotationSpeed * 10);
-                        anim.SetTrigger("Plant");
-                        var spawn = AbilityHit.collider.gameObject.transform.position;
-                        var destroy = AbilityHit.collider.gameObject;
-                        CmdUnSpawnPlant(spawn, destroy);
-                        //Destroy(ProximityRayCast());
-                    }
-
+                }
+                else
+                if (AbilityHit.collider.gameObject.tag == "Plant" && !TouchingPlant)
+                {
+                    timer = 0;
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AbilityHit.collider.gameObject.transform.position.x - transform.position.x, 0, AbilityHit.collider.gameObject.transform.position.z - transform.position.z)), RotationSpeed * 10);
+                    anim.SetTrigger("Plant");
+                    var spawn = AbilityHit.collider.gameObject.transform.position;
+                    var destroy = AbilityHit.collider.gameObject;
+                    CmdUnSpawnPlant(spawn, destroy);
+                    //Destroy(ProximityRayCast());
                 }
             }
         }
@@ -158,5 +155,21 @@ public class SirEalController : BasicController {
             rb.velocity = Vector3.zero;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-collision.contacts[0].normal), RotationSpeed * 10);
         }
+
+        if (coll.tag.Equals("Plant")) TouchingPlant = true;
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        GameObject coll = collision.gameObject;
+
+        if (coll.tag.Equals("Wall") && !IsGrounded)
+        {
+            anim.SetBool("IsStick", false);
+            rb.useGravity = true;
+            attachedToWall = false;
+        }
+
+        if (coll.tag.Equals("Plant")) TouchingPlant = false;
     }
 }

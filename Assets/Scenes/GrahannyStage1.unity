@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -801,7 +801,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1705801757922200, guid: cf35a5a204531f84abcb966f81da3581, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1705801757922200, guid: cf35a5a204531f84abcb966f81da3581, type: 2}
       propertyPath: m_Name
@@ -2962,6 +2962,21 @@ Prefab:
       propertyPath: m_AssetId.i15
       value: 227
       objectReference: {fileID: 0}
+    - target: {fileID: 114840306198274244, guid: 9dbda0776a0cb724b8ec95b89f4c00e3,
+        type: 2}
+      propertyPath: range
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114840306198274244, guid: 9dbda0776a0cb724b8ec95b89f4c00e3,
+        type: 2}
+      propertyPath: rangeForNextStage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114840306198274244, guid: 9dbda0776a0cb724b8ec95b89f4c00e3,
+        type: 2}
+      propertyPath: rangeForPushAway
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9dbda0776a0cb724b8ec95b89f4c00e3, type: 2}
   m_IsPrefabParent: 0
@@ -3170,7 +3185,7 @@ MonoBehaviour:
   maxNumber: 15
   spawnTime: 0.5
   prefab: {fileID: 4556039543099992, guid: 34c6e7bf05540b34080c3cedb113a67c, type: 2}
-  prefabWithSpring: {fileID: 4842303325897048, guid: 80b18eef4a388fd4a9dec2bd48d4420c,
+  prefabWithSpring: {fileID: 4274703599160072, guid: 80b18eef4a388fd4a9dec2bd48d4420c,
     type: 2}
   percentage: 50
 --- !u!4 &1706897143

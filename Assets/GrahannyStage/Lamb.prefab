@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2c1c2feb8077746b9db11dbb3f10cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   rotSpeed: 5
   forcePower: 25000
 --- !u!114 &114269146937453530

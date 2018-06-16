@@ -92,8 +92,12 @@ public class GrahannyBehaviourStage2 : NetworkBehaviour {
     {
         while (true)
         {
-            dt.walk();
-            yield return new WaitForSeconds(1.2f);
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Run") || anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                dt.walk();
+                yield return new WaitForSeconds(.5f);
+            }
+            yield return new WaitForSeconds(.8f);
         }
     }
 

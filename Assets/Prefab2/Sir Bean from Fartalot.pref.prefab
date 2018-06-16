@@ -583,6 +583,11 @@ GameObject:
   - component: {fileID: 114748183912396186}
   - component: {fileID: 114792626382767940}
   - component: {fileID: 114486446765580068}
+  - component: {fileID: 65028251747111258}
+  - component: {fileID: 114978437493636516}
+  - component: {fileID: 114378270021472214}
+  - component: {fileID: 114949140818218370}
+  - component: {fileID: 114147421307181934}
   m_Layer: 9
   m_Name: Sir Bean from Fartalot.pref
   m_TagString: Bean
@@ -645,8 +650,9 @@ GameObject:
   - component: {fileID: 4726925129876820}
   - component: {fileID: 20160997654972364}
   - component: {fileID: 124003542416790098}
-  - component: {fileID: 81704943392758540}
   - component: {fileID: 114565529678537446}
+  - component: {fileID: 114427740765219084}
+  - component: {fileID: 114404917973122386}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1069,7 +1075,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1613227943946332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.25, y: 0, z: -7.8}
+  m_LocalPosition: {x: -15.21, y: -18.28, z: 10.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4630157580501634}
@@ -1504,13 +1510,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!81 &81704943392758540
-AudioListener:
+--- !u!65 &65028251747111258
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1736663089328114}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1613227943946332}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.7, z: 0.65}
+  m_Center: {x: 0, y: 0.6, z: 0.25}
 --- !u!95 &95662080475095970
 Animator:
   serializedVersion: 3
@@ -1529,6 +1540,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114147421307181934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1613227943946332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac167184ac6a14349ba5a5e50d46a9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  enableActionOnEvent: 0
+  eventID: -1067173173
+  m_callbackData: {fileID: 0}
+  playingId: 0
+  soundEmitterObject: {fileID: 0}
+  transitionDuration: 0
+  valueGuid: 95537df6abcf39409e7991d1f045489f
+  multiPositionArray: []
+  MultiPositionType: 1
+  multiPositionTypeLabel: 0
 --- !u!114 &114285741610521726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1546,6 +1582,57 @@ MonoBehaviour:
   inputSensitivity: 150
   InputX: 0
   InputY: 0
+--- !u!114 &114378270021472214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1613227943946332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c44e84e1c72ac4d9cb8623864d0a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  groupID: -1346528306
+  valueID: 1945043878
+  groupGuid: 8d79b5be30a428409ca39a64b247989b
+  valueGuid: 6359bc37ac47fe48856d546f04b972df
+--- !u!114 &114404917973122386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1736663089328114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34aa63caea4c6e4d8b09370273ab9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  listenerId: 0
+--- !u!114 &114427740765219084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1736663089328114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e00c2354df55b44391989e919b7c6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!114 &114486446765580068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1661,6 +1748,44 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
+--- !u!114 &114949140818218370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1613227943946332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e00c2354df55b44391989e919b7c6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 1
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
+--- !u!114 &114978437493636516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1613227943946332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c44e84e1c72ac4d9cb8623864d0a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  groupID: -1067173173
+  valueID: 1945043878
+  groupGuid: 6874335ea29f7143b0743cbf1f2e5e97
+  valueGuid: 27115458821039439ab6beae443a7ff3
 --- !u!124 &124003542416790098
 Behaviour:
   m_ObjectHideFlags: 1

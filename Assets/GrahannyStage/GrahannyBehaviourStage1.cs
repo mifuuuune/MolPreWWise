@@ -8,7 +8,8 @@ public class GrahannyBehaviourStage1 : NetworkBehaviour {
     private float counter = 0.0f;
     private bool counting = false;
     public float timeLimit;
-    public float range = 2.0f;
+    public float rangeForNextStage;
+    public float rangeForPushAway;
     public float forcePower;
     private Animator anim;
 
@@ -55,6 +56,7 @@ public class GrahannyBehaviourStage1 : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
         fsm.Update();
+        Debug.Log((GameObject.FindWithTag("Bean").transform.position - transform.position).magnitude);
 	}
 
     private void StopCounting()
@@ -71,7 +73,7 @@ public class GrahannyBehaviourStage1 : NetworkBehaviour {
     private void UpdateCounter()
     {
         if (counting) counter += Time.deltaTime;
-        Debug.Log(counter);
+        //Debug.Log(counter);
     }
 
     private void Hit()
@@ -91,7 +93,7 @@ public class GrahannyBehaviourStage1 : NetworkBehaviour {
         {
             GameObject go = GameObject.FindGameObjectWithTag(t);
             if (go)
-                if ((go.transform.position - transform.position).magnitude <= range)
+                if ((go.transform.position - transform.position).magnitude <= rangeForPushAway)
                     //CmdPushAway(go, forcePower);
                     go.GetComponent<Rigidbody>().AddForce((go.transform.position - transform.position).normalized * forcePower);
         }
@@ -114,7 +116,7 @@ public class GrahannyBehaviourStage1 : NetworkBehaviour {
         GetComponent<ChangeSceneManager>().changeScene("GrahannyStage2");
     }
 
-    private int NumPlayersInRange()
+    private int NumPlayersInRange(float range)
     {
         int count = 0;
         foreach (string t in playerTags)
@@ -129,18 +131,18 @@ public class GrahannyBehaviourStage1 : NetworkBehaviour {
 
     private bool PlayersInRange()
     {
-        return NumPlayersInRange() > 0;
+        return NumPlayersInRange(rangeForNextStage) > 0;
     }
 
     private bool NoPlayersInRange()
     {
-        return NumPlayersInRange() == 0;
+        return NumPlayersInRange(rangeForPushAway) == 0;
     }
 
     private bool EnoughPlayersInRange()
     {
-        Debug.Log(NumPlayersInRange());
-        return NumPlayersInRange() >= 3;
+        //Debug.Log(NumPlayersInRange());
+        return NumPlayersInRange(rangeForNextStage) >= 3;
     }
 
     private bool TimeOver()

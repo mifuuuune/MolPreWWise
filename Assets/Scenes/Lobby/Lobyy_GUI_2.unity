@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43749017, g: 0.4853112, b: 0.56558603, a: 1}
+  m_IndirectSpecularColor: {r: 0.43749028, g: 0.48531085, b: 0.5655851, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 251318208}
   - component: {fileID: 251318207}
   - component: {fileID: 251318206}
+  - component: {fileID: 251318209}
   - component: {fileID: 251318205}
   m_Layer: 0
   m_Name: Main Camera
@@ -322,13 +323,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &251318205
-AudioListener:
+--- !u!114 &251318205
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 251318204}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34aa63caea4c6e4d8b09370273ab9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  listenerId: 0
 --- !u!124 &251318206
 Behaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +392,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 18.243, y: 0, z: 0}
+--- !u!114 &251318209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 251318204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e00c2354df55b44391989e919b7c6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!1 &485710531
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +939,7 @@ MonoBehaviour:
   - {fileID: 1957621043978284, guid: bb76632df427f3748998037325293d7b, type: 2}
   - {fileID: 1559876639884646, guid: d45e57293aeaced4698b18cc45696fd1, type: 2}
   - {fileID: 1465968772657712, guid: 34c6e7bf05540b34080c3cedb113a67c, type: 2}
-  - {fileID: 1433709081830020, guid: 80b18eef4a388fd4a9dec2bd48d4420c, type: 2}
+  - {fileID: 1284500610137220, guid: 80b18eef4a388fd4a9dec2bd48d4420c, type: 2}
   - {fileID: 1078146061245640, guid: af187edd2c3e5bf44b73787301f0fb2f, type: 2}
   - {fileID: 1859979599560994, guid: e406fb6ad20308c43b997a38c7f5379f, type: 2}
   m_CustomConfig: 0
@@ -956,7 +984,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -978,7 +1006,7 @@ MonoBehaviour:
   m_GamePlayerPrefab: {fileID: 1613227943946332, guid: 02d1843c37d7acc418d4dfa9d560abf5,
     type: 2}
   m_LobbyScene: Lobyy_GUI_2
-  m_PlayScene: Level 1
+  m_PlayScene: Game Level
   lobbySlots: []
   player1: {fileID: 1613227943946332, guid: 02d1843c37d7acc418d4dfa9d560abf5, type: 2}
   player2: {fileID: 1855534808144124, guid: dd5ef94774c5a6f49a8ead8e3754ffb7, type: 2}
@@ -1561,6 +1589,72 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1488753893}
+--- !u!1 &1508430077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1508430080}
+  - component: {fileID: 1508430079}
+  - component: {fileID: 1508430078}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1508430078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1508430077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e87b15e0da9954fb41a8be82178cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95
+  monitorPoolSize: 128
+  monitorQueuePoolSize: 64
+  callbackManagerBufferSize: 4
+  spatialAudioPoolSize: 4096
+  maxSoundPropagationDepth: 8
+  diffractionFlags: 11
+  engineLogging: 1
+--- !u!114 &1508430079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1508430077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1bbb20255740d744a87e79afbe193dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1508430080
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1508430077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1598081621
 GameObject:
   m_ObjectHideFlags: 0

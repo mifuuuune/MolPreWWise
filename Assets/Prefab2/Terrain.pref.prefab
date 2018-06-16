@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65582201046079732}
   - component: {fileID: 114304752160900454}
   - component: {fileID: 114408072428057684}
+  - component: {fileID: 114402269801524084}
   m_Layer: 11
   m_Name: Terrain.pref
   m_TagString: Terrain
@@ -111,6 +112,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+--- !u!114 &114402269801524084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1107123618421336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14041247fc6497d4987e6379b717321e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114408072428057684
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -419,7 +419,7 @@ public class BasicController : NetworkBehaviour
     }
 
     //When on the ground moves the character
-    protected void Run()
+    protected virtual void Run()
     {
         State = PlayerState.Run;
 

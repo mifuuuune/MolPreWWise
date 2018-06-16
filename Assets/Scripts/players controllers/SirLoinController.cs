@@ -133,14 +133,14 @@ public class SirLoinController : BasicController {
         {
             //Debug.Log("spawn1");
             knife1 = GameObject.Instantiate<GameObject>(this.FirstKnife, knifepos, kniferot);
-            knife1.GetComponent<Rigidbody>().velocity = knife1.transform.forward * 7.0f;
+            knife1.GetComponent<KnifeBehaviour>().SetDestination(AimRayCast());
             NetworkServer.Spawn(knife1);
         }
         else
         {
             //Debug.Log("spawn2");
             knife2 = GameObject.Instantiate<GameObject>(this.SecondKnife, knifepos, kniferot);
-            knife2.GetComponent<Rigidbody>().velocity = knife2.transform.forward * 7.0f;
+            knife2.GetComponent<KnifeBehaviour>().SetDestination(AimRayCast());
             NetworkServer.Spawn(knife2);
         }
     }
