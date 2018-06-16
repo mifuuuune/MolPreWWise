@@ -29,6 +29,12 @@ public class SirLoinController : BasicController {
 
         if (Input.GetButtonUp("Jump")) CanGlide = true;
 
+        if (timer <= AnimationStop)
+        {
+            timer += Time.deltaTime;
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             CmdUseAbility();
@@ -52,13 +58,6 @@ public class SirLoinController : BasicController {
         else
         {
             anim.SetBool("Gliding", false);
-
-            if (timer <= AnimationStop)
-            {
-                timer += Time.deltaTime;
-                anim.SetBool("Moving", false);
-                return;
-            }
 
             if (CurrentInput > 0) Run();
                 else Idle();
@@ -156,7 +155,7 @@ public class SirLoinController : BasicController {
             foreach(GameObject obj in knifesinscene)
             {
                 
-                if(obj.name== "SirLoin's FirstKnife.pref(Clone)")
+                if(obj.name== "LeftFish(Clone)")
                 {
                     Debug.Log("sono nel for each 1 e ho trovaot first");
                     Destroy(obj);
@@ -173,7 +172,7 @@ public class SirLoinController : BasicController {
             var knifesinscene = GameObject.FindGameObjectsWithTag("Knife");
             foreach (GameObject obj in knifesinscene)
             {
-                if (obj.name == "SirLoin's SecondKnife.pref(Clone)")
+                if (obj.name == "RightFish(Clone)")
                 {
                     Debug.Log("sono nel for each 1 e ho trovaot second");
                     Destroy(obj);

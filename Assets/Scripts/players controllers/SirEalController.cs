@@ -14,6 +14,9 @@ public class SirEalController : BasicController {
     private bool TouchingPlant = false;
     private BoxCollider BoxColl;
 
+    private float stepTime = 0.3f;
+    private float lastStep = 0;
+
     protected override void Start()
     {
         base.Start();
@@ -34,6 +37,7 @@ public class SirEalController : BasicController {
             {
                 if (AbilityHit.collider.gameObject.tag == "Terrain" && Vector3.Distance(AbilityHit.collider.gameObject.transform.position, transform.position) > 0.65f)
                 {
+                    AkSoundEngine.PostEvent("Grano_Crescita", gameObject);
                     timer = 0;
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AbilityHit.collider.gameObject.transform.position.x - transform.position.x, 0, AbilityHit.collider.gameObject.transform.position.z - transform.position.z)), RotationSpeed * 10);
                     anim.SetTrigger("Plant");
@@ -46,6 +50,7 @@ public class SirEalController : BasicController {
                 else
                 if (AbilityHit.collider.gameObject.tag == "Plant" && !TouchingPlant)
                 {
+                    AkSoundEngine.PostEvent("Grano_Taglio", gameObject);
                     timer = 0;
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(AbilityHit.collider.gameObject.transform.position.x - transform.position.x, 0, AbilityHit.collider.gameObject.transform.position.z - transform.position.z)), RotationSpeed * 10);
                     anim.SetTrigger("Plant");
@@ -116,6 +121,8 @@ public class SirEalController : BasicController {
         }
         else
         {
+            if (State == PlayerState.Jump)
+                AkSoundEngine.PostEvent("Atterraggi", gameObject);
             //BoxColl.enabled = false;
             //coll.enabled = true;
 
@@ -137,10 +144,22 @@ public class SirEalController : BasicController {
 
             if (Input.GetButtonDown("Jump"))
             {
+                AkSoundEngine.PostEvent("Salti", gameObject);
                 rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
                 Jump();
             }
         }
+    }
+
+    protected override void Run()
+    {
+        base.Run();
+        if (lastStep >= stepTime)
+        {
+            AkSoundEngine.PostEvent("Passi", gameObject);
+            lastStep = 0;
+        }
+        else lastStep += Time.deltaTime;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -149,6 +168,7 @@ public class SirEalController : BasicController {
 
         if (coll.tag.Equals("Wall") && !IsGrounded)
         {
+            AkSoundEngine.PostEvent("Ventosa", gameObject);
             anim.SetBool("IsStick", true);
             attachedToWall = true;
             rb.useGravity = false;

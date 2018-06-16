@@ -48,7 +48,7 @@ public class KnifeBehaviour : NetworkBehaviour {
     public void SetDestination(Vector3 Destination)
     {
         transform.LookAt(Destination);
-        this.GetComponent<Rigidbody>().velocity = transform.forward * 7.0f;
+        this.GetComponent<Rigidbody>().velocity = transform.forward * 10.0f;
     }
 
     private void DestroyObject()

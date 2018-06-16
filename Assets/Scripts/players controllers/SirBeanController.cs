@@ -40,6 +40,7 @@ public class SirBeanController : BasicController
             if (State == PlayerState.Jump)
                 AkSoundEngine.PostEvent("Atterraggi", gameObject);
             MovementSpeed = 4.5f;
+            JumpSlow = 1.25f;
             SpecialJumped = false;
             anim.SetBool("SpecialJumping", false);
 
@@ -65,7 +66,6 @@ public class SirBeanController : BasicController
             {
                 AkSoundEngine.PostEvent("Salti", gameObject);
                 rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-                JumpSlow = 1.25f;
                 Jump();
                 return;
             }
@@ -75,7 +75,7 @@ public class SirBeanController : BasicController
     protected override void SpecialJump()
     {
         base.SpecialJump();
-        JumpSlow = 5f;
+        JumpSlow = 4.5f;
         rb.AddForce(Vector3.up * (JumpForce - (rb.velocity.y * rb.mass)), ForceMode.Impulse);
         anim.SetBool("SpecialJumping", true);
     }

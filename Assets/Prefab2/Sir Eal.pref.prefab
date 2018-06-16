@@ -396,8 +396,9 @@ GameObject:
   - component: {fileID: 4585020309562742}
   - component: {fileID: 20318109826958530}
   - component: {fileID: 124289884221223602}
-  - component: {fileID: 81198366829124076}
   - component: {fileID: 114194748127084092}
+  - component: {fileID: 114485919224599668}
+  - component: {fileID: 114908391968756858}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -572,6 +573,8 @@ GameObject:
   - component: {fileID: 114751219390641722}
   - component: {fileID: 114650905378689692}
   - component: {fileID: 65702913783538466}
+  - component: {fileID: 114483229144399664}
+  - component: {fileID: 114724866136058254}
   m_Layer: 9
   m_Name: Sir Eal.pref
   m_TagString: Eal
@@ -958,7 +961,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855534808144124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.22, y: 2.1308658e-16, z: 3.44}
+  m_LocalPosition: {x: -19.53, y: -18.09, z: 10.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4576802635904386}
@@ -1369,13 +1372,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.5, z: 0.2}
   m_Center: {x: 0, y: 0.75, z: 0.1}
---- !u!81 &81198366829124076
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1692713791003562}
-  m_Enabled: 1
 --- !u!95 &95472930009767804
 Animator:
   serializedVersion: 3
@@ -1460,6 +1456,36 @@ MonoBehaviour:
   inputSensitivity: 150
   InputX: 0
   InputY: 0
+--- !u!114 &114483229144399664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855534808144124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c44e84e1c72ac4d9cb8623864d0a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  groupID: -1346528306
+  valueID: -1734379402
+  groupGuid: 8d79b5be30a428409ca39a64b247989b
+  valueGuid: a19201f634e08d4eb94cdf7a9c1028cd
+--- !u!114 &114485919224599668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1692713791003562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34aa63caea4c6e4d8b09370273ab9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  listenerId: 0
 --- !u!114 &114650905378689692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1479,6 +1505,23 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
+--- !u!114 &114724866136058254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855534808144124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c44e84e1c72ac4d9cb8623864d0a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  groupID: -1067173173
+  valueID: -1734379402
+  groupGuid: 6874335ea29f7143b0743cbf1f2e5e97
+  valueGuid: 357529165b57e542b88e4f9300e4176e
 --- !u!114 &114751219390641722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1500,6 +1543,27 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
   m_InterpolateMovement: 0.5
+--- !u!114 &114908391968756858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1692713791003562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e00c2354df55b44391989e919b7c6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!114 &114936438199641654
 MonoBehaviour:
   m_ObjectHideFlags: 1

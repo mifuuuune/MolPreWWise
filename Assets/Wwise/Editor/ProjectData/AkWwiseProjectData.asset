@@ -581,8 +581,11 @@ MonoBehaviour:
   - /Moleficent/Events/Default Work Unit
   - /Moleficent/Events/Default Work Unit/Personaggi
   - /Moleficent/Events/Default Work Unit/Personaggi/Sir Bean
+  - /Moleficent/Events/Default Work Unit/Personaggi/Sir Eal
+  - /Moleficent/Events/Default Work Unit/Personaggi/Sir Eal/Grano
   - /Moleficent/Switches
   - /Moleficent/Switches/Default Work Unit
+  - /Moleficent/Switches/Default Work Unit/Passi
   - /Moleficent/Switches/Default Work Unit/Salti
   language: English(US)
   lowerPoolSize: 2048

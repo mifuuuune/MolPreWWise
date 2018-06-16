@@ -484,9 +484,10 @@ public class BasicController : NetworkBehaviour
                 CmdPush(target);
 				
 			}
-            else
+            else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
-                rb.AddForce(-transform.forward * 800, ForceMode.Impulse);
+                rb.AddForce(-transform.forward * 400, ForceMode.Impulse);
+                rb.AddForce(transform.up * 350, ForceMode.Impulse);
             }
             molePoints -= 10;
         } 
